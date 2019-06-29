@@ -14,32 +14,32 @@ const AppNavigator = createStackNavigator({
             title: 'Perfil Inicial'
         }
     },
-    atividade : {
+    atividade: {
         screen: atividade,
         navigationOptions: {
             title: 'Nível de atividade'
         }
     },
-    gastoCalorico : {
+    gastoCalorico: {
         screen: gastoCalorico,
         navigationOptions: {
             title: 'Gasto Calórico'
         }
     },
-    objetivo : {
+    objetivo: {
         screen: objetivo,
         navigationOptions: {
             title: 'Objetivo'
         }
     },
-    dificuldade : {
+    dificuldade: {
         screen: dificuldade,
         navigationOptions: {
             title: 'Dificuldade'
         }
     },
-},{
-    initialRouteName: 'dadosPerfil'
-});
+}, {
+        // initialRouteName: 'dificuldade'
+    });
 
 export default createAppContainer(AppNavigator);

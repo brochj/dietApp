@@ -10,44 +10,81 @@ export default class dadosPerfil extends React.Component {
             age: 20,
             weight: 70,
             height: 175,
+            gender: 'male',
 
         };
         this.weightValue = this.weightValue.bind(this);
         this.ageValue = this.ageValue.bind(this);
         this.heightValue = this.heightValue.bind(this);
+        this.genderType = this.genderType.bind(this);
+        this.goNextScreen = this.goNextScreen.bind(this);
+
+
+    }
+
+    goNextScreen() {
+        this.props.navigation.navigate('atividade', {
+            age: this.state.age,
+            weight: this.state.weight,
+            height: this.state.height,
+            gender: this.state.gender,
+        })
     }
 
     weightValue(mathOperator) {
-        if (mathOperator = 'add') {
+        if (mathOperator == 'add') {
             this.state.weight += 0.1;
-        } else if (mathOperator = 'sub') {
+        } else if (mathOperator == 'sub') {
             this.state.weight -= 0.1;
         }
         this.setState(this.state);
     }
     ageValue(mathOperator) {
-        if (mathOperator = 'add') {
+        if (mathOperator == 'add') {
             this.state.age += 1;
-        } else if (mathOperator = 'sub') {
+        } else if (mathOperator == 'sub') {
             this.state.age -= 1;
         }
         this.setState(this.state);
     }
     heightValue(mathOperator) {
-        if (mathOperator = 'add') {
+        if (mathOperator == 'add') {
             this.state.height += 1;
-        } else if (mathOperator = 'sub') {
+        } else if (mathOperator == 'sub') {
             this.state.height -= 1;
         }
         this.setState(this.state);
     }
-
+    genderType(type) {
+        if (type == 'male') {
+            this.state.gender = 'female';
+        } else if (type == 'female') {
+            this.state.gender = 'male';
+        }
+        this.setState(this.state);
+    }
     render() {
+
+        const maleOpacity = {
+            opacity: (this.state.gender == 'male') ? 1 : .3
+        }
+        const femaleOpacity = {
+            opacity: (this.state.gender == 'female') ? 1 : .3
+        }
+
         return (
             <View style={styles.body}>
                 <View style={styles.genderView}>
-                    <Image source={R.images.womanAvatar} style={styles.genderImage} />
-                    <Image source={R.images.manAvatar} style={styles.genderImage} />
+                    <TouchableOpacity style={styles.femaleTouchable}
+                        onPress={() => this.genderType('male')}
+                    >
+                        <Image source={R.images.womanAvatar} style={[styles.genderImage, femaleOpacity]} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.maleTouchable}
+                        onPress={() => this.genderType('female')}
+                    >
+                        <Image source={R.images.manAvatar} style={[styles.genderImage, maleOpacity]} />
+                    </TouchableOpacity>
                 </View>
 
 
@@ -151,12 +188,13 @@ export default class dadosPerfil extends React.Component {
 
 
                 <Button title='Go to next screen'
-                    onPress={() => { this.props.navigation.navigate('atividade') }}
+                    onPress={this.goNextScreen}
                 />
-            </View>
+            </View >
         );
     }
 }
+
 
 const styles = StyleSheet.create({
     body: {
@@ -167,12 +205,17 @@ const styles = StyleSheet.create({
     genderView: {
         flex: 1,
         flexDirection: 'row',
+        padding: 10,
     },
     genderImage: {
-        height: 70,
-        width: 70,
-        borderRadius: 35,
+        height: 120,
+        width: 120,
+        borderRadius: 60,
+        borderWidth: 5,
+        borderColor: 'black',
+
     },
+
     inputView: {
         flex: 1,
         height: 100,
