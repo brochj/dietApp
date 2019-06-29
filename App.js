@@ -38,6 +38,8 @@ const AppNavigator = createStackNavigator({
             title: 'Dificuldade'
         }
     },
+},{
+    initialRouteName: 'dadosPerfil'
 });
 
 export default createAppContainer(AppNavigator);
