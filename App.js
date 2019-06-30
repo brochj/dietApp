@@ -6,6 +6,7 @@ import atividade from './src/screens/inicio/atividade';
 import gastoCalorico from './src/screens/inicio/gastoCalorico';
 import objetivo from './src/screens/inicio/objetivo';
 import dificuldade from './src/screens/inicio/dificuldade';
+import distribuicao from './src/screens/inicio/distribuicao';
 
 const AppNavigator = createStackNavigator({
     dadosPerfil: {
@@ -38,8 +39,14 @@ const AppNavigator = createStackNavigator({
             title: 'Dificuldade'
         }
     },
+    distribuicao: {
+        screen: distribuicao,
+        navigationOptions: {
+            title: 'Distribuicao'
+        }
+    },
 }, {
-        // initialRouteName: 'dificuldade'
+        initialRouteName: 'distribuicao'
     });
 
 export default createAppContainer(AppNavigator);

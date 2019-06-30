@@ -2,11 +2,64 @@ import React from "react";
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from "react-native";
 import R from 'res/R'
 
-export default class dadosPerfil extends React.Component {
+export default class dificuldade extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             dificultyLevel: 'easy',
+            dificultyData: {
+                emagrecer: {
+                    easy: {
+                        title: '-270 até -170 kcal por dia',
+                        description: 'Esta janela de calorias irá permitir que você perca de 0,5 a 0,8 kg por semana de maneira saudável e sustentável.',
+                        dificulty: 'Dificuldade: fácil',
+                    },
+                    medium: {
+                        title: '-300 até -500 kcal por dia',
+                        description: 'Esta janela de calorias irá permitir que você perca de 0,8 a 1,2 kg por semana.',
+                        dificulty: 'Dificuldade:  Médio',
+                    },
+                    hard: {
+                        title: '-500 até -800 kcal por dia',
+                        description: 'Esta janela de calorias irá permitir que você perca de 1,2 a 1,5 kg por semana.',
+                        dificulty: 'Dificuldade:  Difícil',
+                    }
+                },
+                ganharMassa: {
+                    easy: {
+                        title: '+270 até +170 kcal por dia',
+                        description: 'Esta janela de calorias irá permitir que você ganhe de 0,5 a 0,8 kg por semana de maneira saudável e sustentável.',
+                        dificulty: 'Dificuldade: fácil',
+                    },
+                    medium: {
+                        title: '+300 até +500 kcal por dia',
+                        description: 'Esta janela de calorias irá permitir que você ganhe de 0,8 a 1,2 kg por semana.',
+                        dificulty: 'Dificuldade:  Médio',
+                    },
+                    hard: {
+                        title: '+500 até +800 kcal por dia',
+                        description: 'Esta janela de calorias irá permitir que você ganhe de 1,2 a 1,5 kg por semana.',
+                        dificulty: 'Dificuldade:  Difícil',
+                    }
+                },
+                manterPeso: {
+                    easy: {
+                        title: '-270 até -170 kcal por dia',
+                        description: 'Esta janela de calorias irá permitir que você perca de 0,5 a 0,8 kg por semana de maneira saudável e sustentável.',
+                        dificulty: 'Dificuldade: fácil',
+                    },
+                    medium: {
+                        title: '-300 até -500 kcal por dia',
+                        description: 'Esta janela de calorias irá permitir que você perca de 0,8 a 1,2 kg por semana.',
+                        dificulty: 'Dificuldade:  Médio',
+                    },
+                    hard: {
+                        title: '-500 até -800 kcal por dia',
+                        description: 'Esta janela de calorias irá permitir que você perca de 1,2 a 1,5 kg por semana.',
+                        dificulty: 'Dificuldade:  Difícil',
+                    }
+                }
+            }
         };
         this.goNextScreen = this.goNextScreen.bind(this);
         this.selectLevel = this.selectLevel.bind(this);
@@ -73,43 +126,55 @@ export default class dadosPerfil extends React.Component {
             R.images.manRun :
             R.images.womanStretch;
 
+        const opcoes = () => {
+            return (
+                <Text style={styles.txtName}>oi</Text>
+            );
+
+            // {false &&
+            //     <Text style={styles.oi}>oi</Text>
+            // }
+            // true ? <Text style={styles.oi}>oi</Text> : null
+        };
+
+        const teste = 'oiiii';
 
         return (
-
             <View style={styles.body}>
+                <Text style={styles.txtName}>{teste}</Text>
+
                 <View style={styles.imageView}>
                     <Image source={genderImage} style={styles.genderImage} />
                     <Image source={genderImage1} style={styles.genderImage1} />
                 </View>
                 <View style={styles.selectView}>
 
-
                     <TouchableOpacity style={[styles.selectTouch, bgColorLeve]}
                         onPress={() => { this.selectLevel('easy') }}
                     >
-                        <Text style={[styles.labelTitle, txtColorLeve]}>-270 até -170 kcal por dia</Text>
+                        <Text style={[styles.labelTitle, txtColorLeve]}>{this.state.dificultyData.emagrecer.easy.title}</Text>
                         <Text style={[styles.labelDescription, txtColorLeve]}>
-                            Esta janela de calorias irá permitir que você perca de 0,5 a 0,8 kg por semana de maneira saudável e sustentável.
-                    </Text>
-                        <Text style={[styles.labelDescription, txtColorLeve]}>Dificuldade:  fácil</Text>
+                            {this.state.dificultyData.emagrecer.easy.description}
+                        </Text>
+                        <Text style={[styles.labelDescription, txtColorLeve]}>{this.state.dificultyData.emagrecer.easy.dificulty}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.selectTouch, bgColorModerada]}
                         onPress={() => { this.selectLevel('medium') }}
                     >
-                        <Text style={[styles.labelTitle, txtColorModerada]}>-300 até -500 kcal por dia</Text>
+                        <Text style={[styles.labelTitle, txtColorModerada]}>{this.state.dificultyData.emagrecer.medium.title}</Text>
                         <Text style={[styles.labelDescription, txtColorModerada]}>
-                            Esta janela de calorias irá permitir que você perca de 0,8 a 1,2 kg por semana.
-                    </Text>
-                        <Text style={[styles.labelDescription, txtColorModerada]}>Dificuldade:  Médio</Text>
+                            {this.state.dificultyData.emagrecer.medium.description}
+                        </Text>
+                        <Text style={[styles.labelDescription, txtColorModerada]}>{this.state.dificultyData.emagrecer.medium.dificulty}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.selectTouch, bgColorElevada]}
                         onPress={() => { this.selectLevel('hard') }}
                     >
-                        <Text style={[styles.labelTitle, txtColorElevada]}>-500 até -800 kcal por dia</Text>
+                        <Text style={[styles.labelTitle, txtColorElevada]}>{this.state.dificultyData.emagrecer.hard.dificulty}</Text>
                         <Text style={[styles.labelDescription, txtColorElevada]}>
-                            Esta janela de calorias irá permitir que você perca de 1,2 a 1,5 kg por semana.
-                    </Text>
-                        <Text style={[styles.labelDescription, txtColorElevada]}>Dificuldade:  Difícil</Text>
+                            {this.state.dificultyData.emagrecer.hard.description}
+                        </Text>
+                        <Text style={[styles.labelDescription, txtColorElevada]}>{this.state.dificultyData.emagrecer.hard.dificulty}</Text>
                     </TouchableOpacity>
 
 
@@ -119,6 +184,7 @@ export default class dadosPerfil extends React.Component {
                 />
             </View>
         );
+
     }
 }
 

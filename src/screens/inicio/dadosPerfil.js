@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
     valuesView: {
         height: 70,
         width: 125,
-        backgroundColor: 'gray',
+        backgroundColor: '#eee',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
