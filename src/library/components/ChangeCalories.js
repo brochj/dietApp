@@ -28,20 +28,19 @@ export default class ChangeCalories extends React.Component {
             addText: (this.props.addText != null) ? this.props.addText : '+',
             subText: (this.props.subText != null) ? this.props.subText : '-',
         };
+
         this.styles = StyleSheet.create({
             container: {
-                flex: 1,
                 flexDirection: 'row',
                 justifyContent: 'center',
-                alignItems: 'center',
                 backgroundColor: '#fefefe',
                 borderRadius: 5,
                 ...this.props.style,
             },
             touch: {
                 height: 35,
-                width: 35,
-                padding: 5,
+                minWidth: 35,
+                paddingHorizontal: 12,
                 justifyContent: 'center',
                 alignItems: 'center',
                 backgroundColor: '#196A65',
@@ -62,7 +61,9 @@ export default class ChangeCalories extends React.Component {
             addTxt: {
                 fontSize: 18,
                 color: 'white',
-
+                height: 35,
+                textAlign: 'center',
+                textAlignVertical: 'center',
                 ...this.props.fontAddStyle,
             },
             subTxt: {
@@ -72,6 +73,9 @@ export default class ChangeCalories extends React.Component {
                 ...this.props.fontSubStyle,
             },
             valueTxt: {
+                flex: 1,
+                textAlignVertical: 'center',
+                textAlign: 'center',
                 fontSize: 18,
                 paddingHorizontal: 15,
                 paddingVertical: 5,

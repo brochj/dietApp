@@ -68,7 +68,7 @@ export default class dificuldade extends React.Component {
     }
 
     goNextScreen() {
-        this.props.navigation.navigate('teste', {
+        this.props.navigation.navigate('distribuicao', {
             age: this.props.navigation.getParam('age'),
             weight: this.props.navigation.getParam('weight'),
             height: this.props.navigation.getParam('height'),
@@ -76,7 +76,7 @@ export default class dificuldade extends React.Component {
             activityLevel: this.props.navigation.getParam('activityLevel'),
             calcutedKcal: this.props.navigation.getParam('calcutedKcal'),
             objective: this.props.navigation.getParam('objective'),
-            dificultyLevel: this.props.dificultyLevel,
+            dificultyLevel: this.state.dificultyLevel,
         })
     }
 
@@ -137,11 +137,9 @@ export default class dificuldade extends React.Component {
             // true ? <Text style={styles.oi}>oi</Text> : null
         };
 
-        const teste = 'oiiii';
 
         return (
             <View style={styles.body}>
-                <Text style={styles.txtName}>{teste}</Text>
 
                 <View style={styles.imageView}>
                     <Image source={genderImage} style={styles.genderImage} />
