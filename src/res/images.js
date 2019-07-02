@@ -14,6 +14,9 @@ const images = {
     //Tela Gasto calorico
     womanCheers: require('./images/inicio/womanCheers.jpg'),
 
+    crepioca: require('./images/recipes/crepioca.jpg'),
+    paodeaveia: require('./images/recipes/paodeaveia.jpg')
+
 };
 
 export default images;

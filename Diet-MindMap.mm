@@ -1,9 +1,56 @@
 <map version="1.0.1">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
-<node COLOR="#000000" CREATED="1562007875466" ID="ID_1942550454" MODIFIED="1562009300606" TEXT="DietApp ">
+<node COLOR="#000000" CREATED="1562007875466" ID="ID_1942550454" MODIFIED="1562030920453" TEXT="DietApp ">
 <font NAME="SansSerif" SIZE="20"/>
 <hook NAME="accessories/plugins/AutomaticLayout.properties"/>
-<node COLOR="#0033ff" CREATED="1561391887605" FOLDED="true" ID="ID_472576092" MODIFIED="1562009294311" POSITION="left" TEXT="Modelo de negocios">
+<node COLOR="#0033ff" CREATED="1561410205117" FOLDED="true" HGAP="37" ID="ID_1933098013" MODIFIED="1562009255066" POSITION="left" TEXT="Marketing" VSHIFT="6">
+<edge STYLE="sharp_bezier" WIDTH="8"/>
+<font NAME="SansSerif" SIZE="18"/>
+<node COLOR="#00b439" CREATED="1561410212089" ID="ID_40636386" MODIFIED="1562008212631" TEXT="Gerar uma imagem com uma meta atingida para que pessoa possa compartilhar">
+<edge STYLE="bezier" WIDTH="thin"/>
+<font NAME="SansSerif" SIZE="16"/>
+<icon BUILTIN="full-1"/>
+</node>
+<node COLOR="#00b439" CREATED="1561410254660" ID="ID_1891113989" MODIFIED="1562008212632" TEXT="essa imagem no instagram e facebokk ou whatsapp">
+<edge STYLE="bezier" WIDTH="thin"/>
+<font NAME="SansSerif" SIZE="16"/>
+<icon BUILTIN="full-1"/>
+</node>
+<node COLOR="#00b439" CREATED="1561410282522" ID="ID_1989639965" MODIFIED="1562008212633" TEXT="N&#xe3;o esquecer de uma marca d&#xe1;gua do aplicativo">
+<edge STYLE="bezier" WIDTH="thin"/>
+<font NAME="SansSerif" SIZE="16"/>
+<icon BUILTIN="full-1"/>
+</node>
+</node>
+<node COLOR="#0033ff" CREATED="1561317258884" ID="ID_353853510" MODIFIED="1562023645998" POSITION="left" TEXT="P&#xfa;blico">
+<edge STYLE="sharp_bezier" WIDTH="8"/>
+<font NAME="SansSerif" SIZE="18"/>
+<node COLOR="#00b439" CREATED="1561317266065" ID="ID_771197748" MODIFIED="1562008212637" TEXT="Tem muito demanda!! ver no audience insights">
+<edge STYLE="bezier" WIDTH="thin"/>
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+<node COLOR="#00b439" CREATED="1561317276528" ID="ID_378974413" MODIFIED="1562008212638" TEXT="A maioria &#xe9; mulheres entre 18 --55 anos">
+<edge STYLE="bezier" WIDTH="thin"/>
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+<node COLOR="#00b439" CREATED="1561319293125" ID="ID_679631434" MODIFIED="1562008212639" TEXT="para busca por dieta saud&#xe1;vel--&gt; publico no estados unidos (12milhoes) seqguido por brasil (5milhoes) ">
+<edge STYLE="bezier" WIDTH="thin"/>
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+<node COLOR="#00b439" CREATED="1561331715436" ID="ID_1847244997" MODIFIED="1562008212641" TEXT="para busca por loss weight--&gt; publico no estados unidos (24milhoes) seqguido por brasil (7,5milhoes) ">
+<edge STYLE="bezier" WIDTH="thin"/>
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+<node COLOR="#00b439" CREATED="1561317340954" ID="ID_773749407" MODIFIED="1562008212642" TEXT="Utilizam praticamente s&#xf3; celular, inviavel fazer um Site">
+<edge STYLE="bezier" WIDTH="thin"/>
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+<node COLOR="#00b439" CREATED="1561317411554" ID="ID_350598130" MODIFIED="1562008212643" TEXT="Da pra criar um site parecido com o App, s&#xf3; q com funcoes reduzidas, da&#xed; redireciona o cliente para o App Oficial">
+<edge STYLE="bezier" WIDTH="thin"/>
+<font NAME="SansSerif" SIZE="16"/>
+</node>
+</node>
+<node COLOR="#0033ff" CREATED="1561391887605" ID="ID_472576092" MODIFIED="1562030935967" POSITION="right" TEXT="Modelo de negocios">
 <edge STYLE="sharp_bezier" WIDTH="8"/>
 <font NAME="SansSerif" SIZE="18"/>
 <node COLOR="#00b439" CREATED="1561391894425" ID="ID_1821792879" MODIFIED="1562008212612" TEXT="Venda de planos de dietas prontos">
@@ -14,7 +61,7 @@
 <edge STYLE="bezier" WIDTH="thin"/>
 <font NAME="SansSerif" SIZE="16"/>
 </node>
-<node COLOR="#00b439" CREATED="1561391955627" ID="ID_65933521" MODIFIED="1562008212614" TEXT="Banner no footer">
+<node COLOR="#00b439" CREATED="1561391955627" ID="ID_65933521" MODIFIED="1562024412806" TEXT="Banner no footer de telas q n&#xe3;o s&#xe3;o muito acessadas, para nao estragar a experiencia do usu&#xe1;rio">
 <edge STYLE="bezier" WIDTH="thin"/>
 <font NAME="SansSerif" SIZE="16"/>
 </node>
@@ -58,50 +105,11 @@
 <edge STYLE="bezier" WIDTH="thin"/>
 <font NAME="SansSerif" SIZE="16"/>
 </node>
-</node>
-<node COLOR="#0033ff" CREATED="1561410205117" FOLDED="true" HGAP="37" ID="ID_1933098013" MODIFIED="1562009255066" POSITION="left" TEXT="Marketing" VSHIFT="6">
-<edge STYLE="sharp_bezier" WIDTH="8"/>
-<font NAME="SansSerif" SIZE="18"/>
-<node COLOR="#00b439" CREATED="1561410212089" ID="ID_40636386" MODIFIED="1562008212631" TEXT="Gerar uma imagem com uma meta atingida para que pessoa possa compartilhar">
-<edge STYLE="bezier" WIDTH="thin"/>
-<font NAME="SansSerif" SIZE="16"/>
-<icon BUILTIN="full-1"/>
-</node>
-<node COLOR="#00b439" CREATED="1561410254660" ID="ID_1891113989" MODIFIED="1562008212632" TEXT="essa imagem no instagram e facebokk ou whatsapp">
-<edge STYLE="bezier" WIDTH="thin"/>
-<font NAME="SansSerif" SIZE="16"/>
-<icon BUILTIN="full-1"/>
-</node>
-<node COLOR="#00b439" CREATED="1561410282522" ID="ID_1989639965" MODIFIED="1562008212633" TEXT="N&#xe3;o esquecer de uma marca d&#xe1;gua do aplicativo">
-<edge STYLE="bezier" WIDTH="thin"/>
-<font NAME="SansSerif" SIZE="16"/>
-<icon BUILTIN="full-1"/>
-</node>
-</node>
-<node COLOR="#0033ff" CREATED="1561317258884" FOLDED="true" ID="ID_353853510" MODIFIED="1562009253418" POSITION="left" TEXT="P&#xfa;blico">
-<edge STYLE="sharp_bezier" WIDTH="8"/>
-<font NAME="SansSerif" SIZE="18"/>
-<node COLOR="#00b439" CREATED="1561317266065" ID="ID_771197748" MODIFIED="1562008212637" TEXT="Tem muito demanda!! ver no audience insights">
+<node COLOR="#00b439" CREATED="1562023262407" ID="ID_360523839" MODIFIED="1562023391130" TEXT="Fazer uma tela, onde ser&#xe1; feita venda de produtos exclusivos(adicionais), como ebooks sobre dietas e receitas, q na verdade ser&#xe3;o links de afiliados meus que levarao para a hotmart">
 <edge STYLE="bezier" WIDTH="thin"/>
 <font NAME="SansSerif" SIZE="16"/>
 </node>
-<node COLOR="#00b439" CREATED="1561317276528" ID="ID_378974413" MODIFIED="1562008212638" TEXT="A maioria &#xe9; mulheres entre 18 --55 anos">
-<edge STYLE="bezier" WIDTH="thin"/>
-<font NAME="SansSerif" SIZE="16"/>
-</node>
-<node COLOR="#00b439" CREATED="1561319293125" ID="ID_679631434" MODIFIED="1562008212639" TEXT="para busca por dieta saud&#xe1;vel--&gt; publico no estados unidos (12milhoes) seqguido por brasil (5milhoes) ">
-<edge STYLE="bezier" WIDTH="thin"/>
-<font NAME="SansSerif" SIZE="16"/>
-</node>
-<node COLOR="#00b439" CREATED="1561331715436" ID="ID_1847244997" MODIFIED="1562008212641" TEXT="para busca por loss weight--&gt; publico no estados unidos (24milhoes) seqguido por brasil (7,5milhoes) ">
-<edge STYLE="bezier" WIDTH="thin"/>
-<font NAME="SansSerif" SIZE="16"/>
-</node>
-<node COLOR="#00b439" CREATED="1561317340954" ID="ID_773749407" MODIFIED="1562008212642" TEXT="Utilizam praticamente s&#xf3; celular, inviavel fazer um Site">
-<edge STYLE="bezier" WIDTH="thin"/>
-<font NAME="SansSerif" SIZE="16"/>
-</node>
-<node COLOR="#00b439" CREATED="1561317411554" ID="ID_350598130" MODIFIED="1562008212643" TEXT="Da pra criar um site parecido com o App, s&#xf3; q com funcoes reduzidas, da&#xed; redireciona o cliente para o App Oficial">
+<node COLOR="#00b439" CREATED="1562024158388" ID="ID_1055052085" MODIFIED="1562024302608" TEXT="Dar a possibilidade do nutricionista criar um copy/pagina personalizada dele dentro app. al&#xe9;m do perfil dele">
 <edge STYLE="bezier" WIDTH="thin"/>
 <font NAME="SansSerif" SIZE="16"/>
 </node>

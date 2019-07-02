@@ -83,7 +83,7 @@ export default class distribuicao extends React.Component {
             activityLevel: this.props.navigation.getParam('activityLevel'),
             calcutedKcal: this.props.navigation.getParam('calcutedKcal'),
             objective: this.props.navigation.getParam('objective'),
-            dificultyLevel: this.props.navigation.getParam('dificultyLevel'),
+            // difficultyLevel: this.props.navigation.getParam('difficultyLevel'),
             mealCalories: this.state.mealCalories,
 
         })

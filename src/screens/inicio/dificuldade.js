@@ -6,57 +6,57 @@ export default class dificuldade extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dificultyLevel: 'easy',
-            dificultyData: {
+            difficultyLevel: 'easy',
+            difficultyData: {
                 emagrecer: {
                     easy: {
                         title: '-270 até -170 kcal por dia',
                         description: 'Esta janela de calorias irá permitir que você perca de 0,5 a 0,8 kg por semana de maneira saudável e sustentável.',
-                        dificulty: 'Dificuldade: fácil',
+                        difficulty: 'Dificuldade: fácil',
                     },
                     medium: {
                         title: '-300 até -500 kcal por dia',
                         description: 'Esta janela de calorias irá permitir que você perca de 0,8 a 1,2 kg por semana.',
-                        dificulty: 'Dificuldade:  Médio',
+                        difficulty: 'Dificuldade:  Médio',
                     },
                     hard: {
                         title: '-500 até -800 kcal por dia',
                         description: 'Esta janela de calorias irá permitir que você perca de 1,2 a 1,5 kg por semana.',
-                        dificulty: 'Dificuldade:  Difícil',
+                        difficulty: 'Dificuldade:  Difícil',
                     }
                 },
                 ganharMassa: {
                     easy: {
                         title: '+270 até +170 kcal por dia',
                         description: 'Esta janela de calorias irá permitir que você ganhe de 0,5 a 0,8 kg por semana de maneira saudável e sustentável.',
-                        dificulty: 'Dificuldade: fácil',
+                        difficulty: 'Dificuldade: fácil',
                     },
                     medium: {
                         title: '+300 até +500 kcal por dia',
                         description: 'Esta janela de calorias irá permitir que você ganhe de 0,8 a 1,2 kg por semana.',
-                        dificulty: 'Dificuldade:  Médio',
+                        difficulty: 'Dificuldade:  Médio',
                     },
                     hard: {
                         title: '+500 até +800 kcal por dia',
                         description: 'Esta janela de calorias irá permitir que você ganhe de 1,2 a 1,5 kg por semana.',
-                        dificulty: 'Dificuldade:  Difícil',
+                        difficulty: 'Dificuldade:  Difícil',
                     }
                 },
                 manterPeso: {
                     easy: {
                         title: '-270 até -170 kcal por dia',
                         description: 'Esta janela de calorias irá permitir que você perca de 0,5 a 0,8 kg por semana de maneira saudável e sustentável.',
-                        dificulty: 'Dificuldade: fácil',
+                        difficulty: 'Dificuldade: fácil',
                     },
                     medium: {
                         title: '-300 até -500 kcal por dia',
                         description: 'Esta janela de calorias irá permitir que você perca de 0,8 a 1,2 kg por semana.',
-                        dificulty: 'Dificuldade:  Médio',
+                        difficulty: 'Dificuldade:  Médio',
                     },
                     hard: {
                         title: '-500 até -800 kcal por dia',
                         description: 'Esta janela de calorias irá permitir que você perca de 1,2 a 1,5 kg por semana.',
-                        dificulty: 'Dificuldade:  Difícil',
+                        difficulty: 'Dificuldade:  Difícil',
                     }
                 }
             }
@@ -76,12 +76,12 @@ export default class dificuldade extends React.Component {
             activityLevel: this.props.navigation.getParam('activityLevel'),
             calcutedKcal: this.props.navigation.getParam('calcutedKcal'),
             objective: this.props.navigation.getParam('objective'),
-            dificultyLevel: this.state.dificultyLevel,
+            difficultyLevel: this.state.difficultyLevel,
         })
     }
 
     selectLevel(level) {
-        this.state.dificultyLevel = level,
+        this.state.difficultyLevel = level,
             this.setState(this.state);
     }
     render() {
@@ -90,29 +90,29 @@ export default class dificuldade extends React.Component {
         const activeTxtColor = '#fff';
         const defaultTxtColor = 'black';
 
-        const bgColorLeve = (this.state.dificultyLevel == 'easy') ?
+        const bgColorLeve = (this.state.difficultyLevel == 'easy') ?
             { backgroundColor: activeBgColor } :
             { backgroundColor: defaultBgColor };
 
-        const txtColorLeve = (this.state.dificultyLevel == 'easy') ?
+        const txtColorLeve = (this.state.difficultyLevel == 'easy') ?
             { color: activeTxtColor } :
             { color: defaultTxtColor };
 
 
-        const bgColorModerada = (this.state.dificultyLevel == 'medium') ?
+        const bgColorModerada = (this.state.difficultyLevel == 'medium') ?
             { backgroundColor: activeBgColor } :
             { backgroundColor: defaultBgColor };
 
-        const txtColorModerada = (this.state.dificultyLevel == 'medium') ?
+        const txtColorModerada = (this.state.difficultyLevel == 'medium') ?
             { color: activeTxtColor } :
             { color: defaultTxtColor };
 
 
-        const bgColorElevada = (this.state.dificultyLevel == 'hard') ?
+        const bgColorElevada = (this.state.difficultyLevel == 'hard') ?
             { backgroundColor: activeBgColor } :
             { backgroundColor: defaultBgColor };
 
-        const txtColorElevada = (this.state.dificultyLevel == 'hard') ?
+        const txtColorElevada = (this.state.difficultyLevel == 'hard') ?
             { color: activeTxtColor } :
             { color: defaultTxtColor };
 
@@ -150,29 +150,29 @@ export default class dificuldade extends React.Component {
                     <TouchableOpacity style={[styles.selectTouch, bgColorLeve]}
                         onPress={() => { this.selectLevel('easy') }}
                     >
-                        <Text style={[styles.labelTitle, txtColorLeve]}>{this.state.dificultyData.emagrecer.easy.title}</Text>
+                        <Text style={[styles.labelTitle, txtColorLeve]}>{this.state.difficultyData.emagrecer.easy.title}</Text>
                         <Text style={[styles.labelDescription, txtColorLeve]}>
-                            {this.state.dificultyData.emagrecer.easy.description}
+                            {this.state.difficultyData.emagrecer.easy.description}
                         </Text>
-                        <Text style={[styles.labelDescription, txtColorLeve]}>{this.state.dificultyData.emagrecer.easy.dificulty}</Text>
+                        <Text style={[styles.labelDescription, txtColorLeve]}>{this.state.difficultyData.emagrecer.easy.difficulty}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.selectTouch, bgColorModerada]}
                         onPress={() => { this.selectLevel('medium') }}
                     >
-                        <Text style={[styles.labelTitle, txtColorModerada]}>{this.state.dificultyData.emagrecer.medium.title}</Text>
+                        <Text style={[styles.labelTitle, txtColorModerada]}>{this.state.difficultyData.emagrecer.medium.title}</Text>
                         <Text style={[styles.labelDescription, txtColorModerada]}>
-                            {this.state.dificultyData.emagrecer.medium.description}
+                            {this.state.difficultyData.emagrecer.medium.description}
                         </Text>
-                        <Text style={[styles.labelDescription, txtColorModerada]}>{this.state.dificultyData.emagrecer.medium.dificulty}</Text>
+                        <Text style={[styles.labelDescription, txtColorModerada]}>{this.state.difficultyData.emagrecer.medium.difficulty}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.selectTouch, bgColorElevada]}
                         onPress={() => { this.selectLevel('hard') }}
                     >
-                        <Text style={[styles.labelTitle, txtColorElevada]}>{this.state.dificultyData.emagrecer.hard.dificulty}</Text>
+                        <Text style={[styles.labelTitle, txtColorElevada]}>{this.state.difficultyData.emagrecer.hard.title}</Text>
                         <Text style={[styles.labelDescription, txtColorElevada]}>
-                            {this.state.dificultyData.emagrecer.hard.description}
+                            {this.state.difficultyData.emagrecer.hard.description}
                         </Text>
-                        <Text style={[styles.labelDescription, txtColorElevada]}>{this.state.dificultyData.emagrecer.hard.dificulty}</Text>
+                        <Text style={[styles.labelDescription, txtColorElevada]}>{this.state.difficultyData.emagrecer.hard.difficulty}</Text>
                     </TouchableOpacity>
 
 

@@ -53,7 +53,7 @@ const AppNavigator = createStackNavigator({
         }
     },
 }, {
-        // initialRouteName: 'distribuicao'
+        initialRouteName: 'Breakfast'
     });
 
 export default createAppContainer(AppNavigator);

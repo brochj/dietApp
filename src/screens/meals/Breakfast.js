@@ -1,34 +1,29 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity, ScrollView } from "react-native";
 import R from 'res/R'
-import ChangeCalories from "library/components/ChangeCalories";
+import MealsAccordion from "library/components/MealsAccordion";
+import breakfastRecipes from "res/meals/breakfastRecipes";
+import morningSnackRecipes from "res/meals/morningSnackRecipes";
+import lunchRecipes from "res/meals/lunchRecipes";
+import afternoonSnackRecipes from "res/meals/afternoonSnackRecipes";
+import dinnerRecipes from "res/meals/dinnerRecipes";
+import preWorkoutRecipes from "res/meals/preWorkoutRecipes";
+import afterTraningRecipes from "res/meals/afterTraningRecipes";
+import eveningSnackRecipes from "res/meals/eveningSnackRecipes";
 
 
 export default class Breakfast extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            mealCalories: {},
-            calcutedKcal: 2000,
-            summedKcal: 0,
-            breakfastKcal: 250,
-            morningSnackKcal: 150,
-            lunchKcal: 550,
-            afternoonSnackKcal: 150,
-            dinnerKcal: 350,
-            preWorkoutKcal: 80,
-            afterTraningKcal: 100,
-            eveningSnackKcal: 120,
-
-            breakfastPct: 0,
-            morningSnackPct: 0,
-            lunchPct: 0,
-            afternoonSnackPct: 0,
-            dinnerPct: 0,
-            preWorkoutPct: 0,
-            afterTraningPct: 0,
-            eveningSnackPct: 0,
-
+            breakfastRecipes: breakfastRecipes,
+            morningSnackRecipes: morningSnackRecipes,
+            lunchRecipes: lunchRecipes,
+            afternoonSnackRecipes: afternoonSnackRecipes,
+            dinnerRecipes: dinnerRecipes,
+            preWorkoutRecipes: preWorkoutRecipes,
+            afterTraningRecipes: afterTraningRecipes,
+            eveningSnackRecipes: eveningSnackRecipes,
             stringData: {
                 breakfast: {
                     title: 'Café da manhã',
@@ -66,6 +61,7 @@ export default class Breakfast extends React.Component {
 
         };
         this.goNextScreen = this.goNextScreen.bind(this);
+        this.addMeal = this.addMeal.bind(this);
     }
     componentDidMount() {
 
@@ -88,7 +84,9 @@ export default class Breakfast extends React.Component {
         })
     }
 
+    addMeal() {
 
+    }
 
 
     render() {
@@ -97,7 +95,7 @@ export default class Breakfast extends React.Component {
 
         return (
             <View style={styles.body}>
-                <Text style={styles.txtName}>age: {this.props.navigation.getParam('age')}</Text>
+                {/* <Text style={styles.txtName}>age: {this.props.navigation.getParam('age')}</Text>
                 <Text style={styles.txtName}>weight: {this.props.navigation.getParam('weight')}</Text>
                 <Text style={styles.txtName}>height: {this.props.navigation.getParam('height')}</Text>
                 <Text style={styles.txtName}>gender: {this.props.navigation.getParam('gender')}</Text>
@@ -105,7 +103,53 @@ export default class Breakfast extends React.Component {
                 <Text style={styles.txtName}>calcutedKcal: {this.props.navigation.getParam('calcutedKcal')}</Text>
                 <Text style={styles.txtName}>objective: {this.props.navigation.getParam('objective')}</Text>
                 <Text style={styles.txtName}>dificultyLevel: {this.props.navigation.getParam('dificultyLevel')}</Text>
-                <Text style={styles.txtName}>mealCalories: {this.props.navigation.getParam('mealCalories').summedKcal}</Text>
+                <Text style={styles.txtName}>mealCalories: {this.props.navigation.getParam('mealCalories').summedKcal}</Text> */}
+                <ScrollView style={styles.scrollContainer}>
+                    <View style={styles.cardMeal}>
+                        <View style={styles.titleRowView}>
+                            <Text style={styles.mealTitleTxt}>{this.state.stringData.breakfast.title}</Text>
+                            <Text style={styles.mealQuantityTxt}>0 Refeições</Text>
+                        </View>
+
+                        <MealsAccordion sections={this.state.breakfastRecipes} />
+                        <TouchableOpacity
+                            style={styles.addMealTouch}
+                            onPress={this.addMeal}
+                        >
+                            <Text style={styles.addMealTxt}>Adicionar refeição</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.cardMeal}>
+                        <View style={styles.titleRowView}>
+                            <Text style={styles.mealTitleTxt}>{this.state.stringData.lunch.title}</Text>
+                            <Text style={styles.mealQuantityTxt}>3 Refeições</Text>
+                        </View>
+
+                        <MealsAccordion sections={this.state.breakfastRecipes} />
+                        <TouchableOpacity
+                            style={styles.addMealTouch}
+                            onPress={this.addMeal}
+                        >
+                            <Text style={styles.addMealTxt}>Adicionar refeição</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.cardMeal}>
+                        <View style={styles.titleRowView}>
+                            <Text style={styles.mealTitleTxt}>{this.state.stringData.morningSnack.title}</Text>
+                            <Text style={styles.mealQuantityTxt}>5 Refeições</Text>
+                        </View>
+
+                        <MealsAccordion sections={this.state.breakfastRecipes} />
+                        <TouchableOpacity
+                            style={styles.addMealTouch}
+                            onPress={this.addMeal}
+                        >
+                            <Text style={styles.addMealTxt}>Adicionar refeição</Text>
+                        </TouchableOpacity>
+                    </View>
+                </ScrollView>
+
+
             </View>
         );
 
@@ -115,11 +159,46 @@ export default class Breakfast extends React.Component {
 const styles = StyleSheet.create({
     body: {
         flex: 1,
-        paddingTop: 10,
     },
     scrollContainer: {
         flex: 1,
     },
+    separator: {
+        backgroundColor: 'gray',
 
+
+    },
+    cardMeal: {
+        marginHorizontal: 10,
+        marginVertical: 5,
+        padding: 10,
+        backgroundColor: '#eee',
+        borderRadius: 5,
+    },
+    titleRowView: {
+        flexDirection: 'row'
+    },
+    mealTitleTxt: {
+        flex: 1,
+        fontSize: 18,
+        marginBottom: 20,
+    },
+    mealQuantityTxt: {
+        flex: 1,
+        textAlign: 'right',
+        fontSize: 18,
+        marginBottom: 20,
+    },
+    addMealTouch: {
+        backgroundColor: '#196A65',
+        marginTop: 10,
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+    },
+    addMealTxt: {
+        color: 'white'
+
+    },
 
 });
