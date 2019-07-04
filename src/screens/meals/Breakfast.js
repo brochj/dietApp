@@ -13,6 +13,9 @@ import eveningSnackRecipes from "res/meals/eveningSnackRecipes";
 
 
 export default class Breakfast extends React.Component {
+    static navigationOptions = {
+        header: null,
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -85,7 +88,7 @@ export default class Breakfast extends React.Component {
     }
 
     addMeal() {
-
+        this.props.navigation.navigate('SearchRecipes');
     }
 
 
@@ -95,6 +98,7 @@ export default class Breakfast extends React.Component {
 
         return (
             <View style={styles.body}>
+                <Button title='Pesquisar receita' onPress={() => this.props.navigation.navigate('SearchRecipes')} />
                 {/* <Text style={styles.txtName}>age: {this.props.navigation.getParam('age')}</Text>
                 <Text style={styles.txtName}>weight: {this.props.navigation.getParam('weight')}</Text>
                 <Text style={styles.txtName}>height: {this.props.navigation.getParam('height')}</Text>
@@ -125,7 +129,7 @@ export default class Breakfast extends React.Component {
                             <Text style={styles.mealQuantityTxt}>3 Refeições</Text>
                         </View>
 
-                        <MealsAccordion sections={this.state.breakfastRecipes} />
+                        {/* <MealsAccordion sections={this.state.breakfastRecipes} /> */}
                         <TouchableOpacity
                             style={styles.addMealTouch}
                             onPress={this.addMeal}
@@ -139,7 +143,7 @@ export default class Breakfast extends React.Component {
                             <Text style={styles.mealQuantityTxt}>5 Refeições</Text>
                         </View>
 
-                        <MealsAccordion sections={this.state.breakfastRecipes} />
+                        {/* <MealsAccordion sections={this.state.breakfastRecipes} /> */}
                         <TouchableOpacity
                             style={styles.addMealTouch}
                             onPress={this.addMeal}

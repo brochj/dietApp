@@ -2,11 +2,10 @@ import React from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 import firebase from "library/networking/FirebaseConnection";
 
-
-export default class Login extends React.Component {
+export default class Cadastro extends React.Component {
 
     static navigationOptions = {
-        title: 'Login',
+        title: 'Cadastro',
         headerStyle: {
             backgroundColor: '#ffff00'
         },
@@ -16,26 +15,30 @@ export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            emailInput: 'brochj@gmail.com', // limpar essas strings depois
-            senhaInput: '123456',
+            emailInput: '',
+            senhaInput: '',
         };
-        this.entrar = this.entrar.bind(this);
+        this.cadastrar = this.cadastrar.bind(this);
         firebase.auth().signOut();
     }
-    entrar() {
+    cadastrar() {
         if (this.state.emailInput != '' && this.state.senhaInput != '') {
-            // olheiro pra saber quando deu certo o login
+
             firebase.auth().onAuthStateChanged((user) => {
                 //verifica se o usurario ta logado,
                 // pois qnd é feito um novo cadastros, automaticamente aquele usuario já passa a ficar logado
                 // uma vez logado, podemos pegar o uid do usuario
                 if (user) {
-
+                    let uid = user.uid;
+                    //adicionando valores na "tabela" do usuario
+                    firebase.database().ref('users').child(uid).set({
+                        saldo: 0,
+                    })
                     this.props.navigation.navigate('dadosPerfil');
                 }
             });
-            // Logando o usuario
-            firebase.auth().signInWithEmailAndPassword(
+            // cadastrando o usuario
+            firebase.auth().createUserWithEmailAndPassword(
                 this.state.emailInput,
                 this.state.senhaInput
             ).catch((error) => {
@@ -52,15 +55,12 @@ export default class Login extends React.Component {
                 <TextInput style={styles.input}
                     keyboardType='email-address'
                     onChangeText={(emailInput) => { this.setState({ emailInput }); }}
-                    value={this.state.emailInput} // RETIRA ISSO DEPOIS
                 />
                 <Text>Senha: </Text>
-                <TextInput style={styles.input} 
-                    secureTextEntry={true}
+                <TextInput style={styles.input} secureTextEntry={true}
                     onChangeText={(senhaInput) => { this.setState({ senhaInput }); }}
-                    value={this.state.senhaInput} // RETIRA ISSO DEPOIS
                 />
-                <Button title="entrar" onPress={this.entrar} />
+                <Button title="Cadastrar" onPress={this.cadastrar} />
             </View>
         );
     }

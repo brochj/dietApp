@@ -27,7 +27,7 @@ export default class MealsAccordion extends React.Component {
         super(props);
         this.state = {
             activeSections: [],
-            sections: this.props.sections,
+            // sections: this.props.sections,
 
         };
 
@@ -122,7 +122,7 @@ export default class MealsAccordion extends React.Component {
             <View>
                 <View style={this.styles_renderHeader.container}>
                     <Image source={section.image} style={this.styles_renderHeader.headerImage} />
-                    <Text style={this.styles_renderHeader.headerTitleTxt}>{section.recipeName}</Text>
+                    <Text style={this.styles_renderHeader.headerTitleTxt}>{section.name}</Text>
                     <Text style={this.styles_renderHeader.headerCaloriesTxt}>{section.calories}</Text>
                     <Text style={this.styles_renderHeader.headerKcalTxt}>kcal</Text>
 
@@ -158,7 +158,7 @@ export default class MealsAccordion extends React.Component {
             <View style={this.styles.container}>
 
                 <Accordion
-                    sections={this.state.sections}
+                    sections={this.props.sections}
                     activeSections={this.state.activeSections}
                     renderSectionTitle={this._renderSectionTitle}
                     renderHeader={this._renderHeader}
