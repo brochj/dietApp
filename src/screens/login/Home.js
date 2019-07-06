@@ -1,6 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput, TouchableHighlight } from "react-native";
-import firebase from "library/networking/FirebaseConnection";
+import {
+    StyleSheet,
+    Text, View, TextInput,
+    TouchableHighlight, Image,
+    Dimensions, StatusBar, Platform
+} from "react-native";
+import R from 'res/R';
 
 export default class Home extends React.Component {
 
@@ -17,16 +22,6 @@ export default class Home extends React.Component {
         this.cadastrar = this.cadastrar.bind(this);
         this.login = this.login.bind(this);
 
-        // Somando todos os saldos de todas as contas
-        let users = firebase.database().ref('users');
-        users.on('value', (snapshot) => {
-            let s = this.state;
-            s.saldoGeral = 0,
-            snapshot.forEach((childItem) => {
-                s.saldoGeral += childItem.val().saldo;
-            });
-            this.setState(s);
-        });
     }
 
     cadastrar() {
@@ -39,66 +34,139 @@ export default class Home extends React.Component {
     }
 
     render() {
+        const { height, width } = Dimensions.get('window');
+        const statusBarHeight = Platform.OS === 'ios' ? 20 : StatusBar.currentHeight;
         return (
-                <View style={styles.container}>
-                    <Text style={styles.title}>Fluxo de Caixa v1.0</Text>
+            <View style={styles.container} >
+                <StatusBar backgroundColor="rgba(0,0,0,.35)" barStyle="light-content" translucent={true} />
+
+                <View style={styles.bgView}>
+                    <Image source={R.images.login.bg} style={[styles.bg, { width: width }]} />
+                </View>
+
+                <View style={styles.body}>
+                    <Image source={R.images.login.logo} style={styles.logo} />
                     <View style={styles.buttonArea}>
                         <TouchableHighlight
                             underlayColor='#ccc'
-                            style={styles.button}
+                            style={styles.buttonCadastro}
                             onPress={this.cadastrar}
                         >
                             <Text style={styles.buttonTxt}>Cadastrar</Text>
                         </TouchableHighlight>
                         <TouchableHighlight
                             underlayColor='#ccc'
-                            style={styles.button}
+                            style={styles.buttonLogin}
                             onPress={this.login}
                         >
                             <Text style={styles.buttonTxt}>Login</Text>
 
                         </TouchableHighlight>
-                        <View style={styles.numerosArea}>
-                            <Text style={styles.txtName}>No momento administramos </Text>
-                            <Text style={styles.txtName}>R$ {this.state.saldoGeral}</Text>
-                        </View>
+                        <Text style={styles.descriptionTxt}>Nunca foi tão fácil montar um plano de dieta.</Text>
                     </View>
                 </View>
+
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    bg: {
-        flex: 1,
-        width: null,
-    },
+
     container: {
         flex: 1,
-        justifyContent: 'center',
+        backgroundColor: 'black',
+        paddingBottom: 5,
+    },
+    body: {
+        flex: 1,
+        marginTop: -100,
         alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#196A65',
+        marginHorizontal: 10,
+        paddingBottom: 15,
+        borderTopRightRadius: 45,
+        // borderTopLeftRadius: 45,
+        // borderBottomRightRadius: 20,
+        borderBottomLeftRadius: 45,
+
+
+    },
+    bgView: {
+        flexDirection: 'row',
+        height: 350,
+    },
+    bg: {
+        width: null,
+        height: null,
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
     },
     title: {
         fontSize: 30,
     },
     buttonArea: {
+        flex: 1,
+        alignItems: 'center',
         marginTop: 30,
     },
-    button: {
+    buttonCadastro: {
         justifyContent: 'center',
-        backgroundColor: '#bfb300',
-        margin: 10,
-        height: 40,
-        width: 200,
+        backgroundColor: 'white',
+        marginHorizontal: 10,
+        height: 60,
+        width: 300,
+        borderTopLeftRadius: 20,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 4,
+    },
+    buttonLogin: {
+        justifyContent: 'center',
+        backgroundColor: 'white',
+        marginHorizontal: 10,
+        height: 60,
+        width: 300,
+        borderBottomRightRadius: 20,
+        marginTop: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 4,
+
     },
     buttonTxt: {
+        color: '#196A65',
+        textAlign: 'center',
+        fontSize: 22,
+    },
+    logo: {
+        width: 100,
+        height: 100,
+        borderRadius: 50,
+        margin: 10,
+        backgroundColor: 'white'
+    },
+    descriptionTxt: {
         color: '#fff',
         textAlign: 'center',
-
-    },
-    numerosArea: {
-        height: 80,
-        alignItems: 'center',
-
+        fontSize: 17,
+        marginTop: 25,
+        paddingHorizontal: 20,
+        // textShadowColor: 'rgba(0, 0, 0, 0.5)',
+        // textShadowOffset: { width: -2, height: 1 },
+        // textShadowRadius: 2
     },
 });

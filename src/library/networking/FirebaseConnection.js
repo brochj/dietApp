@@ -5,7 +5,7 @@ let firebaseConfig = {
     authDomain: "dietapp-9c0a6.firebaseapp.com",
     databaseURL: "https://dietapp-9c0a6.firebaseio.com",
     projectId: "dietapp-9c0a6",
-    storageBucket: "",
+    storageBucket: "gs://dietapp-9c0a6.appspot.com/",
     messagingSenderId: "183633637279",
     appId: "1:183633637279:web:aca19c31ec331af8"
 };

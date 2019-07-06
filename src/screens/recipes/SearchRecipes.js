@@ -16,11 +16,14 @@ import firebase from "library/networking/FirebaseConnection";
 
 
 
+
+
 export default class SearchRecipes extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             recipesList: [],
+            image: null,
             breakfastRecipes: breakfastRecipes,
             // morningSnackRecipes: morningSnackRecipes,
             // lunchRecipes: lunchRecipes,
@@ -66,12 +69,11 @@ export default class SearchRecipes extends React.Component {
                 //     });
                 //     this.setState(s);
                 // });
-
-                //olheiro que monitora o saldo do usuário
                 // pegar lista usando once (não atualiza até que seja feita uma nova requisicao)
                 firebase.database().ref('recipes').once('value').then((snapshot) => {
                     let s = this.state;
                     s.recipesList = [];
+                    //Salvar no array recipeList
                     snapshot.forEach((childItem) => {
                         s.recipesList.push({
                             key: childItem.key,
@@ -79,11 +81,17 @@ export default class SearchRecipes extends React.Component {
                             calories: childItem.val().calories,
                             preparationTime: childItem.val().preparationTime,
                             difficulty: childItem.val().difficulty,
+                            image: s.image
                         });
                     });
                     this.setState(s);
                 });
-
+                firebase.storage().ref('recipes/paodeaveia.jpg')
+                    .getDownloadURL()
+                    .then((url) => {
+                        this.state.image = url;
+                        this.setState(this.state);
+                    })
                 //OBS: nao tem problema em ter varios olheiros, pois são informaçoes diferentes, nós diferentes...
 
             } else {
@@ -93,8 +101,11 @@ export default class SearchRecipes extends React.Component {
 
     }
     componentDidMount() {
-
+        
     }
+
+
+
 
 
     goNextScreen() {
@@ -117,35 +128,28 @@ export default class SearchRecipes extends React.Component {
     }
 
 
-
     render() {
 
 
 
         return (
-            <View style={styles.body}>
-                {/* <Text style={styles.txtName}>{JSON.stringify(this.state.breakfastRecipes, null, 2)}</Text>
-                <Text style={styles.txtName}>{JSON.stringify(this.state.recipesList, null, 2)}</Text> */}
-                {/* <Text style={styles.txtName}>age: {this.props.navigation.getParam('age')}</Text>
-                <Text style={styles.txtName}>weight: {this.props.navigation.getParam('weight')}</Text>
-                <Text style={styles.txtName}>height: {this.props.navigation.getParam('height')}</Text>
-                <Text style={styles.txtName}>gender: {this.props.navigation.getParam('gender')}</Text>
-                <Text style={styles.txtName}>activityLevel: {this.props.navigation.getParam('activityLevel')}</Text>
-                <Text style={styles.txtName}>calcutedKcal: {this.props.navigation.getParam('calcutedKcal')}</Text>
-                <Text style={styles.txtName}>objective: {this.props.navigation.getParam('objective')}</Text>
-                <Text style={styles.txtName}>dificultyLevel: {this.props.navigation.getParam('dificultyLevel')}</Text>
-                <Text style={styles.txtName}>mealCalories: {this.props.navigation.getParam('mealCalories').summedKcal}</Text> */}
+            <ScrollView style={styles.body}>
+                {/* <Image source={{ uri: this.state.image }} style={{ width: 50, height: 50 }} />
+                <Text style={styles.txtName}>{this.state.image}</Text> */}
+                {/* <Text style={styles.txtName}>{JSON.stringify(this.state.breakfastRecipes, null, 2)}</Text> */}
+                {/* <Text style={styles.txtName}>{JSON.stringify(this.state.recipesList, null, 2)}</Text> */}
+
                 <ScrollView style={styles.scrollContainer}>
 
                     <FlatList
                         style={styles.historico}
                         data={this.state.recipesList}
-                        renderItem={({ item }) => <ListItem data={item} navigation={this.props.navigation}/>}
+                        renderItem={({ item }) => <ListItem data={item} navigation={this.props.navigation} />}
                     />
                 </ScrollView>
 
 
-            </View>
+            </ScrollView>
         );
 
     }
@@ -157,43 +161,6 @@ const styles = StyleSheet.create({
     },
     scrollContainer: {
         flex: 1,
-    },
-    separator: {
-        backgroundColor: 'gray',
-
-
-    },
-    cardMeal: {
-        marginHorizontal: 10,
-        marginVertical: 5,
-        padding: 10,
-        backgroundColor: '#eee',
-        borderRadius: 5,
-    },
-    titleRowView: {
-        flexDirection: 'row'
-    },
-    mealTitleTxt: {
-        flex: 1,
-        fontSize: 18,
-        marginBottom: 20,
-    },
-    mealQuantityTxt: {
-        flex: 1,
-        textAlign: 'right',
-        fontSize: 18,
-        marginBottom: 20,
-    },
-    addMealTouch: {
-        backgroundColor: '#196A65',
-        marginTop: 10,
-        padding: 10,
-        borderRadius: 5,
-        alignItems: 'center',
-    },
-    addMealTxt: {
-        color: 'white'
-
     },
 
 });

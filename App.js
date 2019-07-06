@@ -14,7 +14,8 @@ import Login from './src/screens/login/Login';
 import Preload from './src/screens/login/Preload';
 import Cadastro from './src/screens/login/Cadastro';
 
-import Breakfast from './src/screens/meals/Breakfast';
+import Breakfast from './src/screens/main/Breakfast';
+import HomeTab from './src/screens/main/HomeTab';
 
 import SearchRecipes from './src/screens/recipes/SearchRecipes';
 import ShowRecipe from './src/screens/recipes/ShowRecipe';
@@ -81,6 +82,13 @@ const AppNavigator = createStackNavigator({
             title: 'Distribuicao'
         }
     },
+    HomeTab: {
+        screen: HomeTab,
+        navigationOptions: {
+            title: 'Distribuicao',
+            header: null,
+        }
+    },
     Breakfast: {
         screen: Breakfast,
         navigationOptions: {
@@ -100,7 +108,7 @@ const AppNavigator = createStackNavigator({
         }
     },
 }, {
-        // initialRouteName: 'SearchRecipes'
+        initialRouteName: 'Home'
     });
 
 export default createAppContainer(AppNavigator);

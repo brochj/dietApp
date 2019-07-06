@@ -1,6 +1,8 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import { StyleSheet, Text, View, Image, Button } from "react-native";
 import MealsAccordion from "library/components/MealsAccordion";
+
+
 
 
 export default class ListItem extends React.Component {
@@ -11,32 +13,34 @@ export default class ListItem extends React.Component {
         //     bg = 'red'
         // }
         this.state = {
-            bg: '#eee'
+            bg: '#eee',
+            image: this.props.data.image
         };
     }
 
     render() {
         return (
             <View style={styles.container}>
+                <Image source={{ uri: this.props.data.image }} style={styles.image} />
                 <View style={styles.column}>
-                      
-                <View style={[styles.body, { backgroundColor: this.state.bg }]}>
-                    <Text >{this.props.data.name}</Text>
-                    <Text >R$ {this.props.data.calories}</Text>
-                </View >
 
-                <View style={[styles.body, { backgroundColor: this.state.bg }]}>
-                    <Text >Dificuldade: {this.props.data.difficulty}</Text>
-                    <Text >Tempo de Preparaçao : {this.props.data.preparationTime}</Text>
+                    <View style={[styles.body, { backgroundColor: this.state.bg }]}>
+                        <Text >{this.props.data.name}</Text>
+                        <Text >R$ {this.props.data.calories}</Text>
+                    </View >
+
+                    <View style={[styles.body, { backgroundColor: this.state.bg }]}>
+                        <Text >Dificuldade: {this.props.data.difficulty}</Text>
+                        <Text >{this.props.data.preparationTime} min</Text>
+                    </View>
                 </View>
-                </View>
-                <Button 
-                    title='Ver' 
-                    onPress={()=> {
-                    this.props.navigation.navigate('ShowRecipe',{
-                        recipeKey: this.props.data.key,
-                    })
-                }}
+                <Button
+                    title='Ver'
+                    onPress={() => {
+                        this.props.navigation.navigate('ShowRecipe', {
+                            recipeKey: this.props.data.key,
+                        })
+                    }}
                 />
             </View>
         );
@@ -47,7 +51,7 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         flexDirection: 'row',
     },
-    column:{
+    column: {
         flex: 1,
     },
     body: {
@@ -55,9 +59,12 @@ const styles = StyleSheet.create({
         height: 40,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         paddingHorizontal: 20,
 
+    },
+    image: {
+        width: 50,
     },
 
 });

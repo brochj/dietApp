@@ -1,6 +1,11 @@
 //const images = { button: require('./images/button.png'), logo: require('./images/logo.png'), placeholder: require('./images/placeholder.png')}
 
 const images = {
+    login: {
+        logo: require('./images/login/logo.png'),
+        bg: require('./images/login/bg.jpg'),
+    },
+
     // tela dadosPerfil
     womanAvatar: require('./images/inicio/woman.jpg'),
     manAvatar: require('./images/inicio/man.jpg'),

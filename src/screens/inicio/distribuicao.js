@@ -75,7 +75,7 @@ export default class distribuicao extends React.Component {
 
     goNextScreen() {
         this.saveMealCalories();
-        this.props.navigation.navigate('Breakfast', {
+        this.props.navigation.navigate('HomeTab', {
             age: this.props.navigation.getParam('age'),
             weight: this.props.navigation.getParam('weight'),
             height: this.props.navigation.getParam('height'),
@@ -89,7 +89,7 @@ export default class distribuicao extends React.Component {
         })
     }
 
-    saveMealCalories(){
+    saveMealCalories() {
         let s = this.state;
         s.mealCalories = {
             summedKcal: s.summedKcal,
