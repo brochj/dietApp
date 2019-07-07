@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from "react-native";
 import R from 'res/R'
 
-export default class dificuldade extends React.Component {
+export default class Dificuldade extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

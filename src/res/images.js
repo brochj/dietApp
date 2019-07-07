@@ -4,6 +4,14 @@ const images = {
     login: {
         logo: require('./images/login/logo.png'),
         bg: require('./images/login/bg.jpg'),
+        bgCadastro: require('./images/login/bg-cadastro.jpg'),
+        preloadArray: [
+            require('./images/login/preload/preload-1.jpg'),
+            require('./images/login/preload/preload-2.jpg'),
+            require('./images/login/preload/preload-3.jpg'),
+            require('./images/login/preload/preload-4.jpg'),
+            require('./images/login/preload/preload-5.jpg'),
+        ]
     },
 
     // tela dadosPerfil

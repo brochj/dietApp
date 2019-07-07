@@ -2,12 +2,13 @@ import React from "react";
 import { StyleSheet, Text, View, TextInput } from "react-native";
 import { createAppContainer, createStackNavigator } from "react-navigation";
 
-import dadosPerfil from './src/screens/inicio/dadosPerfil';
-import atividade from './src/screens/inicio/atividade';
-import gastoCalorico from './src/screens/inicio/gastoCalorico';
-import objetivo from './src/screens/inicio/objetivo';
-import dificuldade from './src/screens/inicio/dificuldade';
-import distribuicao from './src/screens/inicio/distribuicao';
+import InicioTab from './src/screens/inicio/InicioTab';
+import DadosPerfil from './src/screens/inicio/DadosPerfil';
+import Atividade from './src/screens/inicio/Atividade';
+import GastoCalorico from './src/screens/inicio/GastoCalorico';
+import Objetivo from './src/screens/inicio/Objetivo';
+import Dificuldade from './src/screens/inicio/Dificuldade';
+import Distribuicao from './src/screens/inicio/Distribuicao';
 
 import Home from './src/screens/login/Home';
 import Login from './src/screens/login/Login';
@@ -46,38 +47,44 @@ const AppNavigator = createStackNavigator({
             title: 'Cadastro'
         }
     },
-    dadosPerfil: {
-        screen: dadosPerfil,
+    InicioTab: {
+        screen: InicioTab,
+        navigationOptions: {
+            title: null
+        }
+    },
+    DadosPerfil: {
+        screen: DadosPerfil,
         navigationOptions: {
             title: 'Perfil Inicial'
         }
     },
-    atividade: {
-        screen: atividade,
+    Atividade: {
+        screen: Atividade,
         navigationOptions: {
-            title: 'Nível de atividade'
+            title: 'Nível de Atividade'
         }
     },
-    gastoCalorico: {
-        screen: gastoCalorico,
+    GastoCalorico: {
+        screen: GastoCalorico,
         navigationOptions: {
             title: 'Gasto Calórico'
         }
     },
-    objetivo: {
-        screen: objetivo,
+    Objetivo: {
+        screen: Objetivo,
         navigationOptions: {
             title: 'Objetivo'
         }
     },
-    dificuldade: {
-        screen: dificuldade,
+    Dificuldade: {
+        screen: Dificuldade,
         navigationOptions: {
             title: 'Dificuldade'
         }
     },
-    distribuicao: {
-        screen: distribuicao,
+    Distribuicao: {
+        screen: Distribuicao,
         navigationOptions: {
             title: 'Distribuicao'
         }
@@ -108,7 +115,10 @@ const AppNavigator = createStackNavigator({
         }
     },
 }, {
-        initialRouteName: 'Home'
+        initialRouteName: 'InicioTab',
+        defaultNavigationOptions: {
+            header: null,
+        },
     });
 
 export default createAppContainer(AppNavigator);

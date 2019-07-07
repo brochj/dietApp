@@ -19,7 +19,7 @@ export default class dadosPerfil extends React.Component {
     }
 
     goNextScreen() {
-        this.props.navigation.navigate('objetivo', {
+        this.props.navigation.navigate('Objetivo', {
             age: this.props.navigation.getParam('age'),
             weight: this.props.navigation.getParam('weight'),
             height: this.props.navigation.getParam('height'),

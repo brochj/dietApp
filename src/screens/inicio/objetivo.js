@@ -2,7 +2,10 @@ import React from "react";
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from "react-native";
 import R from 'res/R'
 
-export default class dadosPerfil extends React.Component {
+export default class Objetivo extends React.Component {
+
+   
+
     constructor(props) {
         super(props);
         this.state = {
@@ -15,7 +18,7 @@ export default class dadosPerfil extends React.Component {
     }
 
     goNextScreen() {
-        this.props.navigation.navigate('dificuldade', {
+        this.props.navigation.navigate('Dificuldade', {
             age: this.props.navigation.getParam('age'),
             weight: this.props.navigation.getParam('weight'),
             height: this.props.navigation.getParam('height'),

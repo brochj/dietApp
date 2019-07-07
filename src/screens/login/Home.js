@@ -1,7 +1,7 @@
 import React from "react";
 import {
     StyleSheet,
-    Text, View, TextInput,
+    Text, View, ImageBackground,
     TouchableHighlight, Image,
     Dimensions, StatusBar, Platform
 } from "react-native";
@@ -43,27 +43,29 @@ export default class Home extends React.Component {
                 <View style={styles.bgView}>
                     <Image source={R.images.login.bg} style={[styles.bg, { width: width }]} />
                 </View>
-
                 <View style={styles.body}>
-                    <Image source={R.images.login.logo} style={styles.logo} />
-                    <View style={styles.buttonArea}>
-                        <TouchableHighlight
-                            underlayColor='#ccc'
-                            style={styles.buttonCadastro}
-                            onPress={this.cadastrar}
-                        >
-                            <Text style={styles.buttonTxt}>Cadastrar</Text>
-                        </TouchableHighlight>
-                        <TouchableHighlight
-                            underlayColor='#ccc'
-                            style={styles.buttonLogin}
-                            onPress={this.login}
-                        >
-                            <Text style={styles.buttonTxt}>Login</Text>
 
-                        </TouchableHighlight>
-                        <Text style={styles.descriptionTxt}>Nunca foi tão fácil montar um plano de dieta.</Text>
-                    </View>
+                    <ImageBackground source={R.images.login.bgCadastro} blurRadius={50} imageStyle={styles.imageStyleBg} style={styles.imageBg}>
+                        <Image source={R.images.login.logo} style={styles.logo} />
+                        <View style={styles.buttonArea}>
+                            <TouchableHighlight
+                                underlayColor='#ccc'
+                                style={styles.buttonCadastro}
+                                onPress={this.cadastrar}
+                            >
+                                <Text style={styles.buttonTxt}>Cadastrar</Text>
+                            </TouchableHighlight>
+                            <TouchableHighlight
+                                underlayColor='#ccc'
+                                style={styles.buttonLogin}
+                                onPress={this.login}
+                            >
+                                <Text style={styles.buttonTxt}>Login</Text>
+
+                            </TouchableHighlight>
+                            <Text style={styles.descriptionTxt}>Nunca foi tão fácil fazer dieta.</Text>
+                        </View>
+                    </ImageBackground>
                 </View>
 
             </View>
@@ -76,7 +78,19 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'black',
-        paddingBottom: 5,
+        // paddingBottom: 5,
+    },
+    imageBg: {
+        width: '100%',
+        height: '100%',
+        alignItems: 'center',
+    },
+    imageStyleBg: {
+        flex: 1,
+        borderTopRightRadius: 45,
+        borderTopLeftRadius: 45,
+        // borderBottomRightRadius: 45,
+        // borderBottomLeftRadius: 45,
     },
     body: {
         flex: 1,
@@ -85,13 +99,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#196A65',
         marginHorizontal: 10,
-        paddingBottom: 15,
+        borderTopLeftRadius: 45,
         borderTopRightRadius: 45,
-        // borderTopLeftRadius: 45,
-        // borderBottomRightRadius: 20,
-        borderBottomLeftRadius: 45,
-
-
+        // borderBottomLeftRadius: 45,
     },
     bgView: {
         flexDirection: 'row',
@@ -100,8 +110,8 @@ const styles = StyleSheet.create({
     bg: {
         width: null,
         height: null,
-        borderBottomLeftRadius: 10,
-        borderBottomRightRadius: 10,
+        borderBottomLeftRadius: 45,
+        borderBottomRightRadius: 45,
     },
     title: {
         fontSize: 30,
@@ -143,7 +153,6 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-
         elevation: 4,
 
     },
@@ -157,7 +166,7 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius: 50,
         margin: 10,
-        backgroundColor: 'white'
+        backgroundColor: '#196A65'
     },
     descriptionTxt: {
         color: '#fff',

@@ -8,7 +8,7 @@ const colors = {
     title: '#00B75D',
     text: '#0C222B',
     actionButton: '#48e5c2',
-
+    primaryColor: '#196A65',
     blueish: {
         50: '#e9f0f1',
         100: '#c7d9dd',

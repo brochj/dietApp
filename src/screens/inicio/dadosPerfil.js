@@ -1,9 +1,9 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput, Button, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, StatusBar, ImageBackground, Image, TouchableOpacity } from "react-native";
 import Slider from "react-native-slider";
 import R from 'res/R'
 
-export default class dadosPerfil extends React.Component {
+export default class DadosPerfil extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -23,7 +23,7 @@ export default class dadosPerfil extends React.Component {
     }
 
     goNextScreen() {
-        this.props.navigation.navigate('atividade', {
+        this.props.navigation.navigate('Atividade', {
             age: this.state.age,
             weight: this.state.weight,
             height: this.state.height,
@@ -73,7 +73,8 @@ export default class dadosPerfil extends React.Component {
         }
 
         return (
-            <View style={styles.body}>
+            <ImageBackground source={R.images.login.bgCadastro} blurRadius={5} style={styles.body}>
+                <StatusBar backgroundColor="rgba(0,0,0,.35)" barStyle="light-content" translucent={false} />
                 <View style={styles.genderView}>
                     <TouchableOpacity style={styles.femaleTouchable}
                         onPress={() => this.genderType('male')}
@@ -186,11 +187,20 @@ export default class dadosPerfil extends React.Component {
                     </View>
                 </View>
 
+                <View style={styles.nextButtoView}>
 
-                <Button title='Go to next screen'
-                    onPress={this.goNextScreen}
-                />
-            </View >
+                    <TouchableOpacity style={styles.buttonNext}
+                        onPress={this.goNextScreen}
+                    >
+                        <Text style={styles.nextTxt}>Avançar</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.buttonNext}
+                        onPress={this.goNextScreen}
+                    >
+                        <Text style={styles.nextTxt}>Avançar</Text>
+                    </TouchableOpacity>
+                </View>
+            </ImageBackground >
         );
     }
 }
@@ -206,6 +216,12 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         padding: 10,
+    },
+    maleTouchable: {
+        marginLeft: 25,
+    },
+    femaleTouchable: {
+
     },
     genderImage: {
         height: 120,
@@ -273,7 +289,7 @@ const styles = StyleSheet.create({
     addButton: {
         height: 40,
         width: 40,
-        backgroundColor: 'green',
+        backgroundColor: '#196A65',
         justifyContent: 'center',
         padding: 10,
         borderRadius: 10,
@@ -281,13 +297,24 @@ const styles = StyleSheet.create({
     subButtonLabel: {
         fontSize: 35,
         textAlignVertical: 'center',
-        textAlign: 'center'
+        textAlign: 'center',
+        color: 'white'
 
     },
     addButtonLabel: {
         fontSize: 30,
         textAlignVertical: 'center',
-        textAlign: 'center'
+        textAlign: 'center',
+        color: 'white'
+    },
+
+    nextButtoView: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+    },
+    buttonNext: {
+        flex: 1,
+
     },
 
 

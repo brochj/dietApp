@@ -1,16 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity } from "react-native";
 import firebase from "library/networking/FirebaseConnection";
-
-
+import R from 'res/R'
+// TODO Colocar os textinput animados
+// TODO colocar botao de ver senha
+// TODO no textinput de senha, deixar vermelho em volta quando o numero de caracteres forem menor que 6
 export default class Login extends React.Component {
 
     static navigationOptions = {
         title: 'Login',
-        headerStyle: {
-            backgroundColor: '#ffff00'
-        },
-        headerTintColor: 'black'
+        header: null,
     }
 
     constructor(props) {
@@ -31,7 +30,7 @@ export default class Login extends React.Component {
                 // uma vez logado, podemos pegar o uid do usuario
                 if (user) {
 
-                    this.props.navigation.navigate('dadosPerfil');
+                    this.props.navigation.navigate('InicioTab');
                 }
             });
             // Logando o usuario
@@ -41,44 +40,126 @@ export default class Login extends React.Component {
             ).catch((error) => {
                 alert(error.code);
             });
+        } else {
+            if (this.state.emailInput == '') {
+                alert('Digite o seu email')
+            } else if (this.state.senhaInput == '') {
+                alert('Digite a sua senha')
+
+            }
         }
     }
 
     render() {
-        return (
+        return (<ImageBackground source={R.images.login.bgCadastro} style={styles.imageBg}>
+
             <View style={styles.body}>
 
-                <Text>Email</Text>
-                <TextInput style={styles.input}
+                <Text style={styles.labelTxt}>Email</Text>
+                <TextInput
+                    style={[styles.input, styles.inputEmail]}
+                    autoFocus={true}
+                    blurOnSubmit={false}
+                    placeholder='seu-email@email.com'
+                    returnKeyType='next'
                     keyboardType='email-address'
                     onChangeText={(emailInput) => { this.setState({ emailInput }); }}
-                    value={this.state.emailInput} // RETIRA ISSO DEPOIS
+                    onSubmitEditing={() => this.senhaInput.focus()}
                 />
-                <Text>Senha: </Text>
-                <TextInput style={styles.input} 
+                <Text style={styles.labelTxt}>Senha</Text>
+                <TextInput
+                    ref={(input => (this.senhaInput = input))}
+                    style={[styles.input, styles.inputSenha]}
                     secureTextEntry={true}
+                    maxLength={20}
+                    placeholder='Digite uma senha'
+                    returnKeyLabel='testes'
                     onChangeText={(senhaInput) => { this.setState({ senhaInput }); }}
-                    value={this.state.senhaInput} // RETIRA ISSO DEPOIS
+                    onSubmitEditing={() => this.entrar()}
                 />
-                <Button title="entrar" onPress={this.entrar} />
+                <TouchableOpacity
+                    style={styles.buttonCadastro}
+                    onPress={this.entrar}
+
+                >
+                    <Text style={styles.buttonTxt}>Login</Text>
+                </TouchableOpacity>
+                {/* <Button title="Cadastrar" onPress={this.entrar} /> */}
+                <View style={styles.loginView}>
+                    <Text style={styles.loginTxt}
+                        onPress={() => this.props.navigation.navigate('Cadastro')}
+                    >Ainda não tem uma conta?</Text>
+                    <Text style={[styles.loginTxt, styles.loginWordTxt]}
+                        onPress={() => this.props.navigation.navigate('Cadastro')}
+                    >Cadastrar</Text>
+
+                </View>
             </View>
+        </ImageBackground>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    imageBg: {
+        justifyContent: 'center',
+        width: '100%',
+        height: '100%'
+    },
     body: {
-        flex: 1,
-        paddingTop: 25,
         justifyContent: 'center',
         margin: 10,
+        padding: 10,
+        backgroundColor: 'rgba(0,0,0,.5)',
+        borderRadius: 5,
     },
     input: {
-        height: 40,
-        backgroundColor: '#ccc',
-        padding: 5,
+        height: 50,
         marginBottom: 10,
+        padding: 5,
+        paddingHorizontal: 20,
+        backgroundColor: 'rgba(255,255,255,.80)',
+        color: '#196A65',
+        fontSize: 17,
 
+    },
+    inputEmail: {
+        borderTopLeftRadius: 15,
+    },
+    inputSenha: {
+
+    },
+    labelTxt: {
+        color: 'white',
+        fontSize: 22,
+    },
+    buttonCadastro: {
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#196A65',
+        borderBottomRightRadius: 15,
+
+    },
+    buttonTxt: {
+        color: 'white',
+        fontSize: 22,
+        fontWeight: 'bold'
+
+    },
+    loginView: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 20,
+    },
+    loginTxt: {
+        color: 'white',
+        fontSize: 16,
+    },
+    loginWordTxt: {
+        marginLeft: 5,
+        fontWeight: 'bold',
+        textDecorationLine: 'underline',
     },
 
 });
