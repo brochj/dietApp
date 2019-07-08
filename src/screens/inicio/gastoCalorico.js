@@ -1,8 +1,19 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, Button } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import ForwardBackBar from 'library/components/ForwardBackBar';
+
 import R from 'res/R'
+import { ScrollView } from "react-native-gesture-handler";
 
 export default class dadosPerfil extends React.Component {
+
+    static navigationOptions = {
+
+        title: 'Gasto Calorico',
+        header: null,
+
+    }
     constructor(props) {
         super(props);
         this.state = {
@@ -11,6 +22,7 @@ export default class dadosPerfil extends React.Component {
 
         };
         this.goNextScreen = this.goNextScreen.bind(this);
+        this.goMainScreen = this.goMainScreen.bind(this);
         this.calculateCalories = this.calculateCalories.bind(this);
 
     }
@@ -20,6 +32,16 @@ export default class dadosPerfil extends React.Component {
 
     goNextScreen() {
         this.props.navigation.navigate('Objetivo', {
+            age: this.props.navigation.getParam('age'),
+            weight: this.props.navigation.getParam('weight'),
+            height: this.props.navigation.getParam('height'),
+            gender: this.props.navigation.getParam('gender'),
+            activityLevel: this.props.navigation.getParam('activityLevel'),
+            calcutedKcal: this.state.calcutedKcal,
+        })
+    }
+    goMainScreen(){
+        this.props.navigation.navigate('HomeTab', {
             age: this.props.navigation.getParam('age'),
             weight: this.props.navigation.getParam('weight'),
             height: this.props.navigation.getParam('height'),
@@ -67,19 +89,56 @@ export default class dadosPerfil extends React.Component {
     }
 
     render() {
+        const activeBgColor = '#196A65';
+        const defaultBgColor = '#eee';
+        const activeTxtColor = '#fff';
+        const defaultTxtColor = '#000';
+
+        const bgColorElevada = (this.state.objective == 'ManterPeso') ?
+            { backgroundColor: activeBgColor } :
+            { backgroundColor: defaultBgColor };
+
+        const txtColorElevada = (this.state.objective == 'ManterPeso') ?
+            { color: activeTxtColor } :
+            { color: defaultTxtColor };
         return (
             <View style={styles.body}>
-                <View style={styles.imageView}>
+                <ScrollView style={styles.scrollView}>
+                    <View style={styles.imageView}>
 
-                    <Image source={R.images.womanCheers} style={styles.cheersImage} />
-                </View>
-                <View style={styles.textView}>
-                    <Text style={styles.labelTxt}>Seu gasto calórico diário é aproximadamente</Text>
-                    <Text style={styles.valueTxt}>{this.state.calcutedKcal}</Text>
-                    <Text style={styles.labelTxt}>Calorias</Text>
-                </View>
-                <Button title='Go to next screen'
-                    onPress={this.goNextScreen}
+                        <Image source={R.images.womanCheers} style={styles.cheersImage} />
+                    </View>
+
+                    <View style={styles.textView}>
+                        <Text style={styles.labelTxt}>Seu gasto calórico diário é aproximadamente</Text>
+                        <Text style={styles.valueTxt}>{this.state.calcutedKcal}</Text>
+                        <Text style={styles.labelTxt}>Calorias</Text>
+                    </View>
+                    <TouchableOpacity style={[styles.selectTouch, bgColorElevada]}
+                        onPress={this.goNextScreen}
+                    >
+                        <Text style={[styles.labelTitle, txtColorElevada]}>Montar Dieta</Text>
+                        <Text style={[styles.labelDescription, txtColorElevada]}>
+                            Vamos juntos montar sua dieta de acordo com o seu objetivo
+                    </Text>
+                    </TouchableOpacity>
+
+
+                    <TouchableOpacity style={[styles.selectTouch, bgColorElevada]}
+                        onPress={this.goMainScreen}
+                    >
+                        <Text style={[styles.labelTitle, txtColorElevada]}>Fazer depois</Text>
+                        <Text style={[styles.labelDescription, txtColorElevada]}>
+                            A qualquer momento você poderá alterar sua dieta.
+                        </Text>
+                    </TouchableOpacity>
+
+                </ScrollView>
+
+                <ForwardBackBar
+                    onPressBack={() => this.props.navigation.goBack()}
+                    onPressForward={this.goNextScreen}
+                    forwardDisabled
                 />
             </View>
         );
@@ -92,6 +151,9 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
     },
+    scrollView: {
+        flex: 1,
+    },
     imageView: {
         flexDirection: 'row',
         marginTop: -20,
@@ -100,7 +162,7 @@ const styles = StyleSheet.create({
     cheersImage: {
         flex: 1,
         width: null,
-        height: 300,
+        height: 150,
         resizeMode: 'contain',
     },
     textView: {
@@ -117,6 +179,38 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         padding: 10,
         fontSize: 45,
+    },
+    selectTouch: {
+        alignItems: 'center',
+        alignSelf: 'stretch',
+        backgroundColor: '#ddd',
+        minHeight: 110,
+        marginHorizontal: 10,
+        marginVertical: 5,
+        borderRadius: 10,
+        padding: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+
+        elevation: 4,
+    },
+    labelTitle: {
+        fontSize: 30,
+        color: 'black',
+        fontWeight: 'bold',
+        textAlign: 'center',
+    },
+    labelDescription: {
+        fontSize: 17,
+        color: 'black',
+        textAlign: 'center',
+        marginTop: 10,
+
     },
 
 });

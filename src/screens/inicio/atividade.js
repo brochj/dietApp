@@ -1,8 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from "react-native";
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import ForwardBackBar from 'library/components/ForwardBackBar';
+
 import R from 'res/R'
 
 export default class Atividade extends React.Component {
+    static navigationOptions = {
+
+        title: 'Atividade',
+        header: null,
+
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -24,8 +34,9 @@ export default class Atividade extends React.Component {
         })
     }
     selectLevel(level) {
-        this.state.activityLevel = level,
-            this.setState(this.state);
+        this.state.activityLevel = level;
+        this.setState(this.state);
+        this.goNextScreen();
     }
     render() {
         const activeBgColor = '#196A65';
@@ -71,12 +82,13 @@ export default class Atividade extends React.Component {
         return (
 
             <View style={styles.body}>
-                <View style={styles.imageView}>
-                    <Image source={genderImage} style={styles.genderImage} />
-                    <Image source={genderImage1} style={styles.genderImage1} />
-                </View>
                 <View style={styles.selectView}>
+                    <View style={styles.imageView}>
+                        <Image source={genderImage} style={styles.genderImage} />
+                        <Image source={genderImage1} style={styles.genderImage1} />
+                    </View>
 
+                    <Text style={styles.titleTxt}>Qual o seu nível de atividade física?</Text>
 
                     <TouchableOpacity style={[styles.selectTouch, bgColorLeve]}
                         onPress={() => { this.selectLevel('leve') }}
@@ -112,8 +124,10 @@ export default class Atividade extends React.Component {
                     </TouchableOpacity>
 
                 </View>
-                <Button title='Go to next screen'
-                    onPress={this.goNextScreen}
+
+                <ForwardBackBar
+                    onPressBack={() => this.props.navigation.goBack()}
+                    onPressForward={this.goNextScreen}
                 />
             </View>
         );
@@ -139,6 +153,23 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         borderRadius: 10,
         padding: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+
+        elevation: 4,
+    },
+    titleTxt: {
+        fontSize: 23,
+        textAlign: 'center',
+        color: 'black',
+        fontWeight: 'bold',
+        paddingVertical: 10,
+        paddingHorizontal: 15,
     },
     labelTitle: {
         fontSize: 30,

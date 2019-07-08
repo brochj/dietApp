@@ -1,9 +1,26 @@
 import React from "react";
-import { StyleSheet, Text, View, StatusBar, ImageBackground, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, StatusBar, ScrollView, Image, TouchableOpacity, Animated } from "react-native";
 import Slider from "react-native-slider";
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import ForwardBackBar from 'library/components/ForwardBackBar';
 import R from 'res/R'
 
 export default class DadosPerfil extends React.Component {
+    static navigationOptions = {
+
+        title: 'Perfil',
+        header: null,
+        // headerTransparent: true,
+        headerBackImage: (<ForwardBackBar
+            onPressBack={() => this.props.navigation.goBack()}
+            onPressForward={this.goNextScreen}
+            backDisabled={true}
+        />),
+
+    }
+
+
+
     constructor(props) {
         super(props);
         this.state = {
@@ -12,6 +29,7 @@ export default class DadosPerfil extends React.Component {
             height: 175,
             gender: 'male',
 
+            cardHeight: new Animated.Value(0),
         };
         this.weightValue = this.weightValue.bind(this);
         this.ageValue = this.ageValue.bind(this);
@@ -19,6 +37,23 @@ export default class DadosPerfil extends React.Component {
         this.genderType = this.genderType.bind(this);
         this.goNextScreen = this.goNextScreen.bind(this);
 
+        // Animated.timing(
+        //     this.state.cardHeight,
+        //     {
+        //         toValue: 140,
+        //         duration: 1000
+        //     }
+        // ).start();
+        Animated.parallel([
+            Animated.timing(
+                this.state.cardHeight,
+                {
+                    toValue: 140,
+                    duration: 1000
+                }
+            )
+
+        ]).start()
 
     }
 
@@ -63,6 +98,9 @@ export default class DadosPerfil extends React.Component {
         }
         this.setState(this.state);
     }
+
+
+
     render() {
 
         const maleOpacity = {
@@ -73,152 +111,177 @@ export default class DadosPerfil extends React.Component {
         }
 
         return (
-            <ImageBackground source={R.images.login.bgCadastro} blurRadius={5} style={styles.body}>
+            <View style={styles.container}>
+                <StatusBar hidden />
                 <StatusBar backgroundColor="rgba(0,0,0,.35)" barStyle="light-content" translucent={false} />
-                <View style={styles.genderView}>
-                    <TouchableOpacity style={styles.femaleTouchable}
-                        onPress={() => this.genderType('male')}
-                    >
-                        <Image source={R.images.womanAvatar} style={[styles.genderImage, femaleOpacity]} />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.maleTouchable}
-                        onPress={() => this.genderType('female')}
-                    >
-                        <Image source={R.images.manAvatar} style={[styles.genderImage, maleOpacity]} />
-                    </TouchableOpacity>
-                </View>
+                <ScrollView style={styles.scrollView}>
 
 
-                <View style={styles.inputView}>
-                    <View style={styles.inputRow}>
-                        <Text style={styles.inputLabel}>Idade</Text>
-                        <Text style={styles.inputUnit}>    </Text>
-                        <View style={styles.valuesView}>
-                            <Text style={styles.inputValue}>{this.state.age}</Text>
+                    <Text style={styles.titleTxt}>Perfil</Text>
+                    <View style={styles.genderView}>
+                        <TouchableOpacity style={styles.femaleTouchable}
+                            onPress={() => this.genderType('male')}
+                        >
+                            <Image source={R.images.womanAvatar} style={[styles.genderImage, femaleOpacity]} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.maleTouchable}
+                            onPress={() => this.genderType('female')}
+                        >
+                            <Image source={R.images.manAvatar} style={[styles.genderImage, maleOpacity]} />
+                        </TouchableOpacity>
+                    </View>
+
+
+                    <Animated.View style={[styles.inputView, { height: this.state.cardHeight }]}>
+                        <View style={styles.inputRow}>
+                            <Text style={styles.inputLabel}>Idade</Text>
+                            <Text style={styles.inputUnit}>    </Text>
+                            <View style={styles.valuesView}>
+                                <Text style={styles.inputValue}>{this.state.age}</Text>
+                            </View>
+
                         </View>
+                        <View style={[styles.sliderRow, { opacity: this.state.cardOpacity }]}>
+                            <TouchableOpacity style={styles.addButton}
+                                onPress={() => this.ageValue('sub')}
+                            >
+                                <Text style={styles.subButtonLabel}>-</Text>
+                            </TouchableOpacity>
+                            <Slider
+                                style={styles.slider}
+                                value={this.state.age}
+                                onValueChange={age => this.setState({ age })}
+                                maximumValue={100}
+                                minimumValue={10}
+                                step={1}
 
-                    </View>
-                    <View style={styles.sliderRow}>
-                        <TouchableOpacity style={styles.addButton}
-                            onPress={() => this.ageValue('sub')}
-                        >
-                            <Text style={styles.subButtonLabel}>-</Text>
-                        </TouchableOpacity>
-                        <Slider
-                            style={styles.slider}
-                            value={this.state.age}
-                            onValueChange={age => this.setState({ age })}
-                            maximumValue={100}
-                            minimumValue={10}
-                            step={1}
-
-                        />
-                        <TouchableOpacity style={styles.addButton}
-                            onPress={() => this.ageValue('add')}
-                        >
-                            <Text style={styles.addButtonLabel}>+</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-
-                <View style={styles.inputView}>
-                    <View style={styles.inputRow}>
-                        <Text style={styles.inputLabel}>Altura</Text>
-                        <Text style={styles.inputUnit}>(cm)</Text>
-                        <View style={styles.valuesView}>
-
-                            <Text style={styles.inputValue}>{this.state.height}</Text>
+                            />
+                            <TouchableOpacity style={styles.addButton}
+                                onPress={() => this.ageValue('add')}
+                            >
+                                <Text style={styles.addButtonLabel}>+</Text>
+                            </TouchableOpacity>
                         </View>
+                    </Animated.View>
 
-                    </View>
-                    <View style={styles.sliderRow}>
-                        <TouchableOpacity style={styles.addButton}
-                            onPress={() => this.heightValue('sub')}
-                        >
-                            <Text style={styles.subButtonLabel}>-</Text>
-                        </TouchableOpacity>
-                        <Slider
-                            style={styles.slider}
-                            value={this.state.height}
-                            onValueChange={height => this.setState({ height })}
-                            maximumValue={230}
-                            minimumValue={60}
-                            step={1}
+                    <Animated.View style={[styles.inputView, { height: this.state.cardHeight }]}>
+                        <View style={styles.inputRow}>
+                            <Text style={styles.inputLabel}>Altura</Text>
+                            <Text style={styles.inputUnit}>(cm)</Text>
+                            <View style={styles.valuesView}>
 
-                        />
-                        <TouchableOpacity style={styles.addButton}
-                            onPress={() => this.heightValue('add')}
-                        >
-                            <Text style={styles.addButtonLabel}>+</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                                <Text style={styles.inputValue}>{this.state.height}</Text>
+                            </View>
 
-                <View style={styles.inputView}>
-                    <View style={styles.inputRow}>
-                        <Text style={styles.inputLabel}>Peso</Text>
-                        <Text style={styles.inputUnit}>(kg)</Text>
-                        <View style={styles.valuesView}>
-
-                            <Text style={styles.inputValue}>{this.state.weight.toFixed(1)}</Text>
                         </View>
+                        <View style={styles.sliderRow}>
+                            <TouchableOpacity style={styles.addButton}
+                                onPress={() => this.heightValue('sub')}
+                            >
+                                <Text style={styles.subButtonLabel}>-</Text>
+                            </TouchableOpacity>
+                            <Slider
+                                style={styles.slider}
+                                value={this.state.height}
+                                onValueChange={height => this.setState({ height })}
+                                maximumValue={230}
+                                minimumValue={60}
+                                step={1}
 
-                    </View>
-                    <View style={styles.sliderRow}>
-                        <TouchableOpacity style={styles.addButton}
-                            onPress={() => this.weightValue('sub')}
-                        >
-                            <Text style={styles.subButtonLabel}>-</Text>
-                        </TouchableOpacity>
-                        <Slider
-                            style={styles.slider}
-                            value={this.state.weight}
-                            onValueChange={weight => this.setState({ weight })}
-                            maximumValue={180}
-                            minimumValue={10}
-                            step={0.1}
+                            />
+                            <TouchableOpacity style={styles.addButton}
+                                onPress={() => this.heightValue('add')}
+                            >
+                                <Text style={styles.addButtonLabel}>+</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </Animated.View>
 
-                        />
-                        <TouchableOpacity style={styles.addButton}
-                            onPress={() => this.weightValue('add')}
-                        >
-                            <Text style={styles.addButtonLabel}>+</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                    <Animated.View style={[styles.inputView, { height: this.state.cardHeight }]}>
+                        <View style={styles.inputRow}>
+                            <Text style={styles.inputLabel}>Peso</Text>
+                            <Text style={styles.inputUnit}>(kg)</Text>
+                            <View style={styles.valuesView}>
 
-                <View style={styles.nextButtoView}>
+                                <Text style={styles.inputValue}>{this.state.weight.toFixed(1)}</Text>
+                            </View>
 
-                    <TouchableOpacity style={styles.buttonNext}
-                        onPress={this.goNextScreen}
-                    >
-                        <Text style={styles.nextTxt}>Avançar</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.buttonNext}
-                        onPress={this.goNextScreen}
-                    >
-                        <Text style={styles.nextTxt}>Avançar</Text>
-                    </TouchableOpacity>
-                </View>
-            </ImageBackground >
+                        </View>
+                        <View style={styles.sliderRow}>
+                            <TouchableOpacity style={styles.addButton}
+                                onPress={() => this.weightValue('sub')}
+                            >
+                                <Text style={styles.subButtonLabel}>-</Text>
+                            </TouchableOpacity>
+                            <Slider
+                                style={styles.slider}
+                                value={this.state.weight}
+                                onValueChange={weight => this.setState({ weight })}
+                                maximumValue={180}
+                                minimumValue={10}
+                                step={0.1}
+
+                            />
+                            <TouchableOpacity style={styles.addButton}
+                                onPress={() => this.weightValue('add')}
+                            >
+                                <Text style={styles.addButtonLabel}>+</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </Animated.View>
+
+
+                </ScrollView >
+                <ForwardBackBar
+                    onPressBack={() => this.props.navigation.goBack()}
+                    onPressForward={this.goNextScreen}
+                    backDisabled={true}
+                />
+            </View>
         );
     }
 }
 
 
 const styles = StyleSheet.create({
-    body: {
+    container: {
+        flex: 1,
+    },
+    scrollView: {
         flex: 1,
         paddingTop: 25,
-        alignItems: 'center',
+
+    },
+    titleTxt: {
+        fontSize: 23,
+        textAlign: 'center',
+        color: 'black',
+        fontWeight: 'bold',
+        paddingVertical: 10,
+        paddingHorizontal: 15,
     },
     genderView: {
         flex: 1,
         flexDirection: 'row',
+        justifyContent: 'center',
+        margin: 10,
         padding: 10,
+        borderRadius: 10,
+        backgroundColor: '#eee',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+
+        elevation: 4,
+
     },
     maleTouchable: {
         marginLeft: 25,
+
     },
     femaleTouchable: {
 
@@ -233,11 +296,20 @@ const styles = StyleSheet.create({
     },
 
     inputView: {
-        flex: 1,
-        height: 100,
+        height: 150,
         alignSelf: 'stretch',
         margin: 10,
+        borderRadius: 10,
+        backgroundColor: '#eee',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
 
+        elevation: 4,
     },
     inputRow: {
         flex: 1,
@@ -260,12 +332,12 @@ const styles = StyleSheet.create({
     },
     inputValue: {
         fontSize: 40,
-
+        fontWeight: 'bold',
     },
     valuesView: {
         height: 70,
         width: 125,
-        backgroundColor: '#eee',
+        // backgroundColor: '#eee',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
@@ -310,11 +382,13 @@ const styles = StyleSheet.create({
 
     nextButtoView: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
     },
     buttonNext: {
         flex: 1,
-
+        height: 45,
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        backgroundColor: '#196A65',
     },
 
 

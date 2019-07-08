@@ -18,7 +18,7 @@ export default class Preload extends React.Component {
         //verifica se tem usuario logado no sistema
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                this.props.navigation.navigate('Breakfast')
+                this.props.navigation.navigate('HomeTab')
 
             } else {
                 this.props.navigation.navigate('Home')

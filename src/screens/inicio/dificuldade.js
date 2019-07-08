@@ -1,8 +1,16 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from "react-native";
+import ForwardBackBar from 'library/components/ForwardBackBar';
+
 import R from 'res/R'
 
 export default class Dificuldade extends React.Component {
+    static navigationOptions = {
+        title: 'Dificuldade',
+        header: null
+    }
+
+
     constructor(props) {
         super(props);
         this.state = {
@@ -68,7 +76,7 @@ export default class Dificuldade extends React.Component {
     }
 
     goNextScreen() {
-        this.props.navigation.navigate('distribuicao', {
+        this.props.navigation.navigate('Distribuicao', {
             age: this.props.navigation.getParam('age'),
             weight: this.props.navigation.getParam('weight'),
             height: this.props.navigation.getParam('height'),
@@ -81,8 +89,9 @@ export default class Dificuldade extends React.Component {
     }
 
     selectLevel(level) {
-        this.state.difficultyLevel = level,
-            this.setState(this.state);
+        this.state.difficultyLevel = level;
+        this.setState(this.state);
+        this.goNextScreen();
     }
     render() {
         const activeBgColor = '#196A65';
@@ -177,8 +186,9 @@ export default class Dificuldade extends React.Component {
 
 
                 </View>
-                <Button title='Go to next screen'
-                    onPress={this.goNextScreen}
+                <ForwardBackBar
+                    onPressBack={() => this.props.navigation.goBack()}
+                    onPressForward={this.goNextScreen}
                 />
             </View>
         );
@@ -206,6 +216,15 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         borderRadius: 10,
         padding: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+
+        elevation: 4,
     },
     labelTitle: {
         fontSize: 25,

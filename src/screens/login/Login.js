@@ -10,6 +10,7 @@ export default class Login extends React.Component {
     static navigationOptions = {
         title: 'Login',
         header: null,
+        
     }
 
     constructor(props) {
@@ -30,7 +31,7 @@ export default class Login extends React.Component {
                 // uma vez logado, podemos pegar o uid do usuario
                 if (user) {
 
-                    this.props.navigation.navigate('InicioTab');
+                    this.props.navigation.navigate('InicioNavigator');
                 }
             });
             // Logando o usuario

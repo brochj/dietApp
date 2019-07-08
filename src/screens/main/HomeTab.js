@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { createMaterialTopTabNavigator, createBottomTabNavigator } from 'react-navigation';
+import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 import Home from './Home';
 import Results from './Results';
-import Breakfast from './Breakfast';
+import Meals from './Meals';
 
 // import R from 'res/R';
 
 
-const HomeTab = createBottomTabNavigator({
+const HomeTab = createMaterialBottomTabNavigator({
 
-    Breakfast: {
-        screen: Breakfast,
+    Meals: {
+        screen: Meals,
     },
     Home: {
         screen: Home
@@ -20,32 +21,18 @@ const HomeTab = createBottomTabNavigator({
     }
 
 }, {
-    // initialRouteName: 'Results',
-        // defaultNavigationOptions: {
-        //     headerStyle: {
-        //         backgroundColor: R.colors.blackish,
-        //       },
-        //       headerTintColor: R.palette.lightTxt.color,
-        //       headerTitleStyle: {
-        //         fontWeight: 'bold',
-        //       },
-        // },
-        // tabBarOptions: {
-        //     indicatorStyle: {
-        //         backgroundColor: R.colors.actionButton,
-        //         // height: 40,
-        //         borderTopRightRadius: 5,
-        //         borderTopLeftRadius: 5,
-        //     },
-        //     style: {
-        //         activeTintColor: R.palette.lightTxt.color,
-        //         marginTop: statusBarHeight,
-        //         height: 45,
-        //         // backgroundColor: 'black',
+        // initialRouteName: 'Results',
+        backBehavior: 'order',
+        labeled: true,
+        activeColor: '#fff',
+        inactiveColor: '#ddd',
 
-        //     }
-
-        // },
+        barStyle: {
+            backgroundColor: '#196A65'
+        },
+        tabBarOptions: {
+            showLabel: true,
+        },
     });
 
 // container so eh necessario apenas quando se cria o StackNavigator na tela q starta o Aplicativo

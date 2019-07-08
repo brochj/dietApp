@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, TextInput } from "react-native";
 import { createAppContainer, createStackNavigator } from "react-navigation";
 
-import InicioTab from './src/screens/inicio/InicioTab';
+import InicioNavigator from './src/screens/inicio/InicioNavigator';
 import DadosPerfil from './src/screens/inicio/DadosPerfil';
 import Atividade from './src/screens/inicio/Atividade';
 import GastoCalorico from './src/screens/inicio/GastoCalorico';
@@ -15,7 +15,7 @@ import Login from './src/screens/login/Login';
 import Preload from './src/screens/login/Preload';
 import Cadastro from './src/screens/login/Cadastro';
 
-import Breakfast from './src/screens/main/Breakfast';
+import Meals from './src/screens/main/Meals';
 import HomeTab from './src/screens/main/HomeTab';
 
 import SearchRecipes from './src/screens/recipes/SearchRecipes';
@@ -47,8 +47,8 @@ const AppNavigator = createStackNavigator({
             title: 'Cadastro'
         }
     },
-    InicioTab: {
-        screen: InicioTab,
+    InicioNavigator: {
+        screen: InicioNavigator,
         navigationOptions: {
             title: null
         }
@@ -96,10 +96,10 @@ const AppNavigator = createStackNavigator({
             header: null,
         }
     },
-    Breakfast: {
-        screen: Breakfast,
+    Meals: {
+        screen: Meals,
         navigationOptions: {
-            title: 'Cafe da manhã'
+            title: 'Refeições'
         }
     },
     SearchRecipes: {
@@ -115,10 +115,14 @@ const AppNavigator = createStackNavigator({
         }
     },
 }, {
-        initialRouteName: 'InicioTab',
+        initialRouteName: 'Preload',
         defaultNavigationOptions: {
             header: null,
+
         },
+        // disableKeyboardHandling: true,
+
+
     });
 
 export default createAppContainer(AppNavigator);

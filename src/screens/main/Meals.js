@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, Button, TouchableOpacity, ScrollView } from "react-native";
+import { StyleSheet, Text, View, Image, Button, TouchableOpacity, ScrollView, StatusBar } from "react-native";
 import R from 'res/R'
 import MealsAccordion from "library/components/MealsAccordion";
 import breakfastRecipes from "res/meals/breakfastRecipes";
@@ -12,7 +12,7 @@ import afterTraningRecipes from "res/meals/afterTraningRecipes";
 import eveningSnackRecipes from "res/meals/eveningSnackRecipes";
 
 
-export default class Breakfast extends React.Component {
+export default class Meals extends React.Component {
     static navigationOptions = {
         header: null,
     }
@@ -97,7 +97,8 @@ export default class Breakfast extends React.Component {
 
 
         return (
-            <View style={styles.body}>
+            <View style={[styles.body, { paddingTop: StatusBar.currentHeight }]}>
+                <StatusBar backgroundColor='#196A65' />
                 <Button title='Pesquisar receita' onPress={() => this.props.navigation.navigate('SearchRecipes')} />
                 {/* <Text style={styles.txtName}>age: {this.props.navigation.getParam('age')}</Text>
                 <Text style={styles.txtName}>weight: {this.props.navigation.getParam('weight')}</Text>
@@ -178,6 +179,16 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: '#eee',
         borderRadius: 5,
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+
+        elevation: 4,
     },
     titleRowView: {
         flexDirection: 'row'

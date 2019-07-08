@@ -1,10 +1,16 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from "react-native";
+import ForwardBackBar from 'library/components/ForwardBackBar';
+
 import R from 'res/R'
 
 export default class Objetivo extends React.Component {
 
-   
+    static navigationOptions = {
+        title: 'Objetivo',
+        header: null,
+    }
+
 
     constructor(props) {
         super(props);
@@ -30,8 +36,9 @@ export default class Objetivo extends React.Component {
     }
 
     selectLevel(level) {
-        this.state.objective = level,
-            this.setState(this.state);
+        this.state.objective = level;
+        this.setState(this.state);
+        this.goNextScreen();
     }
     render() {
         const activeBgColor = '#196A65';
@@ -83,6 +90,7 @@ export default class Objetivo extends React.Component {
                     <Image source={genderImage} style={styles.genderImage} />
                     <Image source={genderImage1} style={styles.genderImage1} />
                 </View>
+                <Text style={styles.titleTxt}>Qual o seu objetivo?</Text>
                 <View style={styles.selectView}>
 
 
@@ -113,8 +121,10 @@ export default class Objetivo extends React.Component {
 
 
                 </View>
-                <Button title='Go to next screen'
-                    onPress={this.goNextScreen}
+
+                <ForwardBackBar
+                    onPressBack={() => this.props.navigation.goBack()}
+                    onPressForward={this.goNextScreen}
                 />
             </View>
         );
@@ -127,6 +137,14 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    titleTxt: {
+        fontSize: 23,
+        textAlign: 'center',
+        color: 'black',
+        fontWeight: 'bold',
+        paddingVertical: 10,
+        paddingHorizontal: 15,
     },
     selectView: {
         flex: 1,
@@ -141,6 +159,15 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         borderRadius: 10,
         padding: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.23,
+        shadowRadius: 2.62,
+
+        elevation: 4,
     },
     labelTitle: {
         fontSize: 30,
