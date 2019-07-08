@@ -14,60 +14,11 @@ export default class Dificuldade extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            objective: this.props.navigation.getParam('objective'),
+            calcutedKcal: 0,
+            targetKcal: 0,
             difficultyLevel: 'easy',
-            difficultyData: {
-                emagrecer: {
-                    easy: {
-                        title: '-270 até -170 kcal por dia',
-                        description: 'Esta janela de calorias irá permitir que você perca de 0,5 a 0,8 kg por semana de maneira saudável e sustentável.',
-                        difficulty: 'Dificuldade: fácil',
-                    },
-                    medium: {
-                        title: '-300 até -500 kcal por dia',
-                        description: 'Esta janela de calorias irá permitir que você perca de 0,8 a 1,2 kg por semana.',
-                        difficulty: 'Dificuldade:  Médio',
-                    },
-                    hard: {
-                        title: '-500 até -800 kcal por dia',
-                        description: 'Esta janela de calorias irá permitir que você perca de 1,2 a 1,5 kg por semana.',
-                        difficulty: 'Dificuldade:  Difícil',
-                    }
-                },
-                ganharMassa: {
-                    easy: {
-                        title: '+270 até +170 kcal por dia',
-                        description: 'Esta janela de calorias irá permitir que você ganhe de 0,5 a 0,8 kg por semana de maneira saudável e sustentável.',
-                        difficulty: 'Dificuldade: fácil',
-                    },
-                    medium: {
-                        title: '+300 até +500 kcal por dia',
-                        description: 'Esta janela de calorias irá permitir que você ganhe de 0,8 a 1,2 kg por semana.',
-                        difficulty: 'Dificuldade:  Médio',
-                    },
-                    hard: {
-                        title: '+500 até +800 kcal por dia',
-                        description: 'Esta janela de calorias irá permitir que você ganhe de 1,2 a 1,5 kg por semana.',
-                        difficulty: 'Dificuldade:  Difícil',
-                    }
-                },
-                manterPeso: {
-                    easy: {
-                        title: '-270 até -170 kcal por dia',
-                        description: 'Esta janela de calorias irá permitir que você perca de 0,5 a 0,8 kg por semana de maneira saudável e sustentável.',
-                        difficulty: 'Dificuldade: fácil',
-                    },
-                    medium: {
-                        title: '-300 até -500 kcal por dia',
-                        description: 'Esta janela de calorias irá permitir que você perca de 0,8 a 1,2 kg por semana.',
-                        difficulty: 'Dificuldade:  Médio',
-                    },
-                    hard: {
-                        title: '-500 até -800 kcal por dia',
-                        description: 'Esta janela de calorias irá permitir que você perca de 1,2 a 1,5 kg por semana.',
-                        difficulty: 'Dificuldade:  Difícil',
-                    }
-                }
-            }
+            
         };
         this.goNextScreen = this.goNextScreen.bind(this);
         this.selectLevel = this.selectLevel.bind(this);
@@ -75,6 +26,7 @@ export default class Dificuldade extends React.Component {
     componentDidMount() {
     }
 
+    
     goNextScreen() {
         this.props.navigation.navigate('Distribuicao', {
             age: this.props.navigation.getParam('age'),
@@ -85,11 +37,31 @@ export default class Dificuldade extends React.Component {
             calcutedKcal: this.props.navigation.getParam('calcutedKcal'),
             objective: this.props.navigation.getParam('objective'),
             difficultyLevel: this.state.difficultyLevel,
+            targetKcal: this.state.targetKcal,
         })
     }
 
     selectLevel(level) {
         this.state.difficultyLevel = level;
+        if (this.state.objective == 'emagrecer') {
+            if (level == 'easy') {
+                this.state.targetKcal = this.props.navigation.getParam('calcutedKcal') - 300;
+            } else if (level == 'medium') {
+                this.state.targetKcal = this.props.navigation.getParam('calcutedKcal') - 500;
+            } else if (level == 'hard') {
+                this.state.targetKcal = this.props.navigation.getParam('calcutedKcal') - 800;
+            }
+        } else if (this.state.objective == 'ganharMassa') {
+            if (level == 'easy') {
+                this.state.targetKcal = this.props.navigation.getParam('calcutedKcal') + 300;
+            } else if (level == 'medium') {
+                this.state.targetKcal = this.props.navigation.getParam('calcutedKcal') + 500;
+            } else if (level == 'hard') {
+                this.state.targetKcal = this.props.navigation.getParam('calcutedKcal') + 800;
+            }
+        } else if (this.state.objective == 'manterPeso') {
+            this.state.targetKcal = this.props.navigation.getParam('calcutedKcal');
+        }
         this.setState(this.state);
         this.goNextScreen();
     }
@@ -135,16 +107,45 @@ export default class Dificuldade extends React.Component {
             R.images.manRun :
             R.images.womanStretch;
 
-        const opcoes = () => {
-            return (
-                <Text style={styles.txtName}>oi</Text>
-            );
-
-            // {false &&
-            //     <Text style={styles.oi}>oi</Text>
-            // }
-            // true ? <Text style={styles.oi}>oi</Text> : null
-        };
+        const stringsData = () => {
+            if (this.props.navigation.getParam('objective') == 'emagrecer') {
+                return ({
+                    easy: {
+                        title: 'Diminuir 300 kcal por dia',
+                        description: 'Esse valor irá permitir que você perca de 0,5 a 0,8 kg por semana de maneira saudável e sustentável.',
+                        difficulty: 'Dificuldade: fácil',
+                    },
+                    medium: {
+                        title: 'Diminuir 500 kcal por dia',
+                        description: 'Esse valor irá permitir que você perca de 0,8 a 1,2 kg por semana.',
+                        difficulty: 'Dificuldade:  Médio',
+                    },
+                    hard: {
+                        title: 'Diminuir 800 kcal por dia',
+                        description: 'Esse valor irá permitir que você perca de 1,2 a 1,5 kg por semana.',
+                        difficulty: 'Dificuldade:  Difícil',
+                    }
+                });
+            } else if (this.props.navigation.getParam('objective') == 'ganharMassa') {
+                return ({
+                    easy: {
+                        title: 'Aumentar 300 kcal por dia',
+                        description: 'Esse valor irá permitir que você ganhe de 0,5 a 0,8 kg por semana de maneira saudável e sustentável.',
+                        difficulty: 'Dificuldade: fácil',
+                    },
+                    medium: {
+                        title: 'Aumentar 500 kcal por dia',
+                        description: 'Esse valor irá permitir que você ganhe de 0,8 a 1,2 kg por semana.',
+                        difficulty: 'Dificuldade:  Médio',
+                    },
+                    hard: {
+                        title: 'Aumentar 800 kcal por dia',
+                        description: 'Esse valor irá permitir que você ganhe de 1,2 a 1,5 kg por semana.',
+                        difficulty: 'Dificuldade:  Difícil',
+                    }
+                });
+            }
+        }
 
 
         return (
@@ -154,41 +155,42 @@ export default class Dificuldade extends React.Component {
                     <Image source={genderImage} style={styles.genderImage} />
                     <Image source={genderImage1} style={styles.genderImage1} />
                 </View>
+                <Text style={styles.titleTxt}>Selecione o nível de dificuldade da dieta</Text>
                 <View style={styles.selectView}>
 
                     <TouchableOpacity style={[styles.selectTouch, bgColorLeve]}
                         onPress={() => { this.selectLevel('easy') }}
                     >
-                        <Text style={[styles.labelTitle, txtColorLeve]}>{this.state.difficultyData.emagrecer.easy.title}</Text>
+                        <Text style={[styles.labelTitle, txtColorLeve]}>{stringsData().easy.title}</Text>
                         <Text style={[styles.labelDescription, txtColorLeve]}>
-                            {this.state.difficultyData.emagrecer.easy.description}
+                            {stringsData().easy.description}
                         </Text>
-                        <Text style={[styles.labelDescription, txtColorLeve]}>{this.state.difficultyData.emagrecer.easy.difficulty}</Text>
+                        <Text style={[styles.labelDescription, txtColorLeve]}>{stringsData().easy.difficulty}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.selectTouch, bgColorModerada]}
                         onPress={() => { this.selectLevel('medium') }}
                     >
-                        <Text style={[styles.labelTitle, txtColorModerada]}>{this.state.difficultyData.emagrecer.medium.title}</Text>
+                        <Text style={[styles.labelTitle, txtColorModerada]}>{stringsData().medium.title}</Text>
                         <Text style={[styles.labelDescription, txtColorModerada]}>
-                            {this.state.difficultyData.emagrecer.medium.description}
+                            {stringsData().medium.description}
                         </Text>
-                        <Text style={[styles.labelDescription, txtColorModerada]}>{this.state.difficultyData.emagrecer.medium.difficulty}</Text>
+                        <Text style={[styles.labelDescription, txtColorModerada]}>{stringsData().medium.difficulty}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.selectTouch, bgColorElevada]}
                         onPress={() => { this.selectLevel('hard') }}
                     >
-                        <Text style={[styles.labelTitle, txtColorElevada]}>{this.state.difficultyData.emagrecer.hard.title}</Text>
+                        <Text style={[styles.labelTitle, txtColorElevada]}>{stringsData().hard.title}</Text>
                         <Text style={[styles.labelDescription, txtColorElevada]}>
-                            {this.state.difficultyData.emagrecer.hard.description}
+                            {stringsData().hard.description}
                         </Text>
-                        <Text style={[styles.labelDescription, txtColorElevada]}>{this.state.difficultyData.emagrecer.hard.difficulty}</Text>
+                        <Text style={[styles.labelDescription, txtColorElevada]}>{stringsData().hard.difficulty}</Text>
                     </TouchableOpacity>
 
 
                 </View>
                 <ForwardBackBar
                     onPressBack={() => this.props.navigation.goBack()}
-                    onPressForward={this.goNextScreen}
+                    onPressForward={() => this.selectLevel(this.state.difficultyLevel)}
                 />
             </View>
         );
@@ -202,6 +204,14 @@ const styles = StyleSheet.create({
         paddingTop: 10,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    titleTxt: {
+        fontSize: 23,
+        textAlign: 'center',
+        color: 'black',
+        fontWeight: 'bold',
+        paddingVertical: 10,
+        paddingHorizontal: 15,
     },
     selectView: {
         flex: 1,

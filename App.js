@@ -115,7 +115,7 @@ const AppNavigator = createStackNavigator({
         }
     },
 }, {
-        initialRouteName: 'Preload',
+        initialRouteName: 'DadosPerfil',
         defaultNavigationOptions: {
             header: null,
 

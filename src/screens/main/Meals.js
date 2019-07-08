@@ -97,8 +97,8 @@ export default class Meals extends React.Component {
 
 
         return (
-            <View style={[styles.body, { paddingTop: StatusBar.currentHeight }]}>
-                <StatusBar backgroundColor='#196A65' />
+            <View style={[styles.body]}>
+                <StatusBar hidden={false} backgroundColor='#196A65' />
                 <Button title='Pesquisar receita' onPress={() => this.props.navigation.navigate('SearchRecipes')} />
                 {/* <Text style={styles.txtName}>age: {this.props.navigation.getParam('age')}</Text>
                 <Text style={styles.txtName}>weight: {this.props.navigation.getParam('weight')}</Text>

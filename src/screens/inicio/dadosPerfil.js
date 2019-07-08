@@ -11,11 +11,7 @@ export default class DadosPerfil extends React.Component {
         title: 'Perfil',
         header: null,
         // headerTransparent: true,
-        headerBackImage: (<ForwardBackBar
-            onPressBack={() => this.props.navigation.goBack()}
-            onPressForward={this.goNextScreen}
-            backDisabled={true}
-        />),
+       
 
     }
 

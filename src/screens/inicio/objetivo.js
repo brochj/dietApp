@@ -19,6 +19,7 @@ export default class Objetivo extends React.Component {
         };
         this.goNextScreen = this.goNextScreen.bind(this);
         this.selectLevel = this.selectLevel.bind(this);
+        this.goToDistribuicao = this.goToDistribuicao.bind(this);
     }
     componentDidMount() {
     }
@@ -35,6 +36,21 @@ export default class Objetivo extends React.Component {
         })
     }
 
+    goToDistribuicao(level) {
+        this.state.objective = level;
+        this.setState(this.state);
+        this.props.navigation.navigate('Distribuicao', {
+            age: this.props.navigation.getParam('age'),
+            weight: this.props.navigation.getParam('weight'),
+            height: this.props.navigation.getParam('height'),
+            gender: this.props.navigation.getParam('gender'),
+            activityLevel: this.props.navigation.getParam('activityLevel'),
+            calcutedKcal: this.props.navigation.getParam('calcutedKcal'),
+            difficultyLevel: '',
+            targetKcal: this.props.navigation.getParam('calcutedKcal'),
+            objective: this.state.objective,
+        })
+    }
     selectLevel(level) {
         this.state.objective = level;
         this.setState(this.state);
@@ -64,11 +80,11 @@ export default class Objetivo extends React.Component {
             { color: defaultTxtColor };
 
 
-        const bgColorElevada = (this.state.objective == 'ManterPeso') ?
+        const bgColorElevada = (this.state.objective == 'manterPeso') ?
             { backgroundColor: activeBgColor } :
             { backgroundColor: defaultBgColor };
 
-        const txtColorElevada = (this.state.objective == 'ManterPeso') ?
+        const txtColorElevada = (this.state.objective == 'manterPeso') ?
             { color: activeTxtColor } :
             { color: defaultTxtColor };
 
@@ -111,7 +127,7 @@ export default class Objetivo extends React.Component {
                     </Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={[styles.selectTouch, bgColorElevada]}
-                        onPress={() => { this.selectLevel('ManterPeso') }}
+                        onPress={() => { this.goToDistribuicao('manterPeso') }}
                     >
                         <Text style={[styles.labelTitle, txtColorElevada]}>Manter o peso</Text>
                         <Text style={[styles.labelDescription, txtColorElevada]}>

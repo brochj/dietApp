@@ -40,7 +40,7 @@ export default class dadosPerfil extends React.Component {
             calcutedKcal: this.state.calcutedKcal,
         })
     }
-    goMainScreen(){
+    goMainScreen() {
         this.props.navigation.navigate('HomeTab', {
             age: this.props.navigation.getParam('age'),
             weight: this.props.navigation.getParam('weight'),
@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
     body: {
         flex: 1,
         alignItems: 'center',
+
     },
     scrollView: {
         flex: 1,
@@ -162,8 +163,9 @@ const styles = StyleSheet.create({
     cheersImage: {
         flex: 1,
         width: null,
-        height: 150,
+        height: 170,
         resizeMode: 'contain',
+        marginTop: 10,
     },
     textView: {
         flex: 1,

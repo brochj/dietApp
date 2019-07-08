@@ -36,7 +36,7 @@ export default class Cadastro extends React.Component {
                     firebase.database().ref('users').child(uid).set({
                         saldo: 0,
                     })
-                    this.props.navigation.navigate('dadosPerfil');
+                    this.props.navigation.navigate('InicioNavigator');
                 }
             });
             // cadastrando o usuario
