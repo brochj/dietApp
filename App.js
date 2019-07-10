@@ -115,7 +115,7 @@ const AppNavigator = createStackNavigator({
         }
     },
 }, {
-        initialRouteName: 'DadosPerfil',
+        initialRouteName: 'ShowRecipe',
         defaultNavigationOptions: {
             header: null,
 

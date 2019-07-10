@@ -219,7 +219,14 @@ export default class distribuicao extends React.Component {
 
     render() {
 
-
+        const txtColor = () => {
+            let s = this.state;
+            if (s.summedKcal <= s.targetKcal + 50 && this.props.navigation.getParam('objective') == 'emagrecer') {
+                return ({ color: 'green' })
+            } else if (s.summedKcal >= s.targetKcal - 50 && this.props.navigation.getParam('objective') == 'ganharMassa') {
+                return ({ color: 'green' })
+            }
+        }
 
         return (
             <View style={styles.body}>
@@ -233,9 +240,9 @@ export default class distribuicao extends React.Component {
                     </View>
                     <View style={styles.resultView}>
 
-                        <Text style={styles.labelTargetTxt}>Atual</Text>
-                        <Text style={styles.calcutedKcalTxt}>{this.state.summedKcal}</Text>
-                        <Text style={styles.labelTargetTxt}>kcal</Text>
+                        <Text style={[styles.labelTargetTxt, txtColor()]}>Atual</Text>
+                        <Text style={[styles.calcutedKcalTxt, txtColor()]}>{this.state.summedKcal}</Text>
+                        <Text style={[styles.labelTargetTxt, txtColor()]}>kcal</Text>
                     </View>
                 </View>
                 <ScrollView style={styles.scrollContainer}>
@@ -344,7 +351,8 @@ const styles = StyleSheet.create({
     calcutedKcalTxt: {
         textAlign: 'center',
         textAlignVertical: 'center',
-        fontSize: 25,
+        fontSize: 32,
+        fontWeight: 'bold'
     },
 
 });
