@@ -1,9 +1,14 @@
 import React from "react";
 import {
     StyleSheet,
-    Text, View, ImageBackground,
-    TouchableHighlight, Image,
-    Dimensions, StatusBar, Platform
+    Text,
+    View,
+    ImageBackground,
+    TouchableHighlight,
+    Image,
+    Dimensions,
+    StatusBar,
+    Platform
 } from "react-native";
 import R from 'res/R';
 
@@ -17,15 +22,14 @@ export default class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            saldoGeral: null,
         };
-        this.cadastrar = this.cadastrar.bind(this);
+        this.signUp = this.signUp.bind(this);
         this.login = this.login.bind(this);
 
     }
 
-    cadastrar() {
-        this.props.navigation.navigate('Cadastro');
+    signUp() {
+        this.props.navigation.navigate('SignUp');
     }
 
     login() {
@@ -51,7 +55,7 @@ export default class Home extends React.Component {
                             <TouchableHighlight
                                 underlayColor='#ccc'
                                 style={styles.buttonCadastro}
-                                onPress={this.cadastrar}
+                                onPress={this.signUp}
                             >
                                 <Text style={styles.buttonTxt}>Cadastrar</Text>
                             </TouchableHighlight>

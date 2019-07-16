@@ -35,6 +35,4 @@ const InicioNavigator = createStackNavigator({
     }
 );
 
-// container so eh necessario apenas quando se cria o StackNavigator na tela q starta o Aplicativo
-
 export default InicioNavigator;

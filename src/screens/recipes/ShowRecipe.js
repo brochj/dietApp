@@ -154,7 +154,10 @@ export default class ShowRecipe extends React.Component {
                     <Image source={{ uri: this.state.coverPhoto }} style={styles.recipeImage} />
                     <View style={styles.headerView}>
                         <Text style={styles.nameTxt}>{this.state.name}</Text>
-                        <Text style={styles.caloriesTxt}>{this.state.calories} kcal</Text>
+                        <View style={styles.rowView}>
+                            <MaterialCommunityIcons name='fire' color='#196a65' size={30} />
+                            <Text style={styles.caloriesTxt}>{this.state.calories} kcal</Text>
+                        </View>
                         <View style={styles.separator} />
                         <Text style={styles.descriptionTxt}>{this.state.description}</Text>
 
@@ -276,9 +279,15 @@ const styles = StyleSheet.create({
         color: '#196A65',
         marginTop: 10,
     },
+    rowView: {
+        flexDirection: 'row',
+        alignSelf: 'center',
+        marginTop: 5,
+    },
     caloriesTxt: {
         fontSize: 20,
         textAlign: 'center',
+        textAlignVertical: 'center',
     },
     descriptionTxt: {
         fontSize: 18,

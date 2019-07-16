@@ -1,33 +1,40 @@
-import React from "react";
+import React, { Component } from "react";
 import { StyleSheet, Text, View, TextInput } from "react-native";
 import { createAppContainer, createStackNavigator } from "react-navigation";
 
-import InicioNavigator from './src/screens/inicio/InicioNavigator';
-import DadosPerfil from './src/screens/inicio/DadosPerfil';
-import Atividade from './src/screens/inicio/Atividade';
-import GastoCalorico from './src/screens/inicio/GastoCalorico';
-import Objetivo from './src/screens/inicio/Objetivo';
-import Dificuldade from './src/screens/inicio/Dificuldade';
-import Distribuicao from './src/screens/inicio/Distribuicao';
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import ReduxThunk from "redux-thunk";
 
-import Home from './src/screens/login/Home';
-import Login from './src/screens/login/Login';
-import Preload from './src/screens/login/Preload';
-import Cadastro from './src/screens/login/Cadastro';
+import Reducers from 'reducers/Reducers';
 
-import Meals from './src/screens/main/Meals';
-import HomeTab from './src/screens/main/HomeTab';
+import InicioNavigator from 'screens/initialConfig/InicioNavigator';
+import DadosPerfil from 'screens/initialConfig/DadosPerfil';
+import Atividade from 'screens/initialConfig/Atividade';
+import GastoCalorico from 'screens/initialConfig/GastoCalorico';
+import Objetivo from 'screens/initialConfig/Objetivo';
+import Dificuldade from 'screens/initialConfig/Dificuldade';
+import Distribuicao from 'screens/initialConfig/Distribuicao';
 
-import SearchRecipes from './src/screens/recipes/SearchRecipes';
-import ShowRecipe from './src/screens/recipes/ShowRecipe';
+import Home from 'screens/auth/Home';
+import Login from 'screens/auth/Login';
+import Preload from 'screens/auth/Preload';
+import SignUp from 'screens/auth/SignUp';
+
+import Meals from 'screens/main/Meals';
+import HomeTab from 'screens/main/HomeTab';
+
+import SearchRecipes from 'screens/recipes/SearchRecipes';
+import ShowRecipe from 'screens/recipes/ShowRecipe';
+
+console.disableYellowBox = true;
+
+let store = createStore(Reducers, applyMiddleware(ReduxThunk));
 
 const AppNavigator = createStackNavigator({
 
     Preload: {
         screen: Preload,
-        navigationOptions: {
-            title: 'Preload'
-        }
     },
     Home: {
         screen: Home,
@@ -41,10 +48,10 @@ const AppNavigator = createStackNavigator({
             title: 'Login'
         }
     },
-    Cadastro: {
-        screen: Cadastro,
+    SignUp: {
+        screen: SignUp,
         navigationOptions: {
-            title: 'Cadastro'
+            title: 'SignUp'
         }
     },
     InicioNavigator: {
@@ -53,36 +60,41 @@ const AppNavigator = createStackNavigator({
             title: null
         }
     },
-    DadosPerfil: {
-        screen: DadosPerfil,
-        navigationOptions: {
-            title: 'Perfil Inicial'
-        }
-    },
-    Atividade: {
-        screen: Atividade,
-        navigationOptions: {
-            title: 'Nível de Atividade'
-        }
-    },
-    GastoCalorico: {
-        screen: GastoCalorico,
-        navigationOptions: {
-            title: 'Gasto Calórico'
-        }
-    },
-    Objetivo: {
-        screen: Objetivo,
-        navigationOptions: {
-            title: 'Objetivo'
-        }
-    },
-    Dificuldade: {
-        screen: Dificuldade,
-        navigationOptions: {
-            title: 'Dificuldade'
-        }
-    },
+
+
+
+
+
+    // DadosPerfil: {
+    //     screen: DadosPerfil,
+    //     navigationOptions: {
+    //         title: 'Perfil Inicial'
+    //     }
+    // },
+    // Atividade: {
+    //     screen: Atividade,
+    //     navigationOptions: {
+    //         title: 'Nível de Atividade'
+    //     }
+    // },
+    // GastoCalorico: {
+    //     screen: GastoCalorico,
+    //     navigationOptions: {
+    //         title: 'Gasto Calórico'
+    //     }
+    // },
+    // Objetivo: {
+    //     screen: Objetivo,
+    //     navigationOptions: {
+    //         title: 'Objetivo'
+    //     }
+    // },
+    // Dificuldade: {
+    //     screen: Dificuldade,
+    //     navigationOptions: {
+    //         title: 'Dificuldade'
+    //     }
+    // },
     Distribuicao: {
         screen: Distribuicao,
         navigationOptions: {
@@ -115,7 +127,7 @@ const AppNavigator = createStackNavigator({
         }
     },
 }, {
-        initialRouteName: 'ShowRecipe',
+        initialRouteName: 'Home',
         defaultNavigationOptions: {
             header: null,
 
@@ -125,4 +137,14 @@ const AppNavigator = createStackNavigator({
 
     });
 
-export default createAppContainer(AppNavigator);
+const AppContainer = createAppContainer(AppNavigator);
+
+export default class App extends Component {
+    render() {
+        return (
+            <Provider store={store} >
+                <AppContainer />
+            </Provider>
+        );
+    }
+}

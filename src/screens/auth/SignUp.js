@@ -1,59 +1,72 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput, Button, ImageBackground, TouchableOpacity } from "react-native";
-import firebase from "library/networking/FirebaseConnection";
+import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, } from "react-native";
+import firebase from "networking/FirebaseConnection";
+import { connect } from 'react-redux';
+import { changeEmail, changePassword, changeName, signUpAction } from 'actions/AuthActions';
 import R from 'res/R';
 // TODO colocar botoes de cadastro com google e facebook
 // TODO Colocar os textinput animados
 // TODO colocar botao de ver senha
 // TODO colocar uma snackbar ou um modal com um 'tick'verde indicando que o cadastro foi feito com sucesso
-export default class Cadastro extends React.Component {
+export class SignUp extends React.Component {
 
     static navigationOptions = {
-        title: 'Cadastro',
         header: null,
-
     }
 
     constructor(props) {
         super(props);
         this.state = {
-            emailInput: '',
-            senhaInput: '',
         };
-        this.cadastrar = this.cadastrar.bind(this);
+        // this.cadastrar = this.cadastrar.bind(this);
+        this.signUp = this.signUp.bind(this);
         firebase.auth().signOut();
     }
-    cadastrar() {
-        if (this.state.emailInput != '' && this.state.senhaInput != '') {
 
-            firebase.auth().onAuthStateChanged((user) => {
-                //verifica se o usurario ta logado,
-                // pois qnd é feito um novo cadastros, automaticamente aquele usuario já passa a ficar logado
-                // uma vez logado, podemos pegar o uid do usuario
-                if (user) {
-                    let uid = user.uid;
-                    //adicionando valores na "tabela" do usuario
-                    firebase.database().ref('users').child(uid).set({
-                        saldo: 0,
-                    })
-                    this.props.navigation.navigate('InicioNavigator');
-                }
-            });
-            // cadastrando o usuario
-            firebase.auth().createUserWithEmailAndPassword(
-                this.state.emailInput,
-                this.state.senhaInput
-            ).catch((error) => {
-                alert(error.code);
-            });
-        } else {
-            if (this.state.emailInput == '') {
-                alert('Digite o seu email')
-            } else if (this.state.senhaInput == '') {
-                alert('Digite a sua senha')
-
-            }
+    componentDidUpdate() {
+        if (this.props.status == 'loggedIn') {
+            this.props.navigation.navigate('InicioNavigator');
         }
+    }
+
+    // cadastrar() {
+    //     if (this.props.email != '' && this.props.password != '') {
+
+    //         firebase.auth().onAuthStateChanged((user) => {
+    //             //verifica se o usurario ta logado,
+    //             // pois qnd é feito um novo cadastros, automaticamente aquele usuario já passa a ficar logado
+    //             // uma vez logado, podemos pegar o uid do usuario
+    //             if (user) {
+    //                 let uid = user.uid;
+    //                 //adicionando valores na "tabela" do usuario
+    //                 firebase.database().ref('users').child(uid).set({
+    //                     saldo: 0,
+    //                 })
+    //                 this.props.navigation.navigate('InicioNavigator');
+    //             }
+    //         });
+    //         // cadastrando o usuario
+    //         firebase.auth().createUserWithEmailAndPassword(
+    //             this.props.email,
+    //             this.props.password
+    //         ).catch((error) => {
+    //             alert(error.code);
+    //         });
+    //     } else {
+    //         if (this.props.email == '') {
+    //             alert('Digite o seu email')
+    //         } else if (this.props.password == '') {
+    //             alert('Digite a sua senha')
+
+    //         }
+    //     }
+    // }
+
+    signUp() {
+        this.props.signUpAction(
+            this.props.email,
+            this.props.password
+        )
     }
 
     render() {
@@ -67,10 +80,11 @@ export default class Cadastro extends React.Component {
                         style={[styles.input, styles.inputEmail]}
                         autoFocus={true}
                         blurOnSubmit={false}
-                        placeholder='seu-email@email.com'
+                        placeholder='seu_email@email.com'
                         returnKeyType='next'
                         keyboardType='email-address'
-                        onChangeText={(emailInput) => { this.setState({ emailInput }); }}
+                        onChangeText={this.props.changeEmail}
+                        value={this.props.email}
                         onSubmitEditing={() => this.senhaInput.focus()}
                     />
                     <Text style={styles.labelTxt}>Senha</Text>
@@ -81,12 +95,13 @@ export default class Cadastro extends React.Component {
                         maxLength={20}
                         placeholder='Digite uma senha'
                         returnKeyLabel='testes'
-                        onChangeText={(senhaInput) => { this.setState({ senhaInput }); }}
-                        onSubmitEditing={() => this.cadastrar()}
+                        value={this.props.password}
+                        onChangeText={this.props.changePassword}
+                        onSubmitEditing={() => this.signUp()}
                     />
                     <TouchableOpacity
-                        style={styles.buttonCadastro}
-                        onPress={this.cadastrar}
+                        style={styles.buttonSignUp}
+                        onPress={() => this.signUp()}
 
                     >
                         <Text style={styles.buttonTxt}>Cadastrar</Text>
@@ -101,6 +116,8 @@ export default class Cadastro extends React.Component {
                         >Login</Text>
 
                     </View>
+                    <Text style={styles.loginTxt}>{this.props.status}</Text>
+                    <Text style={styles.loginTxt}>{this.props.uid}</Text>
                 </View>
             </ImageBackground>
         );
@@ -140,7 +157,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 22,
     },
-    buttonCadastro: {
+    buttonSignUp: {
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
@@ -170,3 +187,17 @@ const styles = StyleSheet.create({
     },
 
 });
+
+const mapStateToProps = (state) => {
+    return {
+        status: state.auth.status,
+        uid: state.auth.uid,
+        // name: state.auth.name,
+        email: state.auth.email,
+        password: state.auth.password,
+
+    };
+};
+
+const SignUpConnect = connect(mapStateToProps, { changeEmail, changePassword, changeName, signUpAction })(SignUp);
+export default SignUpConnect;
