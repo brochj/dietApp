@@ -1,13 +1,15 @@
-import React from "react";
-import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, } from "react-native";
-import firebase from "networking/FirebaseConnection";
-import { connect } from 'react-redux';
-import { changeEmail, changePassword, changeName, signUpAction } from 'actions/AuthActions';
-import R from 'res/R';
 // TODO colocar botoes de cadastro com google e facebook
 // TODO Colocar os textinput animados
 // TODO colocar botao de ver senha
 // TODO colocar uma snackbar ou um modal com um 'tick'verde indicando que o cadastro foi feito com sucesso
+import React from "react";
+import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, } from "react-native";
+import { NavigationActions, StackActions } from 'react-navigation';
+import { connect } from 'react-redux';
+import { changeEmail, changePassword, changeName, signUpAction, signOutAction } from 'actions/AuthActions';
+
+import R from 'res/R';
+
 export class SignUp extends React.Component {
 
     static navigationOptions = {
@@ -20,12 +22,17 @@ export class SignUp extends React.Component {
         };
         // this.cadastrar = this.cadastrar.bind(this);
         this.signUp = this.signUp.bind(this);
-        firebase.auth().signOut();
+        signOutAction();
     }
 
     componentDidUpdate() {
         if (this.props.status == 'loggedIn') {
-            this.props.navigation.navigate('InicioNavigator');
+            this.props.navigation.dispatch(StackActions.reset({
+                index: 0,
+                actions: [
+                    NavigationActions.navigate({ routeName: 'InicioNavigator' })
+                ]
+            }))
         }
     }
 
@@ -109,15 +116,13 @@ export class SignUp extends React.Component {
                     {/* <Button title="Cadastrar" onPress={this.cadastrar} /> */}
                     <View style={styles.loginView}>
                         <Text style={styles.loginTxt}
-                            onPress={() => this.props.navigation.navigate('Login')}
+                            onPress={() => this.props.navigation.navigate('SignIn')}
                         >Já tem uma conta?</Text>
                         <Text style={[styles.loginTxt, styles.loginWordTxt]}
-                            onPress={() => this.props.navigation.navigate('Login')}
+                            onPress={() => this.props.navigation.navigate('SignIn')}
                         >Login</Text>
 
                     </View>
-                    <Text style={styles.loginTxt}>{this.props.status}</Text>
-                    <Text style={styles.loginTxt}>{this.props.uid}</Text>
                 </View>
             </ImageBackground>
         );

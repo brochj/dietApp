@@ -17,11 +17,11 @@ export class Preload extends React.Component {
         this.state = {
             bgImage: null,
         };
+        // deixar esse stack acessivel nas camadas mais internas do App
+        window.globalNavigator = this.props.navigation;
 
         this.directPages = this.directPages.bind(this);
         this.props.checkLogin();
-        // deixar esse stack acessivel nas camadas mais internas do App
-        window.globalNavigator = this.props.navigation;
     }
     componentDidMount() {
         let items = R.images.login.preloadArray;
@@ -35,7 +35,7 @@ export class Preload extends React.Component {
         this.directPages();
     }
 
-    
+
     directPages() {
         switch (this.props.status) {
             case 'loggedIn':

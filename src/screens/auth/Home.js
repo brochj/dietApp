@@ -33,7 +33,7 @@ export default class Home extends React.Component {
     }
 
     login() {
-        this.props.navigation.navigate('Login');
+        this.props.navigation.navigate('SignIn');
 
     }
 

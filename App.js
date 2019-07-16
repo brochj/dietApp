@@ -17,7 +17,7 @@ import Dificuldade from 'screens/initialConfig/Dificuldade';
 import Distribuicao from 'screens/initialConfig/Distribuicao';
 
 import Home from 'screens/auth/Home';
-import Login from 'screens/auth/Login';
+import SignIn from 'screens/auth/SignIn';
 import Preload from 'screens/auth/Preload';
 import SignUp from 'screens/auth/SignUp';
 
@@ -42,10 +42,10 @@ const AppNavigator = createStackNavigator({
             title: 'Home'
         }
     },
-    Login: {
-        screen: Login,
+    SignIn: {
+        screen: SignIn,
         navigationOptions: {
-            title: 'Login'
+            title: 'SignIn'
         }
     },
     SignUp: {
@@ -58,6 +58,12 @@ const AppNavigator = createStackNavigator({
         screen: InicioNavigator,
         navigationOptions: {
             title: null
+        }
+    },
+    HomeTab: {
+        screen: HomeTab,
+        navigationOptions: {
+            header: null,
         }
     },
 
@@ -101,13 +107,6 @@ const AppNavigator = createStackNavigator({
             title: 'Distribuicao'
         }
     },
-    HomeTab: {
-        screen: HomeTab,
-        navigationOptions: {
-            title: 'Distribuicao',
-            header: null,
-        }
-    },
     Meals: {
         screen: Meals,
         navigationOptions: {
@@ -127,7 +126,7 @@ const AppNavigator = createStackNavigator({
         }
     },
 }, {
-        initialRouteName: 'Home',
+        initialRouteName: 'Preload',
         defaultNavigationOptions: {
             header: null,
 

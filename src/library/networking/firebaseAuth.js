@@ -1,20 +1,6 @@
 import firebase from "networking/FirebaseConnection";
 import { addUserInDatabase } from "networking/firebaseDatabase"
 
-export async function isUserSignedIn() {
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            return user;
-        } else {
-            return false;
-        }
-    });
-}
-
-export async function getUserUid() {
-    let userUid = firebase.auth().currentUser.uid;
-    return userUid;
-}
 
 export async function signUpWithEmailAndPassword(email, password) {
     await firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -44,11 +30,55 @@ export async function signUpWithEmailAndPassword(email, password) {
     return uid;
 }
 
-// getUserUid()
-            //     .then((uid) => {
-            //         addUserInDatabase(uid, email)
-            //             .then(() => {
-            //                 alert('Cadastro Realizado com Sucesso!')
-            //                 return uid;
-            //             })
-            //     })
+export async function signInWithEmailAndPassword(email, password) {
+    await firebase.auth().signInWithEmailAndPassword(email, password)
+        .catch((error) => {
+            switch (error.code) {
+                case 'auth/user-disable':
+                    alert('Seu usuário está desativado');
+                    break;
+                case 'auth/invalid-email':
+                    alert('Email inválido');
+                    break;
+                case 'auth/user-not-found':
+                    alert('Usuário não encontrado');
+                    break;
+                case 'auth/wrong-password':
+                    alert('E-mail e/ou senha incorretos');
+                    break;
+                default:
+                    alert('Erro: ' + error.code)
+                    break;
+            }
+        });
+    const uid = await getUserUid();
+    return uid;
+}
+
+export async function signOut() {
+    await firebase.auth().signOut();
+}
+
+
+export async function isUserSignedIn() {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            return user;
+        } else {
+            return false;
+        }
+    });
+}
+
+
+export async function getUserUid() {
+    let userUid = firebase.auth().currentUser.uid;
+    return userUid;
+}
+
+
+
+
+
+
+

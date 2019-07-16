@@ -1,55 +1,43 @@
 import React from "react";
 import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity } from "react-native";
-import firebase from "library/networking/FirebaseConnection";
+import { NavigationActions, StackActions } from 'react-navigation';
+import { connect } from 'react-redux';
+import { changeEmail, changePassword, signInAction, signOutAction } from 'actions/AuthActions';
 import R from 'res/R'
 // TODO Colocar os textinput animados
 // TODO colocar botao de ver senha
 // TODO no textinput de senha, deixar vermelho em volta quando o numero de caracteres forem menor que 6
-export default class Login extends React.Component {
-
+export class SignIn extends React.Component {
     static navigationOptions = {
-        title: 'Login',
+        title: 'SignIn',
         header: null,
-        
     }
 
     constructor(props) {
         super(props);
         this.state = {
-            emailInput: 'brochj@gmail.com', // limpar essas strings depois
-            senhaInput: '123456',
         };
-        this.entrar = this.entrar.bind(this);
-        firebase.auth().signOut();
+        this.signIn = this.signIn.bind(this);
+        signOutAction();
     }
-    entrar() {
-        if (this.state.emailInput != '' && this.state.senhaInput != '') {
-            // olheiro pra saber quando deu certo o login
-            firebase.auth().onAuthStateChanged((user) => {
-                //verifica se o usurario ta logado,
-                // pois qnd é feito um novo cadastros, automaticamente aquele usuario já passa a ficar logado
-                // uma vez logado, podemos pegar o uid do usuario
-                if (user) {
 
-                    this.props.navigation.navigate('InicioNavigator');
-                }
-            });
-            // Logando o usuario
-            firebase.auth().signInWithEmailAndPassword(
-                this.state.emailInput,
-                this.state.senhaInput
-            ).catch((error) => {
-                alert(error.code);
-            });
-        } else {
-            if (this.state.emailInput == '') {
-                alert('Digite o seu email')
-            } else if (this.state.senhaInput == '') {
-                alert('Digite a sua senha')
-
-            }
+    componentDidUpdate() {
+        if (this.props.status == 'loggedIn') {
+            this.props.navigation.dispatch(StackActions.reset({
+                index: 0,
+                actions: [
+                    NavigationActions.navigate({ routeName: 'HomeTab' })
+                ]
+            }))
         }
     }
+    signIn() {
+        this.props.signInAction(
+            this.props.email,
+            this.props.password
+        )
+    }
+
 
     render() {
         return (<ImageBackground source={R.images.login.bgCadastro} style={styles.imageBg}>
@@ -64,7 +52,8 @@ export default class Login extends React.Component {
                     placeholder='seu-email@email.com'
                     returnKeyType='next'
                     keyboardType='email-address'
-                    onChangeText={(emailInput) => { this.setState({ emailInput }); }}
+                    value={this.props.email}
+                    onChangeText={this.props.changeEmail}
                     onSubmitEditing={() => this.senhaInput.focus()}
                 />
                 <Text style={styles.labelTxt}>Senha</Text>
@@ -75,23 +64,23 @@ export default class Login extends React.Component {
                     maxLength={20}
                     placeholder='Digite uma senha'
                     returnKeyLabel='testes'
-                    onChangeText={(senhaInput) => { this.setState({ senhaInput }); }}
-                    onSubmitEditing={() => this.entrar()}
+                    value={this.props.password}
+                    onChangeText={this.props.changePassword}
+                    onSubmitEditing={() => this.signIn()}
                 />
                 <TouchableOpacity
                     style={styles.buttonCadastro}
-                    onPress={this.entrar}
+                    onPress={this.signIn}
 
                 >
-                    <Text style={styles.buttonTxt}>Login</Text>
+                    <Text style={styles.buttonTxt}>Sign In</Text>
                 </TouchableOpacity>
-                {/* <Button title="Cadastrar" onPress={this.entrar} /> */}
                 <View style={styles.loginView}>
                     <Text style={styles.loginTxt}
-                        onPress={() => this.props.navigation.navigate('Cadastro')}
+                        onPress={() => this.props.navigation.navigate('SignUp')}
                     >Ainda não tem uma conta?</Text>
                     <Text style={[styles.loginTxt, styles.loginWordTxt]}
-                        onPress={() => this.props.navigation.navigate('Cadastro')}
+                        onPress={() => this.props.navigation.navigate('SignUp')}
                     >Cadastrar</Text>
 
                 </View>
@@ -164,3 +153,16 @@ const styles = StyleSheet.create({
     },
 
 });
+
+const mapStateToProps = (state) => {
+    return {
+        status: state.auth.status,
+        uid: state.auth.uid,
+        email: state.auth.email,
+        password: state.auth.password,
+
+    };
+};
+
+const SignInConnect = connect(mapStateToProps, { changeEmail, changePassword, signInAction, signOutAction })(SignIn);
+export default SignInConnect;
