@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 import ActivityLevel from './ActivityLevel';
 import UserBasicData from './UserBasicData';
-import Dificuldade from './Dificuldade';
-import GastoCalorico from './GastoCalorico';
-import Objetivo from './Objetivo';
+import Difficulty from './Difficulty';
+import CaloricExpenditure from './CaloricExpenditure';
+import Objective from './Objective';
 
 import R from 'res/R';
 
@@ -16,14 +16,14 @@ const InicioNavigator = createStackNavigator({
     ActivityLevel: {
         screen: ActivityLevel,
     },
-    GastoCalorico: {
-        screen: GastoCalorico,
+    CaloricExpenditure: {
+        screen: CaloricExpenditure,
     },
-    Objetivo: {
-        screen: Objetivo,
+    Objective: {
+        screen: Objective,
     },
-    Dificuldade: {
-        screen: Dificuldade,
+    Difficulty: {
+        screen: Difficulty,
     },
 
 }, {

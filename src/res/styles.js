@@ -33,6 +33,10 @@ const styles = {
         fontSize: fonts.size.largeTitle,
         fontWeight: fonts.weight.normal,
     },
+    extraTitle: {
+        fontSize: fonts.size.extraTitle,
+        fontWeight: fonts.weight.normal,
+    },
     title1: {
         fontSize: fonts.size.title1,
         fontWeight: fonts.weight.normal

@@ -16,6 +16,7 @@ const fonts = {
 
     size: {
         largeTitle: 50,
+        extraTitle: 43,
         title1: 28,
         title2: 22,
         title3: 20,

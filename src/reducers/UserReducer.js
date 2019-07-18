@@ -14,7 +14,6 @@ const initialState = {
 
     activityLevel: 'light', // light, moderate, high, intense,
 
-
 }
 
 const UserReducer = (state = initialState, action) => {

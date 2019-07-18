@@ -1,16 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View, StatusBar, ScrollView, Image, TouchableOpacity, Animated } from "react-native";
-
 import { connect } from 'react-redux';
 import { changeGender, changeBirthday, changeWeight, changeHeight } from 'actions/UserActions';
-import R from 'res/R'
-
 import { roundNumber, increaseValue, decreaseValue } from "scripts/MathScripts";
-import ForwardBackBar from 'library/components/ForwardBackBar';
-import SliderWithButtons from 'library/components/SliderWithButtons';
-
 import { ThemeContext } from 'res/themeContext';
-
+import R from 'res/R';
+import ForwardBackBar from 'components/ForwardBackBar';
+import SliderWithButtons from 'components/SliderWithButtons';
 
 export class UserBasicData extends React.Component {
     static navigationOptions = {
@@ -50,7 +46,6 @@ export class UserBasicData extends React.Component {
     goNextScreen() {
         this.props.navigation.navigate('ActivityLevel')
     }
-
 
     weightValue(operator) {
         if (operator == 'add') {
@@ -92,13 +87,13 @@ export class UserBasicData extends React.Component {
                 paddingTop: 25,
             },
             titleTxt: {
-                color: theme.text,
+                color: theme.onBackground,
                 ...R.styles.basicText,
                 ...R.styles.title1,
                 paddingVertical: 10,
             },
             genderView: {
-                backgroundColor: theme.foreground,
+                backgroundColor: theme.surface,
                 ...R.styles.card,
                 ...R.styles.shadow,
                 flex: 1,
@@ -111,14 +106,14 @@ export class UserBasicData extends React.Component {
                 marginLeft: 25,
             },
             genderImage: {
-                borderColor: theme.border,
+                borderColor: theme.primary,
                 height: 120,
                 width: 120,
                 borderRadius: 60,
                 borderWidth: 5,
             },
             inputView: {
-                backgroundColor: theme.foreground,
+                backgroundColor: theme.surface,
                 ...R.styles.card,
                 ...R.styles.shadow,
                 height: 150,
@@ -130,14 +125,14 @@ export class UserBasicData extends React.Component {
                 flexDirection: 'row',
             },
             inputLabel: {
-                color: theme.text,
+                color: theme.onSurface,
                 ...R.styles.basicText,
                 ...R.styles.title1,
                 flex: 2,
                 textAlign: 'right',
             },
             inputUnit: {
-                color: theme.text,
+                color: theme.onSurface,
                 ...R.styles.basicText,
                 ...R.styles.subhead,
                 flex: 1,
@@ -146,7 +141,7 @@ export class UserBasicData extends React.Component {
                 paddingLeft: 10,
             },
             inputValue: {
-                color: theme.text,
+                color: theme.onSurface,
                 ...R.styles.basicText,
                 ...R.styles.title1,
             },
@@ -186,7 +181,6 @@ export class UserBasicData extends React.Component {
                         </TouchableOpacity>
                     </View>
 
-
                     <Animated.View style={[styles.inputView, { height: this.state.cardHeight }]}>
                         <View style={styles.inputRow}>
                             <Text style={styles.inputLabel}>Idade</Text>
@@ -207,8 +201,8 @@ export class UserBasicData extends React.Component {
                             minimumTrackTintColor={theme.primary}
                             thumbTintColor={theme.primary}
                             buttonStyle={{ backgroundColor: theme.primary }}
-                            subLabelStyle={{ color: theme.lightText }}
-                            addLabelStyle={{ color: theme.lightText }}
+                            subLabelStyle={{ color: theme.onPrimary }}
+                            addLabelStyle={{ color: theme.onPrimary }}
                         />
 
                     </Animated.View>
@@ -234,8 +228,8 @@ export class UserBasicData extends React.Component {
                             minimumTrackTintColor={theme.primary}
                             thumbTintColor={theme.primary}
                             buttonStyle={{ backgroundColor: theme.primary }}
-                            subLabelStyle={{ color: theme.lightText }}
-                            addLabelStyle={{ color: theme.lightText }}
+                            subLabelStyle={{ color: theme.onPrimary }}
+                            addLabelStyle={{ color: theme.onPrimary }}
                         />
 
                     </Animated.View>
@@ -262,18 +256,17 @@ export class UserBasicData extends React.Component {
                             minimumTrackTintColor={theme.primary}
                             thumbTintColor={theme.primary}
                             buttonStyle={{ backgroundColor: theme.primary }}
-                            subLabelStyle={{ color: theme.lightText }}
-                            addLabelStyle={{ color: theme.lightText }}
+                            subLabelStyle={{ color: theme.onPrimary }}
+                            addLabelStyle={{ color: theme.onPrimary }}
                         />
                     </Animated.View>
-
 
                 </ScrollView >
                 <ForwardBackBar
                     onPressBack={() => this.props.navigation.goBack()}
                     onPressForward={this.goNextScreen}
-                    backDisabled={true}
-                    style={{backgroundColor: theme.primary}}
+                    backDisabled
+                    style={{ backgroundColor: theme.primary }}
                 />
             </View>
         );

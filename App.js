@@ -11,9 +11,9 @@ import Reducers from 'reducers/Reducers';
 import InicioNavigator from 'screens/initialConfig/InicioNavigator';
 import UserBasicData from 'screens/initialConfig/UserBasicData';
 import ActivityLevel from 'screens/initialConfig/ActivityLevel';
-import GastoCalorico from 'screens/initialConfig/GastoCalorico';
-import Objetivo from 'screens/initialConfig/Objetivo';
-import Dificuldade from 'screens/initialConfig/Dificuldade';
+import CaloricExpenditure from 'screens/initialConfig/CaloricExpenditure';
+import Objective from 'screens/initialConfig/Objective';
+import Difficulty from 'screens/initialConfig/Difficulty';
 import Distribuicao from 'screens/initialConfig/Distribuicao';
 
 import Home from 'screens/auth/Home';
@@ -27,7 +27,7 @@ import HomeTab from 'screens/main/HomeTab';
 import SearchRecipes from 'screens/recipes/SearchRecipes';
 import ShowRecipe from 'screens/recipes/ShowRecipe';
 
-console.disableYellowBox = true;
+// console.disableYellowBox = true;
 
 let store = createStore(Reducers, applyMiddleware(ReduxThunk));
 
@@ -83,22 +83,22 @@ const AppNavigator = createStackNavigator({
             title: 'ActivityLevel'
         }
     },
-    GastoCalorico: {
-        screen: GastoCalorico,
+    CaloricExpenditure: {
+        screen: CaloricExpenditure,
         navigationOptions: {
             title: 'Gasto Calórico'
         }
     },
-    Objetivo: {
-        screen: Objetivo,
+    Objective: {
+        screen: Objective,
         navigationOptions: {
-            title: 'Objetivo'
+            title: 'Objective'
         }
     },
-    Dificuldade: {
-        screen: Dificuldade,
+    Difficulty: {
+        screen: Difficulty,
         navigationOptions: {
-            title: 'Dificuldade'
+            title: 'Difficulty'
         }
     },
     Distribuicao: {
@@ -126,7 +126,7 @@ const AppNavigator = createStackNavigator({
         }
     },
 }, {
-        initialRouteName: 'InicioNavigator',
+        initialRouteName: 'Preload',
         defaultNavigationOptions: {
             header: null,
 

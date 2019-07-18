@@ -11,6 +11,9 @@ this.props.onPressFoward
 this.props.forwardDisabled --> desabilita o touchable opacity
 */
 
+//TODO deixar o icone dinamico
+//TODO adiconar os proptypes
+
 export default class ForwardBackBar extends React.Component {
     render() {
         const styles = StyleSheet.create({

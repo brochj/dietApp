@@ -13,13 +13,10 @@ export default class CardTouch extends React.Component {
     }
 
     render() {
-        const bgColor = (this.props.isActive) ?
-            { color: this.props.color } :
-            { color: 'black' };
 
         const styles = StyleSheet.create({
             selectTouch: {
-                backgroundColor: 'gray',
+                backgroundColor: '#fcfcfc',
                 alignItems: 'center',
                 alignSelf: 'stretch',
                 minHeight: 110,
@@ -41,7 +38,7 @@ export default class CardTouch extends React.Component {
                 fontSize: 30,
                 color: 'black',
                 // color: this.state.txtColor,
-                fontWeight: 'bold',
+                fontWeight: 'bold', textAlign: 'center',
                 ...this.props.titleStyle,
             },
             labelDescription: {
@@ -54,13 +51,14 @@ export default class CardTouch extends React.Component {
 
         return (
             <TouchableOpacity
-                style={[styles.selectTouch, bgColor]}
+                style={styles.selectTouch}
                 onPress={this.props.onPress}
             >
                 <Text style={styles.labelTitle}>{this.props.title}</Text>
                 <Text style={styles.labelDescription}>
                     {this.props.description}
                 </Text>
+                {this.props.children}
             </TouchableOpacity>
         );
     }
@@ -73,15 +71,14 @@ CardTouch.defaultProps = {
     description: 'favorite me alive brown lower managed cave scale village'
 };
 CardTouch.propTypes = {
+    style: PropTypes.object,
+    titleStyle: PropTypes.object,
+    descriptionStyle: PropTypes.object,
 
+    onPress: PropTypes.func,
+
+    title: PropTypes.string,
+    description: PropTypes.string,
+
+    children: PropTypes.element
 };
-/*
-this.props.onPress
-this.props.title
-this.props.description
-
-STYLES
-this.props.style,
-this.props.descriptionStyle,
-this.props.titleStyle,
-*/

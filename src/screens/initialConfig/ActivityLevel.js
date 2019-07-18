@@ -1,14 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from "react-native";
-
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import { connect } from 'react-redux';
 import { changeActivityLevel } from 'actions/UserActions';
 import { ThemeContext } from 'res/themeContext';
-
-import ForwardBackBar from 'library/components/ForwardBackBar';
-import CardTouch from 'library/components/CardTouch';
-
 import R from 'res/R';
+import ForwardBackBar from 'components/ForwardBackBar';
+import CardTouch from 'components/CardTouch';
 
 
 export class ActivityLevel extends React.Component {
@@ -26,13 +23,14 @@ export class ActivityLevel extends React.Component {
     }
 
     goNextScreen() {
-        this.props.navigation.navigate('GastoCalorico')
+        this.props.navigation.navigate('CaloricExpenditure')
     }
-    selectLevel(level) {
 
+    selectLevel(level) {
         this.props.changeActivityLevel(level);
-        // this.goNextScreen(); //TODO voltar essa linha depois
+        // this.goNextScreen();
     }
+
     render() {
         let theme = this.context;
 
@@ -45,18 +43,13 @@ export class ActivityLevel extends React.Component {
             },
             selectView: {
                 flex: 1,
-                // backgroundColor: 'black',
             },
-
             titleTxt: {
-                fontSize: 23,
-                textAlign: 'center',
-                color: 'black',
-                fontWeight: 'bold',
+                color: theme.onBackground,
+                ...R.styles.basicText,
+                ...R.styles.title1,
                 paddingVertical: 10,
-                paddingHorizontal: 15,
             },
-
             imageView: {
                 flexDirection: 'row'
             },
@@ -75,9 +68,9 @@ export class ActivityLevel extends React.Component {
         });
 
         const activeBgColor = theme.primary;
-        const defaultBgColor = theme.foreground;
-        const activeTxtColor = theme.lightText;
-        const defaultTxtColor = theme.darkText;
+        const defaultBgColor = theme.surface;
+        const activeTxtColor = theme.onPrimary;
+        const defaultTxtColor = theme.onSurface;
 
         const bgColorLight = (this.props.activityLevel == 'light') ?
             { backgroundColor: activeBgColor } :
@@ -123,7 +116,7 @@ export class ActivityLevel extends React.Component {
                         <Image source={genderImage} style={styles.genderImage} />
                         <Image source={genderImage1} style={styles.genderImage1} />
                     </View>
-
+                    <Text style={styles.titleTxt}>Qual o seu nível de atividade?</Text>
                     <CardTouch
                         title='Sedentário'
                         description='Sentado na maior parte do tempo (ex.: trabalho em escritório)'
@@ -156,11 +149,13 @@ export class ActivityLevel extends React.Component {
                         descriptionStyle={txtColorIntense}
                         titleStyle={txtColorIntense}
                     />
+
                 </ScrollView>
 
                 <ForwardBackBar
                     onPressBack={() => this.props.navigation.goBack()}
                     onPressForward={this.goNextScreen}
+                    style={{ backgroundColor: theme.primary }}
                 />
             </View>
         );
@@ -171,15 +166,6 @@ ActivityLevel.contextType = ThemeContext;
 
 const mapStateToProps = (state) => {
     return {
-        birthday: state.user.birthday,
-        gender: state.user.gender,
-
-        weightValue: state.user.weightValue,
-        weightUnit: state.user.weightUnit,
-
-        heightValue: state.user.heightValue,
-        heightUnit: state.user.heightUnit,
-
         activityLevel: state.user.activityLevel
     };
 };

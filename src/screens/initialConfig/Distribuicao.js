@@ -2,8 +2,8 @@ import React from "react";
 import { StyleSheet, Text, View, Image, Button, Animated, ScrollView } from "react-native";
 import R from 'res/R'
 import ChangeCalories from "library/components/ChangeCalories";
-import CardDistribuicao from "library/components/CardDistribuicao";
-import ForwardBackBar from 'library/components/ForwardBackBar';
+import CardDistribuicao from "components/CardDistribuicao";
+import ForwardBackBar from 'components/ForwardBackBar';
 
 
 
