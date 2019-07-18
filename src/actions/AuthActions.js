@@ -1,4 +1,4 @@
-import firebase from "networking/FirebaseConnection";
+import firebase from "networking/FirebaseConnection"; //TODO retirar depois
 import { isUserSignedIn, signUpWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "networking/firebaseAuth"
 
 export const signOutAction = () => {
@@ -6,13 +6,12 @@ export const signOutAction = () => {
     return {
         type: 'changeStatus',
         payload: {
-            status: 2,
+            status: 'loggedOut',
         }
     };
 };
 
 export const checkLogin = () => {
-
     return (dispatch) => {
         let user = isUserSignedIn();
         if (user) {

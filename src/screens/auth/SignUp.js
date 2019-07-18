@@ -7,7 +7,6 @@ import { StyleSheet, Text, View, TextInput, ImageBackground, TouchableOpacity, }
 import { NavigationActions, StackActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import { changeEmail, changePassword, changeName, signUpAction, signOutAction } from 'actions/AuthActions';
-
 import R from 'res/R';
 
 export class SignUp extends React.Component {
@@ -20,7 +19,6 @@ export class SignUp extends React.Component {
         super(props);
         this.state = {
         };
-        // this.cadastrar = this.cadastrar.bind(this);
         this.signUp = this.signUp.bind(this);
         signOutAction();
     }
@@ -35,39 +33,6 @@ export class SignUp extends React.Component {
             }))
         }
     }
-
-    // cadastrar() {
-    //     if (this.props.email != '' && this.props.password != '') {
-
-    //         firebase.auth().onAuthStateChanged((user) => {
-    //             //verifica se o usurario ta logado,
-    //             // pois qnd é feito um novo cadastros, automaticamente aquele usuario já passa a ficar logado
-    //             // uma vez logado, podemos pegar o uid do usuario
-    //             if (user) {
-    //                 let uid = user.uid;
-    //                 //adicionando valores na "tabela" do usuario
-    //                 firebase.database().ref('users').child(uid).set({
-    //                     saldo: 0,
-    //                 })
-    //                 this.props.navigation.navigate('InicioNavigator');
-    //             }
-    //         });
-    //         // cadastrando o usuario
-    //         firebase.auth().createUserWithEmailAndPassword(
-    //             this.props.email,
-    //             this.props.password
-    //         ).catch((error) => {
-    //             alert(error.code);
-    //         });
-    //     } else {
-    //         if (this.props.email == '') {
-    //             alert('Digite o seu email')
-    //         } else if (this.props.password == '') {
-    //             alert('Digite a sua senha')
-
-    //         }
-    //     }
-    // }
 
     signUp() {
         this.props.signUpAction(
@@ -197,10 +162,8 @@ const mapStateToProps = (state) => {
     return {
         status: state.auth.status,
         uid: state.auth.uid,
-        // name: state.auth.name,
         email: state.auth.email,
         password: state.auth.password,
-
     };
 };
 

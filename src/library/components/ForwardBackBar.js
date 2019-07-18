@@ -12,17 +12,12 @@ this.props.forwardDisabled --> desabilita o touchable opacity
 */
 
 export default class ForwardBackBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        };
-
-        this.styles = StyleSheet.create({
-            nextButtoView: {
+    render() {
+        const styles = StyleSheet.create({
+            container: {
                 flexDirection: 'row',
             },
-            buttonNext: {
+            button: {
                 flex: 1,
                 height: 45,
                 justifyContent: 'space-around',
@@ -32,30 +27,34 @@ export default class ForwardBackBar extends React.Component {
             },
 
         });
-    }
-
-    render() {
 
         const backIcon = (this.props.backDisabled) ? null : <Icon name="chevron-left" size={45} color="#fff" />;
         const forwardIcon = (this.props.forwardDisabled) ? null : <Icon name="chevron-right" size={45} color="#fff" />;
         return (
 
-            <View style={this.styles.nextButtoView}>
+            <View style={styles.container}>
 
-                <TouchableOpacity style={this.styles.buttonNext}
+                <TouchableOpacity style={styles.button}
                     onPress={this.props.onPressBack}
                     disabled={this.props.backDisabled}
                 >
-                    {backIcon}
+                    {(this.props.backContent) ? this.props.backContent : backIcon}
                 </TouchableOpacity>
-                <TouchableOpacity style={this.styles.buttonNext}
+                <TouchableOpacity style={styles.button}
                     onPress={this.props.onPressForward}
                     disabled={this.props.forwardDisabled}
                 >
-                    {forwardIcon}
+                    {(this.props.forwardContent) ? this.props.forwardContent : forwardIcon}
                 </TouchableOpacity>
             </View>
 
         );
     }
 }
+ForwardBackBar.defaultProps = {
+
+};
+ForwardBackBar.propTypes = {
+
+};
+

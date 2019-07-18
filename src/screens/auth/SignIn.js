@@ -9,7 +9,6 @@ import R from 'res/R'
 // TODO no textinput de senha, deixar vermelho em volta quando o numero de caracteres forem menor que 6
 export class SignIn extends React.Component {
     static navigationOptions = {
-        title: 'SignIn',
         header: null,
     }
 
@@ -37,7 +36,6 @@ export class SignIn extends React.Component {
             this.props.password
         )
     }
-
 
     render() {
         return (<ImageBackground source={R.images.login.bgCadastro} style={styles.imageBg}>
@@ -160,7 +158,6 @@ const mapStateToProps = (state) => {
         uid: state.auth.uid,
         email: state.auth.email,
         password: state.auth.password,
-
     };
 };
 

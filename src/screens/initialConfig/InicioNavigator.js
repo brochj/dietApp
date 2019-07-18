@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
-import Atividade from './Atividade';
-import DadosPerfil from './DadosPerfil';
+import ActivityLevel from './ActivityLevel';
+import UserBasicData from './UserBasicData';
 import Dificuldade from './Dificuldade';
 import GastoCalorico from './GastoCalorico';
 import Objetivo from './Objetivo';
 
 import R from 'res/R';
 
-
 const InicioNavigator = createStackNavigator({
 
-    DadosPerfil: {
-        screen: DadosPerfil
+    UserBasicData: {
+        screen: UserBasicData
     },
-    Atividade: {
-        screen: Atividade,
+    ActivityLevel: {
+        screen: ActivityLevel,
     },
     GastoCalorico: {
         screen: GastoCalorico,
@@ -29,7 +27,7 @@ const InicioNavigator = createStackNavigator({
     },
 
 }, {
-        initialRouteName: 'DadosPerfil',
+        initialRouteName: 'UserBasicData',
         headerMode: 'float',
         headerLayoutPreset: 'center',
     }

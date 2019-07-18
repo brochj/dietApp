@@ -59,9 +59,8 @@ export async function signOut() {
     await firebase.auth().signOut();
 }
 
-
 export async function isUserSignedIn() {
-    firebase.auth().onAuthStateChanged((user) => {
+    await firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             return user;
         } else {
@@ -69,7 +68,6 @@ export async function isUserSignedIn() {
         }
     });
 }
-
 
 export async function getUserUid() {
     let userUid = firebase.auth().currentUser.uid;

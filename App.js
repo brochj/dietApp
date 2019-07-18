@@ -9,8 +9,8 @@ import ReduxThunk from "redux-thunk";
 import Reducers from 'reducers/Reducers';
 
 import InicioNavigator from 'screens/initialConfig/InicioNavigator';
-import DadosPerfil from 'screens/initialConfig/DadosPerfil';
-import Atividade from 'screens/initialConfig/Atividade';
+import UserBasicData from 'screens/initialConfig/UserBasicData';
+import ActivityLevel from 'screens/initialConfig/ActivityLevel';
 import GastoCalorico from 'screens/initialConfig/GastoCalorico';
 import Objetivo from 'screens/initialConfig/Objetivo';
 import Dificuldade from 'screens/initialConfig/Dificuldade';
@@ -71,36 +71,36 @@ const AppNavigator = createStackNavigator({
 
 
 
-    // DadosPerfil: {
-    //     screen: DadosPerfil,
-    //     navigationOptions: {
-    //         title: 'Perfil Inicial'
-    //     }
-    // },
-    // Atividade: {
-    //     screen: Atividade,
-    //     navigationOptions: {
-    //         title: 'Nível de Atividade'
-    //     }
-    // },
-    // GastoCalorico: {
-    //     screen: GastoCalorico,
-    //     navigationOptions: {
-    //         title: 'Gasto Calórico'
-    //     }
-    // },
-    // Objetivo: {
-    //     screen: Objetivo,
-    //     navigationOptions: {
-    //         title: 'Objetivo'
-    //     }
-    // },
-    // Dificuldade: {
-    //     screen: Dificuldade,
-    //     navigationOptions: {
-    //         title: 'Dificuldade'
-    //     }
-    // },
+    UserBasicData: {
+        screen: UserBasicData,
+        navigationOptions: {
+            title: 'Perfil Inicial'
+        }
+    },
+    ActivityLevel: {
+        screen: ActivityLevel,
+        navigationOptions: {
+            title: 'ActivityLevel'
+        }
+    },
+    GastoCalorico: {
+        screen: GastoCalorico,
+        navigationOptions: {
+            title: 'Gasto Calórico'
+        }
+    },
+    Objetivo: {
+        screen: Objetivo,
+        navigationOptions: {
+            title: 'Objetivo'
+        }
+    },
+    Dificuldade: {
+        screen: Dificuldade,
+        navigationOptions: {
+            title: 'Dificuldade'
+        }
+    },
     Distribuicao: {
         screen: Distribuicao,
         navigationOptions: {
@@ -126,7 +126,7 @@ const AppNavigator = createStackNavigator({
         }
     },
 }, {
-        initialRouteName: 'Preload',
+        initialRouteName: 'InicioNavigator',
         defaultNavigationOptions: {
             header: null,
 
