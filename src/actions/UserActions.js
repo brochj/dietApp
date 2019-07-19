@@ -1,22 +1,28 @@
 import firebase from "networking/FirebaseConnection"; //TODO retirar depois
-import { isUserSignedIn, signUpWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "networking/firebaseAuth"
+import { getUserUid } from "networking/firebaseAuth"
+import { updateUserBasicData } from "networking/firebaseDatabase"
 
 
+// ASYNC ACTIONS
+export const changeUserBasicData = (data) => {
+    return (dispatch) => {
+        getUserUid()
+            .then((uid) => {
+                updateUserBasicData(uid, data)
+                    .then((uid) => {
+                        dispatch({
+                            type: 'changeUid',
+                            payload: {
+                                uid: uid,
+                            }
+                        });
+                    });
+            })
 
-// export const signInAction = (email, password) => {
-//     return (dispatch) => {
-//         signInWithEmailAndPassword(email, password)
-//         .then((uid) => {
-//             dispatch({
-//                 type: 'changeUid',
-//                 payload: {
-//                     uid: uid,
-//                 }
-//             });
-//         });
-//     };
-// };
+    };
+};
 
+// SYNC ACTIONS
 export const changeName = (name) => {
     return {
         type: 'changeName',
@@ -90,3 +96,5 @@ export const changeActivityLevel = (activityLevel) => {
         }
     }
 };
+
+

@@ -2,8 +2,9 @@ import React from "react";
 import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import { NavigationActions, StackActions } from 'react-navigation';
 import { connect } from 'react-redux';
-import { changeCalorieIntake } from 'actions/DietPlanActions';
 import { ThemeContext } from 'res/themeContext';
+import { changeUserBasicData } from 'actions/UserActions';
+import { changeCalorieIntake } from 'actions/DietPlanActions';
 import R from 'res/R'
 import ForwardBackBar from 'components/ForwardBackBar';
 import CardTouch from 'components/CardTouch';
@@ -33,6 +34,14 @@ export class CaloricExpenditure extends React.Component {
             }
         )
         this.props.changeCalorieIntake(calcutedKcal)
+        this.props.changeUserBasicData({
+            gender: this.props.gender,
+            birthday: this.props.birthday,
+            weight: this.props.weightValue,
+            height: this.props.heightValue,
+            accountType: this.props.accountType,
+            activityLevel: this.props.activityLevel
+        })
     }
 
     goNextScreen() {
@@ -78,7 +87,6 @@ export class CaloricExpenditure extends React.Component {
                 ...R.styles.basicText,
                 ...R.styles.title1,
                 padding: 10,
-                fontSize: 25,
             },
             valueTxt: {
                 color: theme.onBackground,
@@ -142,12 +150,15 @@ const mapStateToProps = (state) => {
         birthday: state.user.birthday,
         gender: state.user.gender,
         weightValue: state.user.weightValue,
+        heightUnit: state.user.heightUnit,
         heightValue: state.user.heightValue,
+        heightUnit: state.user.heightUnit,
         activityLevel: state.user.activityLevel,
+        accountType: state.user.accountType,
 
         calorieIntake: state.dietPlan.calorieIntake
     };
 };
 
-const CaloricExpenditureConnect = connect(mapStateToProps, { changeCalorieIntake })(CaloricExpenditure);
+const CaloricExpenditureConnect = connect(mapStateToProps, { changeCalorieIntake, changeUserBasicData })(CaloricExpenditure);
 export default CaloricExpenditureConnect;

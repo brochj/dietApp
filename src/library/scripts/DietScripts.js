@@ -33,3 +33,23 @@ export function calculateCalories(data) {
     const calcutedKcal = Math.floor(BMR * multiplier);
     return calcutedKcal;
 }
+
+export function calculateCaloriesGoal(objective, difficulty, calorieIntake) {
+    if (objective == 'lossWeight') {
+        if (difficulty == 'easy') {
+            return calorieIntake - 300;
+        } else if (difficulty == 'medium') {
+            return calorieIntake - 500;
+        } else if (difficulty == 'hard') {
+            return calorieIntake - 800;
+        }
+    } else if (objective == 'gainMuscle') {
+        if (difficulty == 'easy') {
+            return calorieIntake + 300;
+        } else if (difficulty == 'medium') {
+            return calorieIntake + 500;
+        } else if (difficulty == 'hard') {
+            return calorieIntake + 800;
+        }
+    }
+}

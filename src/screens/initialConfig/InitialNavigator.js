@@ -8,7 +8,7 @@ import Objective from './Objective';
 
 import R from 'res/R';
 
-const InicioNavigator = createStackNavigator({
+const InitialNavigator = createStackNavigator({
 
     UserBasicData: {
         screen: UserBasicData
@@ -33,4 +33,4 @@ const InicioNavigator = createStackNavigator({
     }
 );
 
-export default InicioNavigator;
+export default InitialNavigator;

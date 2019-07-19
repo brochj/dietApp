@@ -8,13 +8,13 @@ import ReduxThunk from "redux-thunk";
 
 import Reducers from 'reducers/Reducers';
 
-import InicioNavigator from 'screens/initialConfig/InicioNavigator';
+import InitialNavigator from 'screens/initialConfig/InitialNavigator';
 import UserBasicData from 'screens/initialConfig/UserBasicData';
 import ActivityLevel from 'screens/initialConfig/ActivityLevel';
 import CaloricExpenditure from 'screens/initialConfig/CaloricExpenditure';
 import Objective from 'screens/initialConfig/Objective';
 import Difficulty from 'screens/initialConfig/Difficulty';
-import Distribuicao from 'screens/initialConfig/Distribuicao';
+import MealsCalories from 'screens/initialConfig/MealsCalories';
 
 import Home from 'screens/auth/Home';
 import SignIn from 'screens/auth/SignIn';
@@ -27,7 +27,7 @@ import HomeTab from 'screens/main/HomeTab';
 import SearchRecipes from 'screens/recipes/SearchRecipes';
 import ShowRecipe from 'screens/recipes/ShowRecipe';
 
-// console.disableYellowBox = true;
+console.disableYellowBox = true;
 
 let store = createStore(Reducers, applyMiddleware(ReduxThunk));
 
@@ -54,8 +54,8 @@ const AppNavigator = createStackNavigator({
             title: 'SignUp'
         }
     },
-    InicioNavigator: {
-        screen: InicioNavigator,
+    InitialNavigator: {
+        screen: InitialNavigator,
         navigationOptions: {
             title: null
         }
@@ -68,43 +68,40 @@ const AppNavigator = createStackNavigator({
     },
 
 
-
-
-
-    UserBasicData: {
-        screen: UserBasicData,
+    // UserBasicData: {
+    //     screen: UserBasicData,
+    //     navigationOptions: {
+    //         title: 'Perfil Inicial'
+    //     }
+    // },
+    // ActivityLevel: {
+    //     screen: ActivityLevel,
+    //     navigationOptions: {
+    //         title: 'ActivityLevel'
+    //     }
+    // },
+    // CaloricExpenditure: {
+    //     screen: CaloricExpenditure,
+    //     navigationOptions: {
+    //         title: 'Gasto Calórico'
+    //     }
+    // },
+    // Objective: {
+    //     screen: Objective,
+    //     navigationOptions: {
+    //         title: 'Objective'
+    //     }
+    // },
+    // Difficulty: {
+    //     screen: Difficulty,
+    //     navigationOptions: {
+    //         title: 'Difficulty'
+    //     }
+    // },
+    MealsCalories: {
+        screen: MealsCalories,
         navigationOptions: {
-            title: 'Perfil Inicial'
-        }
-    },
-    ActivityLevel: {
-        screen: ActivityLevel,
-        navigationOptions: {
-            title: 'ActivityLevel'
-        }
-    },
-    CaloricExpenditure: {
-        screen: CaloricExpenditure,
-        navigationOptions: {
-            title: 'Gasto Calórico'
-        }
-    },
-    Objective: {
-        screen: Objective,
-        navigationOptions: {
-            title: 'Objective'
-        }
-    },
-    Difficulty: {
-        screen: Difficulty,
-        navigationOptions: {
-            title: 'Difficulty'
-        }
-    },
-    Distribuicao: {
-        screen: Distribuicao,
-        navigationOptions: {
-            title: 'Distribuicao'
+            title: 'MealsCalories'
         }
     },
     Meals: {
@@ -126,7 +123,7 @@ const AppNavigator = createStackNavigator({
         }
     },
 }, {
-        initialRouteName: 'Preload',
+        initialRouteName: 'InitialNavigator',
         defaultNavigationOptions: {
             header: null,
 

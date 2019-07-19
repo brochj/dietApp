@@ -10,9 +10,11 @@ import {
     StatusBar,
     Platform
 } from "react-native";
+import { connect } from 'react-redux';
+import { signOutAction } from 'actions/AuthActions';
 import R from 'res/R';
 
-export default class Home extends React.Component {
+export class Home extends React.Component {
 
     static navigationOptions = {
         title: 'Home',
@@ -25,7 +27,7 @@ export default class Home extends React.Component {
         };
         this.signUp = this.signUp.bind(this);
         this.login = this.login.bind(this);
-
+        signOutAction();
     }
 
     signUp() {
@@ -183,3 +185,15 @@ const styles = StyleSheet.create({
         // textShadowRadius: 2
     },
 });
+
+const mapStateToProps = (state) => {
+    return {
+        status: state.auth.status,
+        uid: state.auth.uid,
+        email: state.auth.email,
+        password: state.auth.password,
+    };
+};
+
+const HomeConnect = connect(mapStateToProps, {signOutAction })(Home);
+export default HomeConnect;

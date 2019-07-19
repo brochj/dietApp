@@ -28,7 +28,7 @@ export class SignUp extends React.Component {
             this.props.navigation.dispatch(StackActions.reset({
                 index: 0,
                 actions: [
-                    NavigationActions.navigate({ routeName: 'InicioNavigator' })
+                    NavigationActions.navigate({ routeName: 'InitialNavigator' })
                 ]
             }))
         }
@@ -52,7 +52,7 @@ export class SignUp extends React.Component {
                         style={[styles.input, styles.inputEmail]}
                         autoFocus={true}
                         blurOnSubmit={false}
-                        placeholder='seu_email@email.com'
+                        placeholder='seu melhor email'
                         returnKeyType='next'
                         keyboardType='email-address'
                         onChangeText={this.props.changeEmail}
@@ -65,7 +65,7 @@ export class SignUp extends React.Component {
                         style={[styles.input, styles.inputSenha]}
                         secureTextEntry={true}
                         maxLength={20}
-                        placeholder='Digite uma senha'
+                        placeholder='Sua senha super secreta'
                         returnKeyLabel='testes'
                         value={this.props.password}
                         onChangeText={this.props.changePassword}

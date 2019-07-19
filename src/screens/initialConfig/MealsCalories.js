@@ -1,13 +1,17 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Button, Animated, ScrollView } from "react-native";
 import R from 'res/R'
+import { connect } from 'react-redux';
+import { changeDifficulty, changeCalorieIntakeGoal } from 'actions/DietPlanActions';
+import { ThemeContext } from 'res/themeContext';
 import ChangeCalories from "library/components/ChangeCalories";
 import CardDistribuicao from "components/CardDistribuicao";
 import ForwardBackBar from 'components/ForwardBackBar';
+import { calculateCaloriesGoal } from "scripts/DietScripts";
 
 
 
-export default class distribuicao extends React.Component {
+export class MealsCalories extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -78,27 +82,25 @@ export default class distribuicao extends React.Component {
         this.changeCalories = this.changeCalories.bind(this);
     }
     componentDidMount() {
+
+        let newCalorieIntakeGoal = calculateCaloriesGoal(
+            this.props.objective,
+            this.props.difficulty,
+            this.props.calorieIntake
+        )
+        this.props.changeCalorieIntakeGoal(newCalorieIntakeGoal);
+
         this.state.targetKcal = this.props.navigation.getParam('targetKcal');
         this.setState(this.state);
         this.recommendedValues();
         this.sumAllCalories();
+
+
     }
 
     goNextScreen() {
         this.saveMealCalories();
-        this.props.navigation.navigate('HomeTab', {
-            age: this.props.navigation.getParam('age'),
-            weight: this.props.navigation.getParam('weight'),
-            height: this.props.navigation.getParam('height'),
-            gender: this.props.navigation.getParam('gender'),
-            activityLevel: this.props.navigation.getParam('activityLevel'),
-            calcutedKcal: this.props.navigation.getParam('calcutedKcal'),
-            objective: this.props.navigation.getParam('objective'),
-            difficultyLevel: this.props.navigation.getParam('difficultyLevel'),
-            targetKcal: this.props.navigation.getParam('targetKcal'),
-            mealCalories: this.state.mealCalories,
-
-        })
+        this.props.navigation.navigate('HomeTab');
     }
 
     recommendedValues() {
@@ -218,7 +220,6 @@ export default class distribuicao extends React.Component {
 
 
     render() {
-
         const txtColor = () => {
             let s = this.state;
             if (s.summedKcal <= s.targetKcal + 50 && this.props.navigation.getParam('objective') == 'emagrecer') {
@@ -230,12 +231,14 @@ export default class distribuicao extends React.Component {
 
         return (
             <View style={styles.body}>
+                <Text style={styles.txtName}>{this.props.calorieIntake}</Text>
+                <Text style={styles.txtName}>{this.props.calorieIntakeGoal}</Text>
                 <Text style={styles.titleTxt}>Distribuição da calorias</Text>
                 <View style={styles.resultRowView}>
                     <View style={styles.resultView}>
 
                         <Text style={styles.labelTargetTxt}>Meta</Text>
-                        <Text style={styles.calcutedKcalTxt}>{this.state.targetKcal}</Text>
+                        <Text style={styles.calcutedKcalTxt}>{this.props.calorieIntakeGoal}</Text>
                         <Text style={styles.labelTargetTxt}>kcal</Text>
                     </View>
                     <View style={styles.resultView}>
@@ -335,8 +338,6 @@ const styles = StyleSheet.create({
     resultRowView: {
         flexDirection: 'row',
         alignItems: 'center',
-
-
     },
     resultView: {
         flex: 1,
@@ -356,3 +357,17 @@ const styles = StyleSheet.create({
     },
 
 });
+
+MealsCalories.contextType = ThemeContext;
+
+const mapStateToProps = (state) => {
+    return {
+        objective: state.dietPlan.objective,
+        difficulty: state.dietPlan.difficulty,
+        calorieIntake: state.dietPlan.calorieIntake,
+        calorieIntakeGoal: state.dietPlan.calorieIntakeGoal
+    };
+};
+
+const MealsCaloriesConnect = connect(mapStateToProps, { changeCalorieIntakeGoal })(MealsCalories);
+export default MealsCaloriesConnect;

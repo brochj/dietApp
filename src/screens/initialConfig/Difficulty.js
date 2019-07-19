@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity } from "react-native";
 import { connect } from 'react-redux';
-import { changeDifficulty } from 'actions/DietPlanActions';
+import { changeDifficulty, changeCalorieIntakeGoal } from 'actions/DietPlanActions';
 import { ThemeContext } from 'res/themeContext';
 import ForwardBackBar from 'library/components/ForwardBackBar';
 import CardTouch from 'components/CardTouch';
 
-import R from 'res/R'
+import R from 'res/R';
 
 export class Difficulty extends React.Component {
     static navigationOptions = {
@@ -14,51 +14,23 @@ export class Difficulty extends React.Component {
         header: null
     }
 
-
     constructor(props) {
         super(props);
         this.state = {
-            objective: '',
-            calcutedKcal: 0,
-            targetKcal: 0,
-            difficultyLevel: 'easy',
-
         };
         this.goNextScreen = this.goNextScreen.bind(this);
-        this.selectLevel = this.selectLevel.bind(this);
+        this.selectedLevel = this.selectedLevel.bind(this);
     }
-    componentDidMount() {
-    }
-
 
     goNextScreen() {
-        this.props.navigation.navigate('Distribuicao')
+        this.props.navigation.navigate('MealsCalories');
     }
 
-    selectLevel(level) {
-        this.state.difficultyLevel = level;
-        if (this.props.objective == 'lossWeight') {
-            if (level == 'easy') {
-                this.state.targetKcal = this.props.calorieIntake - 300;
-            } else if (level == 'medium') {
-                this.state.targetKcal = this.props.calorieIntake - 500;
-            } else if (level == 'hard') {
-                this.state.targetKcal = this.props.calorieIntake - 800;
-            }
-        } else if (this.props.objective == 'gainMuscle') {
-            if (level == 'easy') {
-                this.state.targetKcal = this.props.calorieIntake + 300;
-            } else if (level == 'medium') {
-                this.state.targetKcal = this.props.calorieIntake + 500;
-            } else if (level == 'hard') {
-                this.state.targetKcal = this.props.calorieIntake + 800;
-            }
-        } else if (this.props.objective == 'manterPeso') {
-            this.state.targetKcal = this.props.calorieIntake;
-        }
-        this.setState(this.state);
-        // this.goNextScreen();
+    selectedLevel(level) {
+        this.props.changeDifficulty(level);
+        this.goNextScreen();
     }
+
     render() {
         let theme = this.context;
 
@@ -73,7 +45,7 @@ export class Difficulty extends React.Component {
             titleTxt: {
                 color: theme.onBackground,
                 ...R.styles.basicText,
-                ...R.styles.title3,
+                ...R.styles.title2,
                 paddingVertical: 10,
                 paddingHorizontal: 15,
             },
@@ -108,34 +80,31 @@ export class Difficulty extends React.Component {
         const activeTxtColor = theme.onPrimary;
         const defaultTxtColor = theme.onSurface;
 
-        const bgColorEasy = (this.state.difficultyLevel == 'easy') ?
+        const bgColorEasy = (this.props.difficulty == 'easy') ?
             { backgroundColor: activeBgColor } :
             { backgroundColor: defaultBgColor };
 
-        const txtColorEasy = (this.state.difficultyLevel == 'easy') ?
+        const txtColorEasy = (this.props.difficulty == 'easy') ?
             { color: activeTxtColor } :
             { color: defaultTxtColor };
 
 
-        const bgColorMedium = (this.state.difficultyLevel == 'medium') ?
+        const bgColorMedium = (this.props.difficulty == 'medium') ?
             { backgroundColor: activeBgColor } :
             { backgroundColor: defaultBgColor };
 
-        const txtColorMedium = (this.state.difficultyLevel == 'medium') ?
+        const txtColorMedium = (this.props.difficulty == 'medium') ?
             { color: activeTxtColor } :
             { color: defaultTxtColor };
 
 
-        const bgColorHard = (this.state.difficultyLevel == 'hard') ?
+        const bgColorHard = (this.props.difficulty == 'hard') ?
             { backgroundColor: activeBgColor } :
             { backgroundColor: defaultBgColor };
 
-        const txtColorHard = (this.state.difficultyLevel == 'hard') ?
+        const txtColorHard = (this.props.difficulty == 'hard') ?
             { color: activeTxtColor } :
             { color: defaultTxtColor };
-
-
-
 
         const genderImage = (this.props.navigation.getParam('gender') == 'male') ?
             R.images.manWeight :
@@ -187,7 +156,7 @@ export class Difficulty extends React.Component {
 
         return (
             <View style={styles.body}>
-
+                
                 <View style={styles.imageView}>
                     <Image source={genderImage} style={styles.genderImage} />
                     <Image source={genderImage1} style={styles.genderImage1} />
@@ -198,7 +167,7 @@ export class Difficulty extends React.Component {
                     <CardTouch
                         title={stringsData().easy.title}
                         description={stringsData().easy.description}
-                        onPress={() => { this.selectLevel('easy') }}
+                        onPress={() => { this.selectedLevel('easy') }}
                         style={bgColorEasy}
                         descriptionStyle={txtColorEasy}
                         titleStyle={txtColorEasy}
@@ -209,7 +178,7 @@ export class Difficulty extends React.Component {
                     <CardTouch
                         title={stringsData().medium.title}
                         description={stringsData().medium.description}
-                        onPress={() => { this.selectLevel('medium') }}
+                        onPress={() => { this.selectedLevel('medium') }}
                         style={bgColorMedium}
                         descriptionStyle={txtColorMedium}
                         titleStyle={txtColorMedium}
@@ -220,7 +189,7 @@ export class Difficulty extends React.Component {
                     <CardTouch
                         title={stringsData().hard.title}
                         description={stringsData().hard.description}
-                        onPress={() => { this.selectLevel('hard') }}
+                        onPress={() => { this.selectedLevel('hard') }}
                         style={bgColorHard}
                         descriptionStyle={txtColorHard}
                         titleStyle={txtColorHard}
@@ -231,7 +200,7 @@ export class Difficulty extends React.Component {
                 </View>
                 <ForwardBackBar
                     onPressBack={() => this.props.navigation.goBack()}
-                    onPressForward={() => this.selectLevel(this.state.difficultyLevel)}
+                    onPressForward={() => this.selectedLevel(this.props.difficulty)}
                     style={{ backgroundColor: theme.primary }}
                 />
             </View>
@@ -240,16 +209,16 @@ export class Difficulty extends React.Component {
     }
 }
 
-
 Difficulty.contextType = ThemeContext;
 
 const mapStateToProps = (state) => {
     return {
         objective: state.dietPlan.objective,
         difficulty: state.dietPlan.difficulty,
-        calorieIntake: state.dietPlan.calorieIntake
+        calorieIntake: state.dietPlan.calorieIntake,
+        calorieIntakeGoal: state.dietPlan.calorieIntakeGoal
     };
 };
 
-const DifficultyConnect = connect(mapStateToProps, { changeDifficulty })(Difficulty);
+const DifficultyConnect = connect(mapStateToProps, { changeDifficulty, changeCalorieIntakeGoal })(Difficulty);
 export default DifficultyConnect;

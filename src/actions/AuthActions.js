@@ -1,5 +1,6 @@
 import firebase from "networking/FirebaseConnection"; //TODO retirar depois
 import { isUserSignedIn, signUpWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "networking/firebaseAuth"
+import {strip} from 'scripts/StringScripts';
 
 export const signOutAction = () => {
     signOut();
@@ -64,7 +65,7 @@ export const changeEmail = (email) => {
     return {
         type: 'changeEmail',
         payload: {
-            email: email
+            email: strip(email)
         }
     }
 };

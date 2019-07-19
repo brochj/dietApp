@@ -28,7 +28,7 @@ export class Objective extends React.Component {
 
     selectLevel(level) {
         this.props.changeObjective(level);
-        // this.goNextScreen();
+        this.goNextScreen();
     }
 
     goToDistribuicao(level) {

@@ -18,7 +18,7 @@ export class ActivityLevel extends React.Component {
         super(props);
         this.state = {};
         this.goNextScreen = this.goNextScreen.bind(this);
-        this.selectLevel = this.selectLevel.bind(this);
+        this.selectedLevel = this.selectedLevel.bind(this);
 
     }
 
@@ -26,9 +26,9 @@ export class ActivityLevel extends React.Component {
         this.props.navigation.navigate('CaloricExpenditure')
     }
 
-    selectLevel(level) {
+    selectedLevel(level) {
         this.props.changeActivityLevel(level);
-        // this.goNextScreen();
+        this.goNextScreen();
     }
 
     render() {
@@ -120,7 +120,7 @@ export class ActivityLevel extends React.Component {
                     <CardTouch
                         title='Sedentário'
                         description='Sentado na maior parte do tempo (ex.: trabalho em escritório)'
-                        onPress={() => { this.selectLevel('light') }}
+                        onPress={() => { this.selectedLevel('light') }}
                         style={bgColorLight}
                         descriptionStyle={txtColorLight}
                         titleStyle={txtColorLight}
@@ -128,7 +128,7 @@ export class ActivityLevel extends React.Component {
                     <CardTouch
                         title='Moderada'
                         description='Em pé na maior parte do tempo (ex.: professor)'
-                        onPress={() => { this.selectLevel('moderate') }}
+                        onPress={() => { this.selectedLevel('moderate') }}
                         style={bgColorModerate}
                         descriptionStyle={txtColorModerate}
                         titleStyle={txtColorModerate}
@@ -136,7 +136,7 @@ export class ActivityLevel extends React.Component {
                     <CardTouch
                         title='Elevada'
                         description='Andando na maior parte do tempo (ex.: vendedor)'
-                        onPress={() => { this.selectLevel('high') }}
+                        onPress={() => { this.selectedLevel('high') }}
                         style={bgColorHigh}
                         descriptionStyle={txtColorHigh}
                         titleStyle={txtColorHigh}
@@ -144,7 +144,7 @@ export class ActivityLevel extends React.Component {
                     <CardTouch
                         title='Intensa'
                         description='Trabalho que exige muita atividade (ex.: pedreiro)'
-                        onPress={() => { this.selectLevel('intense') }}
+                        onPress={() => { this.selectedLevel('intense') }}
                         style={bgColorIntense}
                         descriptionStyle={txtColorIntense}
                         titleStyle={txtColorIntense}
