@@ -1,6 +1,6 @@
 import firebase from "networking/FirebaseConnection"; //TODO retirar depois
 import { isUserSignedIn, signUpWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "networking/firebaseAuth"
-import {strip} from 'scripts/StringScripts';
+import { strip } from 'scripts/StringScripts';
 
 export const signOutAction = () => {
     signOut();
@@ -36,28 +36,28 @@ export const checkLogin = () => {
 export const signUpAction = (email, password) => {
     return (dispatch) => {
         signUpWithEmailAndPassword(email, password)
-        .then((uid) => {
-            dispatch({
-                type: 'changeUid',
-                payload: {
-                    uid: uid,
-                }
+            .then((uid) => {
+                dispatch({
+                    type: 'changeUid',
+                    payload: {
+                        uid: uid,
+                    }
+                });
             });
-        });
     };
 };
 
 export const signInAction = (email, password) => {
     return (dispatch) => {
         signInWithEmailAndPassword(email, password)
-        .then((uid) => {
-            dispatch({
-                type: 'changeUid',
-                payload: {
-                    uid: uid,
-                }
+            .then((uid) => {
+                dispatch({
+                    type: 'changeUid',
+                    payload: {
+                        uid: uid,
+                    }
+                });
             });
-        });
     };
 };
 

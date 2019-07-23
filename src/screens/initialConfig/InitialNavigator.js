@@ -34,7 +34,7 @@ const InitialNavigator = createStackNavigator({
         defaultNavigationOptions:{
             header: null,
         },
-        initialRouteName: 'MealsCalories',
+        initialRouteName: 'UserBasicData',
         headerMode: 'float',
         headerLayoutPreset: 'center',
     }

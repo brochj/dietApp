@@ -3,6 +3,15 @@ const initialState = {
     difficulty: 'hard', //easy, medium,hard
     calorieIntake: 2000,
     calorieIntakeGoal: 0,
+
+    breakfastKcal: 0,
+    morningSnackKcal: 0,
+    lunchKcal: 0,
+    afternoonSnackKcal: 0,
+    dinnerKcal: 0,
+    eveningSnackKcal: 0,
+    preWorkoutKcal: 0,
+    afterTraningKcal: 0,
 }
 
 const DietPlanReducer = (state = initialState, action) => {
@@ -21,6 +30,20 @@ const DietPlanReducer = (state = initialState, action) => {
 
     if (action.type == 'changeCalorieIntakeGoal') {
         return { ...state, calorieIntakeGoal: action.payload.calorieIntakeGoal };
+    };
+
+    if (action.type == 'changeMealsCalories') {
+        return {
+            ...state,
+            breakfastKcal: action.payload.breakfastKcal,
+            morningSnackKcal: action.payload.morningSnackKcal,
+            lunchKcal: action.payload.lunchKcal,
+            afternoonSnackKcal: action.payload.afternoonSnackKcal,
+            dinnerKcal: action.payload.dinnerKcal,
+            eveningSnackKcal: action.payload.eveningSnackKcal,
+            preWorkoutKcal: action.payload.preWorkoutKcal,
+            afterTraningKcal: action.payload.afterTraningKcal,
+        };
     };
 
     return state;

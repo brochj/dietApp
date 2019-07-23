@@ -123,7 +123,7 @@ const AppNavigator = createStackNavigator({
         }
     },
 }, {
-        initialRouteName: 'InitialNavigator',
+        initialRouteName: 'Preload',
         defaultNavigationOptions: {
             header: null,
 

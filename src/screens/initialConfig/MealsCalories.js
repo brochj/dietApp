@@ -2,7 +2,9 @@ import React from "react";
 import { StyleSheet, Text, View, Image, Button, Animated, ScrollView } from "react-native";
 import R from 'res/R'
 import { connect } from 'react-redux';
-import { changeCalorieIntakeGoal } from 'actions/DietPlanActions';
+import { changeCalorieIntakeGoal, changeMealsCalories, saveDietPlan } from 'actions/DietPlanActions';
+import { NavigationActions, StackActions } from 'react-navigation';
+
 import { ThemeContext } from 'res/themeContext';
 import ChangeCalories from "components/ChangeCalories";
 import CardDistribuicao from "components/CardDistribuicao";
@@ -11,16 +13,17 @@ import { calculateCaloriesGoal } from "scripts/DietScripts";
 
 
 
+
 export class MealsCalories extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            mealCalories: {},
+            dietPlan: {},
             summedKcal: 0,
             teste: 1200,
 
             breakfastKcal: 0,
-            morningSnackKcal: 0,
+            morningSnackKcal: 23,
             lunchKcal: 0,
             afternoonSnackKcal: 0,
             dinnerKcal: 0,
@@ -75,60 +78,78 @@ export class MealsCalories extends React.Component {
         };
         this.goNextScreen = this.goNextScreen.bind(this);
         this.sumAllCalories = this.sumAllCalories.bind(this);
-        // this.saveMealCalories = this.saveMealCalories.bind(this);
         this.changeCalories = this.changeCalories.bind(this);
-        // this.recommendedValues();
-        // this.sumAllCalories();
+        this.goMainScreen = this.goMainScreen.bind(this);
     }
     componentDidMount() {
-        let newCalorieIntakeGoal = calculateCaloriesGoal(
-            this.props.objective,
-            this.props.difficulty,
-            this.props.calorieIntake
-        )
-        this.props.changeCalorieIntakeGoal(newCalorieIntakeGoal);
 
-        this.state.teste = this.props.calorieIntakeGoal;
-        this.setState(this.state);
+        if (this.props.objective == 'maintainWeight') {
+            this.props.changeCalorieIntakeGoal(this.props.calorieIntake);
+            this.state.summedKcal = this.props.calorieIntake;
+            this.setState(this.state);
+        } else {
+            let newCalorieIntakeGoal = calculateCaloriesGoal(
+                this.props.objective,
+                this.props.difficulty,
+                this.props.calorieIntake
+            )
+            this.props.changeCalorieIntakeGoal(newCalorieIntakeGoal);
+            this.state.summedKcal = newCalorieIntakeGoal;
+            this.setState(this.state);
+        }
         this.recommendedValues();
-        // this.sumAllCalories();
     }
 
     goNextScreen() {
-        // this.saveMealCalories();
-        this.props.navigation.navigate('HomeTab');
+        this.props.changeCalorieIntakeGoal(this.state.summedKcal);
+        this.createObjectWithDietPlan();
+        this.props.changeMealsCalories(this.state.dietPlan);
+        this.props.saveDietPlan(this.state.dietPlan);
+        this.goMainScreen();
+    }
+
+    goMainScreen() {
+        this.props.navigation.dispatch(StackActions.reset({
+            index: 0,
+            actions: [
+                NavigationActions.navigate({ routeName: 'HomeTab' })
+            ]
+        }))
     }
 
     recommendedValues() {
         let s = this.state;
-        alert(this.props.calorieIntakeGoal)
 
-        
         this.setState({
-            breakfastKcal: Math.round(this.state.teste * this.state.breakfastPct / 100),
-            morningSnackKcal: Math.round(this.props.calorieIntakeGoal * this.state.morningSnackPct / 100),
-            lunchKcal: Math.round(this.props.calorieIntakeGoal * this.state.lunchPct / 100),
-            afternoonSnackKcal: Math.round(this.props.calorieIntakeGoal * this.state.afternoonSnackPct / 100),
-            dinnerKcal: Math.round(this.props.calorieIntakeGoal * this.state.dinnerPct / 100),
-            eveningSnackKcal: Math.round(this.props.calorieIntakeGoal * this.state.eveningSnackPct / 100),
-            
+            breakfastKcal: Math.round(this.state.summedKcal * this.state.breakfastPct / 100),
+            morningSnackKcal: Math.round(this.state.summedKcal * this.state.morningSnackPct / 100),
+            lunchKcal: Math.round(this.state.summedKcal * this.state.lunchPct / 100),
+            afternoonSnackKcal: Math.round(this.state.summedKcal * this.state.afternoonSnackPct / 100),
+            dinnerKcal: Math.round(this.state.summedKcal * this.state.dinnerPct / 100),
+            eveningSnackKcal: Math.round(this.state.summedKcal * this.state.eveningSnackPct / 100),
+
         });
     }
-    // saveMealCalories() {
-    //     let s = this.state;
-    //     s.mealCalories = {
-    //         summedKcal: s.summedKcal,
-    //         breakfastKcal: s.breakfastKcal,
-    //         morningSnackKcal: s.morningSnackKcal,
-    //         lunchKcal: s.lunchKcal,
-    //         afternoonSnackKcal: s.afternoonSnackKcal,
-    //         dinnerKcal: s.dinnerKcal,
-    //         preWorkoutKcal: s.preWorkoutKcal,
-    //         afterTraningKcal: s.afterTraningKcal,
-    //         eveningSnackKcal: s.eveningSnackKcal,
-    //     }
-    //     this.setState(s);
-    // }
+
+    createObjectWithDietPlan() {
+        let s = this.state;
+        s.dietPlan = {
+            objective: this.props.objective,
+            difficulty: this.props.difficulty,
+            calorieIntake: this.props.calorieIntake,
+            calorieIntakeGoal: this.props.calorieIntakeGoal,
+
+            breakfastKcal: s.breakfastKcal,
+            morningSnackKcal: s.morningSnackKcal,
+            lunchKcal: s.lunchKcal,
+            afternoonSnackKcal: s.afternoonSnackKcal,
+            dinnerKcal: s.dinnerKcal,
+            preWorkoutKcal: s.preWorkoutKcal,
+            afterTraningKcal: s.afterTraningKcal,
+            eveningSnackKcal: s.eveningSnackKcal,
+        }
+        this.setState(s);
+    }
 
     sumAllCalories() {
         let s = this.state;
@@ -274,18 +295,51 @@ export class MealsCalories extends React.Component {
 
         const txtColor = () => {
             let s = this.state;
-            if (s.summedKcal == this.props.calorieIntakeGoal && this.props.objective == 'lossWeight') {
-                return ({ color: 'green' })
-            } else if (s.summedKcal == this.props.calorieIntakeGoal && this.props.objective == 'gainMuscle') {
-                return ({ color: 'green' })
+            if (this.props.objective == 'lossWeight') {
+                if (s.summedKcal >= this.props.calorieIntakeGoal + 50 && s.summedKcal <= this.props.calorieIntakeGoal + 100) {
+                    return ({ color: theme.warning })
+                } else if (s.summedKcal >= this.props.calorieIntakeGoal + 100) {
+                    return ({ color: theme.error }) //TODO colocar uma animação qndo chegar no vermlho
+                }
+                if (s.summedKcal <= this.props.calorieIntakeGoal - 50 && s.summedKcal >= this.props.calorieIntakeGoal - 100) {
+                    return ({ color: theme.warning })
+                } else if (s.summedKcal <= this.props.calorieIntakeGoal - 100) {
+                    return ({ color: theme.error })
+                }
             }
+
+            if (this.props.objective == 'gainMuscle') {
+                if (s.summedKcal >= this.props.calorieIntakeGoal + 50 && s.summedKcal <= this.props.calorieIntakeGoal + 100) {
+                    return ({ color: 'white' })
+                } else if (s.summedKcal >= this.props.calorieIntakeGoal + 100) {
+                    return ({ color: theme.error })
+                }
+                if (s.summedKcal <= this.props.calorieIntakeGoal - 50 && 50 && s.summedKcal >= this.props.calorieIntakeGoal - 100) {
+                    return ({ color: 'white' })
+                } else if (s.summedKcal <= this.props.calorieIntakeGoal - 100) {
+                    return ({ color: theme.error })
+                }
+            }
+
         }
 
         return (
             <View style={styles.body}>
+
+                {/* <Text >objective: {this.props.objective}</Text>
+                <Text >difficulty: {this.props.difficulty}</Text>
+                <Text >calorieIntake: {this.props.calorieIntake}</Text>
+                <Text >calorieIntakeGoal: {this.props.calorieIntakeGoal}</Text>
+                <Text >breakfastKcal: {this.props.breakfastKcal}</Text>
+                <Text >morningSnackKcal: {this.props.morningSnackKcal}</Text>
+                <Text >lunchKcal: {this.props.lunchKcal}</Text>
+                <Text >afternoonSnackKcal: {this.props.afternoonSnackKcal}</Text>
+                <Text >dinnerKcal: {this.props.dinnerKcal}</Text>
+                <Text >eveningSnackKcal: {this.props.eveningSnackKcal}</Text>
+                <Text >preWorkoutKcal: {this.props.preWorkoutKcal}</Text>
+                <Text >afterTraningKcal: {this.props.afterTraningKcal}</Text> */}
+
                 <View style={styles.resultBgView}>
-                    <Text style={styles.titleTxt}>calorieIntake: {this.props.calorieIntake}</Text>
-                    <Text style={styles.titleTxt}>calorieIntakeGoal: {this.props.calorieIntakeGoal}</Text>
                     <Text style={styles.titleTxt}>Distribuição da calorias</Text>
                     <View style={styles.resultRowView}>
                         <View style={styles.resultView}>
@@ -459,9 +513,18 @@ const mapStateToProps = (state) => {
         objective: state.dietPlan.objective,
         difficulty: state.dietPlan.difficulty,
         calorieIntake: state.dietPlan.calorieIntake,
-        calorieIntakeGoal: state.dietPlan.calorieIntakeGoal
+        calorieIntakeGoal: state.dietPlan.calorieIntakeGoal,
+
+        breakfastKcal: state.dietPlan.breakfastKcal,
+        morningSnackKcal: state.dietPlan.morningSnackKcal,
+        lunchKcal: state.dietPlan.lunchKcal,
+        afternoonSnackKcal: state.dietPlan.afternoonSnackKcal,
+        dinnerKcal: state.dietPlan.dinnerKcal,
+        eveningSnackKcal: state.dietPlan.eveningSnackKcal,
+        preWorkoutKcal: state.dietPlan.preWorkoutKcal,
+        afterTraningKcal: state.dietPlan.afterTraningKcal,
     };
 };
 
-const MealsCaloriesConnect = connect(mapStateToProps, { changeCalorieIntakeGoal })(MealsCalories);
+const MealsCaloriesConnect = connect(mapStateToProps, { changeCalorieIntakeGoal, changeMealsCalories, saveDietPlan })(MealsCalories);
 export default MealsCaloriesConnect;

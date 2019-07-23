@@ -1,6 +1,12 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Button, TouchableOpacity, ScrollView, StatusBar } from "react-native";
 import R from 'res/R'
+
+import { connect } from 'react-redux';
+import { changeCalorieIntakeGoal } from 'actions/DietPlanActions';
+import { ThemeContext } from 'res/themeContext';
+
+
 import MealsAccordion from "library/components/MealsAccordion";
 import breakfastRecipes from "res/meals/breakfastRecipes";
 import morningSnackRecipes from "res/meals/morningSnackRecipes";
@@ -12,7 +18,7 @@ import afterTraningRecipes from "res/meals/afterTraningRecipes";
 import eveningSnackRecipes from "res/meals/eveningSnackRecipes";
 
 
-export default class Meals extends React.Component {
+export class Meals extends React.Component {
     static navigationOptions = {
         header: null,
     }
@@ -100,15 +106,28 @@ export default class Meals extends React.Component {
             <View style={[styles.body]}>
                 <StatusBar hidden={false} backgroundColor='#196A65' />
                 <Button title='Pesquisar receita' onPress={() => this.props.navigation.navigate('SearchRecipes')} />
-                {/* <Text style={styles.txtName}>age: {this.props.navigation.getParam('age')}</Text>
-                <Text style={styles.txtName}>weight: {this.props.navigation.getParam('weight')}</Text>
-                <Text style={styles.txtName}>height: {this.props.navigation.getParam('height')}</Text>
-                <Text style={styles.txtName}>gender: {this.props.navigation.getParam('gender')}</Text>
-                <Text style={styles.txtName}>activityLevel: {this.props.navigation.getParam('activityLevel')}</Text>
-                <Text style={styles.txtName}>calcutedKcal: {this.props.navigation.getParam('calcutedKcal')}</Text>
-                <Text style={styles.txtName}>objective: {this.props.navigation.getParam('objective')}</Text>
-                <Text style={styles.txtName}>dificultyLevel: {this.props.navigation.getParam('dificultyLevel')}</Text>
-                <Text style={styles.txtName}>mealCalories: {this.props.navigation.getParam('mealCalories').summedKcal}</Text> */}
+
+                <Text>email: {this.props.email}</Text>
+                <Text>password: {this.props.password}</Text>
+                <Text>uid: {this.props.uid}</Text>
+                <Text>status: {this.props.status}</Text>
+
+                <Text>objective: {this.props.objective}</Text>
+                <Text>difficulty: {this.props.difficulty}</Text>
+                <Text>calorieIntake: {this.props.calorieIntake}</Text>
+                <Text>calorieIntakeGoal: {this.props.calorieIntakeGoal}</Text>
+                <Text>breakfastKcal: {this.props.breakfastKcal}</Text>
+                <Text>morningSnackKcal: {this.props.morningSnackKcal}</Text>
+                <Text>lunchKcal: {this.props.lunchKcal}</Text>
+                <Text>afternoonSnackKcal: {this.props.afternoonSnackKcal}</Text>
+                <Text>dinnerKcal: {this.props.dinnerKcal}</Text>
+                <Text>eveningSnackKcal: {this.props.eveningSnackKcal}</Text>
+                <Text>preWorkoutKcal: {this.props.preWorkoutKcal}</Text>
+                <Text>afterTraningKcal: {this.props.afterTraningKcal}</Text>
+
+
+
+
                 <ScrollView style={styles.scrollContainer}>
                     <View style={styles.cardMeal}>
                         <View style={styles.titleRowView}>
@@ -216,4 +235,35 @@ const styles = StyleSheet.create({
 
     },
 
+
 });
+
+Meals.contextType = ThemeContext;
+
+const mapStateToProps = (state) => {
+    return {
+        email: state.auth.email,
+        password: state.auth.password,
+        uid: state.auth.uid,
+        status: state.auth.status,
+
+
+
+        objective: state.dietPlan.objective,
+        difficulty: state.dietPlan.difficulty,
+        calorieIntake: state.dietPlan.calorieIntake,
+        calorieIntakeGoal: state.dietPlan.calorieIntakeGoal,
+
+        breakfastKcal: state.dietPlan.breakfastKcal,
+        morningSnackKcal: state.dietPlan.morningSnackKcal,
+        lunchKcal: state.dietPlan.lunchKcal,
+        afternoonSnackKcal: state.dietPlan.afternoonSnackKcal,
+        dinnerKcal: state.dietPlan.dinnerKcal,
+        eveningSnackKcal: state.dietPlan.eveningSnackKcal,
+        preWorkoutKcal: state.dietPlan.preWorkoutKcal,
+        afterTraningKcal: state.dietPlan.afterTraningKcal,
+    };
+};
+
+const MealsConnect = connect(mapStateToProps, { changeCalorieIntakeGoal })(Meals);
+export default MealsConnect;

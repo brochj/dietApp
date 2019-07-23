@@ -19,7 +19,7 @@ export class Objective extends React.Component {
         this.state = {};
         this.goNextScreen = this.goNextScreen.bind(this);
         this.selectLevel = this.selectLevel.bind(this);
-        this.goToDistribuicao = this.goToDistribuicao.bind(this);
+        this.goToMealsCalories = this.goToMealsCalories.bind(this);
     }
 
     goNextScreen() {
@@ -31,9 +31,9 @@ export class Objective extends React.Component {
         this.goNextScreen();
     }
 
-    goToDistribuicao(level) {
+    goToMealsCalories(level) {
         this.props.changeObjective(level);
-        this.props.navigation.navigate('Distribuicao')
+        this.props.navigation.navigate('MealsCalories')
     }
 
     render() {
@@ -142,7 +142,7 @@ export class Objective extends React.Component {
                     <CardTouch
                         title='Manter o peso'
                         description='Reeducação alimentar. Manter o peso com saúde.'
-                        onPress={() => { this.goToDistribuicao('maintainWeight') }}
+                        onPress={() => { this.goToMealsCalories('maintainWeight') }}
                         style={bgColorMantain}
                         descriptionStyle={txtColorMantain}
                         titleStyle={txtColorMantain}

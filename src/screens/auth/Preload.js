@@ -5,7 +5,7 @@ import { checkLogin } from 'actions/AuthActions';
 
 import { NavigationActions, StackActions } from 'react-navigation';
 import R from 'res/R';
-
+//TODO Do preload ta indo pra tela principal, mesmo sem nenhuma conta no firebase
 export class Preload extends React.Component {
 
     static navigationOptions = {
@@ -23,15 +23,16 @@ export class Preload extends React.Component {
         this.directPages = this.directPages.bind(this);
         this.props.checkLogin();
     }
-    componentDidMount() {
+    componentDidUpdate() {
         let items = R.images.login.preloadArray;
         this.state.randomBgImage = items[Math.floor(Math.random() * items.length)];
         this.setState(this.state);
-
+        this.props.checkLogin();
         this.directPages();
     }
 
     componentDidUpdate() {
+        this.props.checkLogin();
         this.directPages();
     }
 
