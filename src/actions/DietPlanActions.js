@@ -26,11 +26,13 @@ export const changeCalorieIntake = (calorieIntake) => {
 };
 
 export const changeCalorieIntakeGoal = (calorieIntakeGoal) => {
-    return {
-        type: 'changeCalorieIntakeGoal',
+    return(dispatch)=>{
+        dispatch({
+            type: 'changeCalorieIntakeGoal',
         payload: {
             calorieIntakeGoal: calorieIntakeGoal
         }
-    }
+        });
+    };
 };
 

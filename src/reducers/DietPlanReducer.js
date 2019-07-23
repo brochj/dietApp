@@ -1,8 +1,8 @@
 const initialState = {
-        objective: 'lossWeight', // lossWeight, gainMuscle, maintainWeight
-        difficulty: 'hard', //easy, medium,hard
-        calorieIntake: 0,
-        calorieIntakeGoal: 0,
+    objective: 'lossWeight', // lossWeight, gainMuscle, maintainWeight
+    difficulty: 'hard', //easy, medium,hard
+    calorieIntake: 2000,
+    calorieIntakeGoal: 0,
 }
 
 const DietPlanReducer = (state = initialState, action) => {
@@ -16,7 +16,7 @@ const DietPlanReducer = (state = initialState, action) => {
     };
 
     if (action.type == 'changeCalorieIntake') {
-        return { ...state, calorieIntake: action.payload.calorieIntake};
+        return { ...state, calorieIntake: action.payload.calorieIntake };
     };
 
     if (action.type == 'changeCalorieIntakeGoal') {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import R from 'res/R';
+import PropTypes from 'prop-types';
 
 
 /* 
@@ -28,79 +28,25 @@ export default class ChangeCalories extends React.Component {
             addText: (this.props.addText != null) ? this.props.addText : '+',
             subText: (this.props.subText != null) ? this.props.subText : '-',
         };
-
-        this.styles = StyleSheet.create({
-            container: {
-                flexDirection: 'row',
-                justifyContent: 'center',
-                backgroundColor: '#fefefe',
-                borderRadius: 5,
-                ...this.props.style,
-            },
-            touch: {
-                height: 35,
-                minWidth: 35,
-                paddingHorizontal: 12,
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: '#196A65',
-                borderRadius: 5,
-                ...this.props.touchStyle
-            },
-            addTouch: {
-                borderTopLeftRadius: 0,
-                borderBottomLeftRadius: 0,
-                ...this.props.addTouch,
-            },
-            subTouch: {
-                borderTopRightRadius: 0,
-                borderBottomRightRadius: 0,
-                ...this.props.subTouch,
-            },
-
-            addTxt: {
-                fontSize: 18,
-                color: 'white',
-                height: 35,
-                textAlign: 'center',
-                textAlignVertical: 'center',
-                ...this.props.fontAddStyle,
-            },
-            subTxt: {
-                fontSize: 18 * 1.4,
-                color: 'white',
-
-                ...this.props.fontSubStyle,
-            },
-            valueTxt: {
-                flex: 1,
-                textAlignVertical: 'center',
-                textAlign: 'center',
-                fontSize: 18,
-                paddingHorizontal: 15,
-                paddingVertical: 5,
-                ...this.props.fontValueStyle,
-            },
-        });
     }
 
     render() {
         return (
-            <View style={this.styles.container}>
+            <View style={[styles.container, this.props.style]}>
                 <TouchableOpacity
-                    style={[this.styles.touch, this.styles.subTouch]}
+                    style={[styles.touch, styles.subTouch, this.props.subTouch]}
                     onPress={this.props.onPressDecrement}
                 >
-                    <Text style={this.styles.subTxt}>{this.state.subText}­­­­­­­­</Text>
+                    <Text style={[styles.subTxt, this.props.fontSubStyle]}>{this.state.subText}­­­­­­­­</Text>
                 </TouchableOpacity>
 
-                <Text style={this.styles.valueTxt}>{this.props.value}</Text>
+                <Text style={[styles.valueTxt, this.props.fontValueStyle]}>{this.props.value}</Text>
 
                 <TouchableOpacity
-                    style={[this.styles.touch, this.styles.addTouch]}
+                    style={[styles.touch, styles.addTouch, this.props.addTouch]}
                     onPress={this.props.onPressIncrement}
                 >
-                    <Text style={this.styles.addTxt}>{this.state.addText}</Text>
+                    <Text style={[styles.addTxt, this.props.fontAddStyle]}>{this.state.addText}</Text>
                 </TouchableOpacity>
 
             </View>
@@ -108,3 +54,76 @@ export default class ChangeCalories extends React.Component {
     }
 }
 
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        backgroundColor: '#fefefe',
+        borderRadius: 5,
+        // ...this.props.style,
+    },
+    touch: {
+        height: 35,
+        minWidth: 35,
+        paddingHorizontal: 12,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#196A65',
+        borderRadius: 5,
+        // ...this.props.touchStyle
+    },
+    addTouch: {
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+        // ...this.props.addTouch,
+    },
+    subTouch: {
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0,
+        // ...this.props.subTouch,
+    },
+
+    addTxt: {
+        fontSize: 18,
+        color: 'white',
+        height: 35,
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        // ...this.props.fontAddStyle,
+    },
+    subTxt: {
+        fontSize: 18 * 1.4,
+        color: 'white',
+
+        // ...this.props.fontSubStyle,
+    },
+    valueTxt: {
+        flex: 1,
+        textAlignVertical: 'center',
+        textAlign: 'center',
+        fontSize: 18,
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+        // ...this.props.fontValueStyle,
+    },
+});
+
+ChangeCalories.defaultProps = {
+
+};
+ChangeCalories.propTypes = {
+    style: PropTypes.object,
+    subTouch: PropTypes.object,
+    addTouch: PropTypes.object,
+    fontSubStyle: PropTypes.object,
+    fontAddStyle: PropTypes.object,
+    fontValueStyle: PropTypes.object,
+    
+
+    subText: PropTypes.string,
+    addText: PropTypes.string,
+    value: PropTypes.string,
+
+    onPressDecrement: PropTypes.func,
+    onPressIncrement: PropTypes.func,
+}

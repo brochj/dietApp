@@ -5,6 +5,7 @@ import UserBasicData from './UserBasicData';
 import Difficulty from './Difficulty';
 import CaloricExpenditure from './CaloricExpenditure';
 import Objective from './Objective';
+import MealsCalories from './MealsCalories';
 
 import R from 'res/R';
 
@@ -25,9 +26,15 @@ const InitialNavigator = createStackNavigator({
     Difficulty: {
         screen: Difficulty,
     },
+    MealsCalories: {
+        screen: MealsCalories,
+    },
 
 }, {
-        initialRouteName: 'UserBasicData',
+        defaultNavigationOptions:{
+            header: null,
+        },
+        initialRouteName: 'MealsCalories',
         headerMode: 'float',
         headerLayoutPreset: 'center',
     }
