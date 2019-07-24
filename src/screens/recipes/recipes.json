@@ -1,0 +1,246 @@
+{
+    "11i1w7eLqK": {
+        "name": "Crepioca recheada com frango",
+        "description": "Além de ser muito saudável, essa receita não contém glúten. A crepioca recheada com frango pode substituir uma refeição e fica deliciosa com esse recheio acessível e gostoso. ",
+        "preparationTime": 6,
+        "servings": 1,
+        "difficulty": "Fácil",
+        "public": true,
+        "creator": "Fulano",
+        "cover": {
+            "id": "nBFmXQioPJ",
+            "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
+        },
+        "photos": {
+            "AWetCbUsOfqMLDSz": {
+                "id": "AWetCbUsOfqMLDSz",
+                "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
+            },
+            "nBFmXQioPJ": {
+                "id": "nBFmXQioPJ",
+                "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
+            }
+        },
+        "ingredients": {
+            "nghpCGQkgQ": {
+                "id": "nghpCGQkgQ",
+                "item": "farinha de coco",
+                "quantity": 100,
+                "unit": "g"
+            },
+            "aNZQphFpKcrtYf": {
+                "id": "aNZQphFpKcrtYf",
+                "item": "leite",
+                "quantity": 1,
+                "unit": "l"
+            }
+        },
+        "instructions": {
+            "XHlQjQWmnFUL": {
+                "id": "XHlQjQWmnFUL",
+                "order": 0,
+                "section": "Massa",
+                "steps": {
+                    "TvVWXJkDslRWqRRZi": {
+                        "id": "TvVWXJkDslRWqRRZi",
+                        "order": "1",
+                        "text": "Assa tal coisa a 180 graus",
+                        "tip": "Se nao tiver isso, faca com isso"
+                    },
+                    "yElQnvYDGcHJ": {
+                        "id": "yElQnvYDGcHJ",
+                        "order": "2",
+                        "text": "Assa tal coisa a 180 graus",
+                        "tip": "Se nao tiver isso, faca com isso"
+                    },
+                    "uhyBHHMwAmKkeTFszm": {
+                        "id": "uhyBHHMwAmKkeTFszm",
+                        "order": "3",
+                        "text": "Assa tal coisa a 180 graus",
+                        "tip": "Se nao tiver isso, faca com isso"
+                    }
+                }
+            },
+            "AoRNGctOfMvE": {
+                "id": "AoRNGctOfMvE",
+                "order": 0,
+                "section": "Cobertura",
+                "steps": {
+                    "GvJNYddZvuAyduaqlS": {
+                        "id": "GvJNYddZvuAyduaqlS",
+                        "order": "1",
+                        "text": "Adicionar o chocolate",
+                        "tip": "Evitar de usar toddy"
+                    },
+                    "BDzWJcsVwbRTLGKjiosd": {
+                        "id": "BDzWJcsVwbRTLGKjiosd",
+                        "order": "2",
+                        "text": "Assa tal coisa a 180 graus",
+                        "tip": "Se nao tiver isso, faca com isso"
+                    },
+                    "QesZPLYZjn": {
+                        "id": "QesZPLYZjn",
+                        "order": "3",
+                        "text": "Assa tal coisa a 180 graus",
+                        "tip": "Se nao tiver isso, faca com isso"
+                    }
+                }
+            }
+        },
+        "calories": 358,
+        "nutritionFacts": "Em desenvolvimento...",
+        "tags": {
+            "VtoxEqizKKAQZOd": {
+                "id": "VtoxEqizKKAQZOd",
+                "tag": "high protein"
+            },
+            "SSDObVWwHfRZQbeRqabM": {
+                "id": "SSDObVWwHfRZQbeRqabM",
+                "tag": "low carb"
+            },
+            "EwTWibSTpHjiZFnlykv": {
+                "id": "EwTWibSTpHjiZFnlykv",
+                "tag": "chicken"
+            },
+            "ddGapegvnBj": {
+                "id": "ddGapegvnBj",
+                "tag": "lunch"
+            },
+            "nVjJTLiDbuvlbl": {
+                "id": "nVjJTLiDbuvlbl",
+                "tag": "easy"
+            }
+        }
+    },
+    "sPofalpQuZOzQ": {
+        "name": "Crepioca recheada com frango",
+        "description": "north interest goes flight dust rule hunter breathing see nearest warn wooden captured jar shake applied can third spirit wore usual feet fed you. ",
+        "preparationTime": 26,
+        "servings": 1,
+        "difficulty": "Fácil",
+        "public": true,
+        "creator": "Fulano",
+        "cover": {
+            "id": "nBFmXQioPJ",
+            "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
+        },
+        "photos": {
+            "AWetCbUsOfqMLDSz": {
+                "id": "AWetCbUsOfqMLDSz",
+                "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
+            },
+            "nBFmXQioPJ": {
+                "id": "nBFmXQioPJ",
+                "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
+            }
+        },
+        "ingredients": {
+            "nghpCGQkgQ": {
+                "id": "nghpCGQkgQ",
+                "item": "farinha de coco",
+                "quantity": 100,
+                "unit": "g"
+            },
+            "aNZQphFpKcrtYf": {
+                "id": "aNZQphFpKcrtYf",
+                "item": "leite",
+                "quantity": 1,
+                "unit": "l"
+            },
+            "gpBsAxCwVFvJCgZEsfP": {
+                "id": "gpBsAxCwVFvJCgZEsfP",
+                "item": "Cody Robbins",
+                "quantity": 100,
+                "unit": "g"
+            },
+            "quTguhYInLpqP": {
+                "id": "quTguhYInLpqP",
+                "item": "Nicholas Park",
+                "quantity": 200,
+                "unit": "g"
+            },
+            "UVfimuGBGugH": {
+                "id": "UVfimuGBGugH",
+                "item": "Frederick Porter",
+                "quantity": 300,
+                "unit": "g"
+            }
+        },
+        "instructions": {
+            "XHlQjQWmnFUL": {
+                "id": "XHlQjQWmnFUL",
+                "order": 0,
+                "section": "Massa",
+                "steps": {
+                    "TvVWXJkDslRWqRRZi": {
+                        "id": "TvVWXJkDslRWqRRZi",
+                        "order": 0,
+                        "text": "Assa tal coisa a 180 graus",
+                        "tip": "Se nao tiver isso, faca com isso"
+                    },
+                    "yElQnvYDGcHJ": {
+                        "id": "yElQnvYDGcHJ",
+                        "order": 1,
+                        "text": "Assa tal coisa a 180 graus",
+                        "tip": "Se nao tiver isso, faca com isso"
+                    },
+                    "uhyBHHMwAmKkeTFszm": {
+                        "id": "uhyBHHMwAmKkeTFszm",
+                        "order": 2,
+                        "text": "Assa tal coisa a 180 graus",
+                        "tip": "Se nao tiver isso, faca com isso"
+                    }
+                }
+            },
+            "AoRNGctOfMvE": {
+                "id": "AoRNGctOfMvE",
+                "order": 0,
+                "section": "Cobertura",
+                "steps": {
+                    "GvJNYddZvuAyduaqlS": {
+                        "id": "GvJNYddZvuAyduaqlS",
+                        "order": 0,
+                        "text": "Adicionar o chocolate",
+                        "tip": "Evitar de usar toddy"
+                    },
+                    "BDzWJcsVwbRTLGKjiosd": {
+                        "id": "BDzWJcsVwbRTLGKjiosd",
+                        "order": 1,
+                        "text": "Assa tal coisa a 180 graus",
+                        "tip": "Se nao tiver isso, faca com isso"
+                    },
+                    "QesZPLYZjn": {
+                        "id": "QesZPLYZjn",
+                        "order": 2,
+                        "text": "Assa tal coisa a 180 graus",
+                        "tip": "Se nao tiver isso, faca com isso"
+                    }
+                }
+            }
+        },
+        "calories": 358,
+        "nutritionFacts": "Em desenvolvimento...",
+        "tags": {
+            "VtoxEqizKKAQZOd": {
+                "id": "VtoxEqizKKAQZOd",
+                "tag": "high protein"
+            },
+            "SSDObVWwHfRZQbeRqabM": {
+                "id": "SSDObVWwHfRZQbeRqabM",
+                "tag": "low carb"
+            },
+            "EwTWibSTpHjiZFnlykv": {
+                "id": "EwTWibSTpHjiZFnlykv",
+                "tag": "chicken"
+            },
+            "ddGapegvnBj": {
+                "id": "ddGapegvnBj",
+                "tag": "lunch"
+            },
+            "nVjJTLiDbuvlbl": {
+                "id": "nVjJTLiDbuvlbl",
+                "tag": "easy"
+            }
+        }
+    }
+}

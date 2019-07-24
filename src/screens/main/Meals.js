@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, Button, TouchableOpacity, ScrollView, StatusBar } from "react-native";
+import { StyleSheet, Text, View, FlatList, Button, TouchableOpacity, ScrollView, StatusBar } from "react-native";
 import R from 'res/R'
 
 import { connect } from 'react-redux';
@@ -107,7 +107,7 @@ export class Meals extends React.Component {
                 <StatusBar hidden={false} backgroundColor='#196A65' />
                 <Button title='Pesquisar receita' onPress={() => this.props.navigation.navigate('SearchRecipes')} />
 
-                <Text>email: {this.props.email}</Text>
+                {/* <Text>email: {this.props.email}</Text>
                 <Text>password: {this.props.password}</Text>
                 <Text>uid: {this.props.uid}</Text>
                 <Text>status: {this.props.status}</Text>
@@ -123,16 +123,23 @@ export class Meals extends React.Component {
                 <Text>dinnerKcal: {this.props.dinnerKcal}</Text>
                 <Text>eveningSnackKcal: {this.props.eveningSnackKcal}</Text>
                 <Text>preWorkoutKcal: {this.props.preWorkoutKcal}</Text>
-                <Text>afterTraningKcal: {this.props.afterTraningKcal}</Text>
+                <Text>afterTraningKcal: {this.props.afterTraningKcal}</Text> */}
 
 
 
 
                 <ScrollView style={styles.scrollContainer}>
+
+
+                    <FlatList
+                        data={[{ key: '1,', value: '321' }, { key: '1,', value: '321' }]}
+                        renderItem={({ item }) => <Text >{item.value}</Text>}
+                    />
+
                     <View style={styles.cardMeal}>
                         <View style={styles.titleRowView}>
                             <Text style={styles.mealTitleTxt}>{this.state.stringData.breakfast.title}</Text>
-                            <Text style={styles.mealQuantityTxt}>0 Refeições</Text>
+                            <Text style={styles.mealQuantityTxt}>5 Refeições</Text>
                         </View>
 
                         <MealsAccordion sections={this.state.breakfastRecipes} />

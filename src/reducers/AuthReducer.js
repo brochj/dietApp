@@ -1,7 +1,7 @@
 const initialState = {
     // name: 'Broch',
-    email: '',
-    password: '',
+    email: 'broch@gmail.com',
+    password: '123456',
     uid: '',
     status: '', //loggedIn or loggedOut
 };

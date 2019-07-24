@@ -156,7 +156,6 @@ export class Difficulty extends React.Component {
 
         return (
             <View style={styles.body}>
-                
                 <View style={styles.imageView}>
                     <Image source={genderImage} style={styles.genderImage} />
                     <Image source={genderImage1} style={styles.genderImage1} />

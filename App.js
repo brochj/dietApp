@@ -123,7 +123,7 @@ const AppNavigator = createStackNavigator({
         }
     },
 }, {
-        initialRouteName: 'Preload',
+        initialRouteName: 'SearchRecipes',
         defaultNavigationOptions: {
             header: null,
 

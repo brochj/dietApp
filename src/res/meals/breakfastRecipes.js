@@ -35,7 +35,7 @@ const breakfastRecipes = [
         calories: 180,
         image: R.images.paodeaveia,
     },
-    
+
     {
         name: 'Pão de aveia com manteiga',
         preparationTime: 6,
