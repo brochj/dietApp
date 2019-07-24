@@ -52,7 +52,7 @@ export class SignUp extends React.Component {
                         style={[styles.input, styles.inputEmail]}
                         autoFocus={true}
                         blurOnSubmit={false}
-                        placeholder='seu melhor email'
+                        placeholder='Seu melhor email'
                         returnKeyType='next'
                         keyboardType='email-address'
                         onChangeText={this.props.changeEmail}

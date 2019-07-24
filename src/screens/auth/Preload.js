@@ -2,9 +2,11 @@ import React from "react";
 import { StyleSheet, Text, View, ImageBackground, StatusBar } from "react-native";
 import { connect } from 'react-redux';
 import { checkLogin } from 'actions/AuthActions';
+import { ThemeContext } from 'res/themeContext';
 
 import { NavigationActions, StackActions } from 'react-navigation';
 import R from 'res/R';
+import { getRandomItem } from "scripts/MathScripts";
 //TODO Do preload ta indo pra tela principal, mesmo sem nenhuma conta no firebase
 export class Preload extends React.Component {
 
@@ -13,9 +15,12 @@ export class Preload extends React.Component {
     }
 
     constructor(props) {
+        let items = R.images.login.preloadArray;
+        randomBgImage = getRandomItem(items);
+
         super(props);
         this.state = {
-            bgImage: null,
+            randomBgImage: randomBgImage,
         };
         // deixar esse stack acessivel nas camadas mais internas do App
         window.globalNavigator = this.props.navigation;
@@ -23,16 +28,12 @@ export class Preload extends React.Component {
         this.directPages = this.directPages.bind(this);
         this.props.checkLogin();
     }
+
     componentDidUpdate() {
-        let items = R.images.login.preloadArray;
-        this.state.randomBgImage = items[Math.floor(Math.random() * items.length)];
-        this.setState(this.state);
-        this.props.checkLogin();
         this.directPages();
     }
 
-    componentDidUpdate() {
-        this.props.checkLogin();
+    componentDidMount() {
         this.directPages();
     }
 
@@ -45,7 +46,7 @@ export class Preload extends React.Component {
                     actions: [
                         NavigationActions.navigate({ routeName: 'HomeTab' })
                     ]
-                }))
+                }));
                 break;
             case 'loggedOut':
                 this.props.navigation.dispatch(StackActions.reset({
@@ -53,7 +54,7 @@ export class Preload extends React.Component {
                     actions: [
                         NavigationActions.navigate({ routeName: 'Home' })
                     ]
-                }))
+                }));
                 break;
         }
     }
@@ -64,7 +65,8 @@ export class Preload extends React.Component {
                 <StatusBar backgroundColor="rgba(0,0,0,.35)" barStyle="light-content" translucent={true} />
                 <View style={styles.container}>
                     <View style={styles.titleView}>
-                        <Text style={styles.title}>Diet App </Text>
+                        <Text style={styles.title}>Diet App</Text>
+                        <Text style={styles.loadingTxt}>carregando...</Text>
                     </View>
                 </View>
 
@@ -85,20 +87,25 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
-        backgroundColor: 'rgba(0,0,0,0.3)',
+        backgroundColor: 'rgba(0,0,0,0.4)',
     },
     titleView: {
-
     },
     title: {
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        fontSize: 60,
-        fontWeight: 'bold',
+        ...R.styles.basicText,
+        ...R.styles.largeTitle,
+        color: 'white',
+    },
+    loadingTxt: {
+        ...R.styles.basicText,
+        ...R.styles.body,
         color: 'white',
     },
 
 });
+
+
+Preload.contextType = ThemeContext;
 
 const mapStateToProps = (state) => {
     return {

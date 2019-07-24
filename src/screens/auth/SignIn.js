@@ -60,7 +60,7 @@ export class SignIn extends React.Component {
                     style={[styles.input, styles.inputSenha]}
                     secureTextEntry={true}
                     maxLength={20}
-                    placeholder='Digite uma senha'
+                    placeholder='Sua senha super secreta'
                     returnKeyLabel='testes'
                     value={this.props.password}
                     onChangeText={this.props.changePassword}

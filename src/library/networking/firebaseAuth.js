@@ -59,13 +59,9 @@ export async function signOut() {
     await firebase.auth().signOut();
 }
 
-export async function isUserSignedIn() {
+export async function isUserSignedIn(callback) {
     await firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            return user;
-        } else {
-            return false;
-        }
+        callback(user);
     });
 }
 

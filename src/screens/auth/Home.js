@@ -13,7 +13,7 @@ import {
 import { connect } from 'react-redux';
 import { signOutAction } from 'actions/AuthActions';
 import R from 'res/R';
-
+//TODO arrumar o s styles com ...R.styles.....
 export class Home extends React.Component {
 
     static navigationOptions = {
@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'black',
-        // paddingBottom: 5,
     },
     imageBg: {
         width: '100%',
@@ -195,5 +194,5 @@ const mapStateToProps = (state) => {
     };
 };
 
-const HomeConnect = connect(mapStateToProps, {signOutAction })(Home);
+const HomeConnect = connect(mapStateToProps, { signOutAction })(Home);
 export default HomeConnect;

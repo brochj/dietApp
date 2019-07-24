@@ -11,26 +11,27 @@ export const signOutAction = () => {
         }
     };
 };
-
+//TODO ver pq com isUserSignedIn() não ta funcionando?
 export const checkLogin = () => {
     return (dispatch) => {
-        let user = isUserSignedIn();
-        if (user) {
-            dispatch({
-                type: 'changeUid',
-                payload: {
-                    uid: user.uid,
-                }
-            });
-        } else {
-            dispatch({
-                type: 'changeStatus',
-                payload: {
-                    status: 'loggedOut',
-                }
-            });
-        }
-    }
+        isUserSignedIn((user) => {
+            if (user) {
+                dispatch({
+                    type: 'changeUid',
+                    payload: {
+                        uid: user.uid,
+                    }
+                });
+            } else {
+                dispatch({
+                    type: 'changeStatus',
+                    payload: {
+                        status: 'loggedOut',
+                    }
+                });
+            };
+        });
+    };
 };
 
 export const signUpAction = (email, password) => {
