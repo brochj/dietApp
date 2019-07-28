@@ -40,7 +40,7 @@ export async function saveUserDietPlan(data) {
     });
 
     //TODO melhorar esse parte, ta criando varias receitas, nao to conseguindo verificar se ja exist o no meals
-    await firebase.database().ref('users').child(uid).child('dietPlan/Meals').once("value").then( snapshot => {
+    await firebase.database().ref('users').child(uid).child('dietPlan/Meals').once("value").then(snapshot => {
         if (!snapshot.hasChildren()) {
             let reference = firebase.database().ref('users').child(uid).child('dietPlan/meals');
 
@@ -86,4 +86,112 @@ export async function saveUserDietPlan(data) {
         };
 
     });
+};
+
+export async function getRecipesList() {
+    await firebase.database().ref('recipes').once('value').then((snapshot) => {
+        let recipesList = [];
+        snapshot.forEach((childItem) => {
+            let d = childItem.val();
+            photos = [];
+            for (photo in d.photos) {
+                photos.push(
+                    d.photos[photo]
+                )
+            };
+
+            let ingredients = [];
+            for (ingredient in d.ingredients) {
+                ingredients.push(
+                    d.ingredients[ingredient]
+                )
+            };
+
+            let instructions = [];
+            for (instruction in d.instructions) {
+                instructions.push(
+                    d.instructions[instruction]
+                )
+            };
+
+            let tags = [];
+            for (tag in d.tags) {
+                tags.push(
+                    d.tags[tag]
+                )
+            };
+
+            recipesList.push({
+                key: childItem.key,
+                name: d.name,
+                description: d.description,
+                preparationTime: d.preparationTime,
+                servings: d.servings,
+                difficulty: d.difficulty,
+                public: d.public,
+                calories: d.calories,
+                creator: d.creator,
+                calories: d.calories,
+                nutritionFacts: d.nutritionFacts,
+                cover: d.cover,
+                photos,
+                ingredients,
+                instructions,
+                tags,
+            });
+
+        });
+    });
+};
+
+export async function getRecipeData(recipeKey = '11i1w7eLqK') {
+    await firebase.database().ref(`recipes/${recipeKey}`).once('value').then((snapshot) => {
+        let d = snapshot.val();
+        let photos = [];
+        for (photo in d.photos) {
+            photos.push(
+                d.photos[photo]
+            )
+        };
+
+        let ingredients = [];
+        for (ingredient in d.ingredients) {
+            ingredients.push(
+                d.ingredients[ingredient]
+            )
+        };
+
+        let instructions = [];
+        for (instruction in d.instructions) {
+            instructions.push(
+                d.instructions[instruction]
+            )
+        };
+
+        let tags = [];
+        for (tag in d.tags) {
+            tags.push(
+                d.tags[tag]
+            )
+        };
+        recipeData = {
+            key: snapshot.key,
+            name: d.name,
+            description: d.description,
+            preparationTime: d.preparationTime,
+            servings: d.servings,
+            difficulty: d.difficulty,
+            public: d.public,
+            calories: d.calories,
+            creator: d.creator,
+            calories: d.calories,
+            nutritionFacts: d.nutritionFacts,
+            cover: d.cover,
+            photos,
+            ingredients,
+            instructions,
+            tags,
+        }
+    });
+    return recipeData;
 };

@@ -16,35 +16,58 @@ const initialState = {
 
 const DietPlanReducer = (state = initialState, action) => {
 
-    if (action.type == 'changeObjective') {
-        return { ...state, objective: action.payload.objective };
+    switch (action.type) {
+        case 'changeObjective':
+            return { ...state, objective: action.payload.objective };
+        case 'changeDifficulty':
+            return { ...state, difficulty: action.payload.difficulty };
+        case 'changeCalorieIntake':
+            return { ...state, calorieIntake: action.payload.calorieIntake };
+        case 'changeCalorieIntakeGoal':
+            return { ...state, calorieIntakeGoal: action.payload.calorieIntakeGoal };
+        case 'changeMealsCalories':
+            return {
+                ...state,
+                breakfastKcal: action.payload.breakfastKcal,
+                morningSnackKcal: action.payload.morningSnackKcal,
+                lunchKcal: action.payload.lunchKcal,
+                afternoonSnackKcal: action.payload.afternoonSnackKcal,
+                dinnerKcal: action.payload.dinnerKcal,
+                eveningSnackKcal: action.payload.eveningSnackKcal,
+                preWorkoutKcal: action.payload.preWorkoutKcal,
+                afterTraningKcal: action.payload.afterTraningKcal,
+            };
     };
 
-    if (action.type == 'changeDifficulty') {
-        return { ...state, difficulty: action.payload.difficulty };
-    };
+    // if (action.type == 'changeObjective') {
+    //     return { ...state, objective: action.payload.objective };
+    // };
 
-    if (action.type == 'changeCalorieIntake') {
-        return { ...state, calorieIntake: action.payload.calorieIntake };
-    };
+    // if (action.type == 'changeDifficulty') {
+    //     return { ...state, difficulty: action.payload.difficulty };
+    // };
 
-    if (action.type == 'changeCalorieIntakeGoal') {
-        return { ...state, calorieIntakeGoal: action.payload.calorieIntakeGoal };
-    };
+    // if (action.type == 'changeCalorieIntake') {
+    //     return { ...state, calorieIntake: action.payload.calorieIntake };
+    // };
 
-    if (action.type == 'changeMealsCalories') {
-        return {
-            ...state,
-            breakfastKcal: action.payload.breakfastKcal,
-            morningSnackKcal: action.payload.morningSnackKcal,
-            lunchKcal: action.payload.lunchKcal,
-            afternoonSnackKcal: action.payload.afternoonSnackKcal,
-            dinnerKcal: action.payload.dinnerKcal,
-            eveningSnackKcal: action.payload.eveningSnackKcal,
-            preWorkoutKcal: action.payload.preWorkoutKcal,
-            afterTraningKcal: action.payload.afterTraningKcal,
-        };
-    };
+    // if (action.type == 'changeCalorieIntakeGoal') {
+    //     return { ...state, calorieIntakeGoal: action.payload.calorieIntakeGoal };
+    // };
+
+    // if (action.type == 'changeMealsCalories') {
+    //     return {
+    //         ...state,
+    //         breakfastKcal: action.payload.breakfastKcal,
+    //         morningSnackKcal: action.payload.morningSnackKcal,
+    //         lunchKcal: action.payload.lunchKcal,
+    //         afternoonSnackKcal: action.payload.afternoonSnackKcal,
+    //         dinnerKcal: action.payload.dinnerKcal,
+    //         eveningSnackKcal: action.payload.eveningSnackKcal,
+    //         preWorkoutKcal: action.payload.preWorkoutKcal,
+    //         afterTraningKcal: action.payload.afterTraningKcal,
+    //     };
+    // };
 
     return state;
 };

@@ -1,15 +1,5 @@
 import React from "react";
-import {
-    StyleSheet,
-    Text,
-    View,
-    ImageBackground,
-    TouchableHighlight,
-    Image,
-    Dimensions,
-    StatusBar,
-    Platform
-} from "react-native";
+import { StyleSheet, Text, View, ImageBackground, TouchableHighlight, Image, Dimensions, StatusBar, Platform } from "react-native";
 import { connect } from 'react-redux';
 import { signOutAction } from 'actions/AuthActions';
 import R from 'res/R';
@@ -26,7 +16,7 @@ export class Home extends React.Component {
         this.state = {
         };
         this.signUp = this.signUp.bind(this);
-        this.login = this.login.bind(this);
+        this.signIn = this.signIn.bind(this);
         signOutAction();
     }
 
@@ -34,7 +24,7 @@ export class Home extends React.Component {
         this.props.navigation.navigate('SignUp');
     }
 
-    login() {
+    signIn() {
         this.props.navigation.navigate('SignIn');
 
     }
@@ -64,7 +54,7 @@ export class Home extends React.Component {
                             <TouchableHighlight
                                 underlayColor='#ccc'
                                 style={styles.buttonLogin}
-                                onPress={this.login}
+                                onPress={this.signIn}
                             >
                                 <Text style={styles.buttonTxt}>Login</Text>
 
@@ -94,8 +84,6 @@ const styles = StyleSheet.create({
         flex: 1,
         borderTopRightRadius: 45,
         borderTopLeftRadius: 45,
-        // borderBottomRightRadius: 45,
-        // borderBottomLeftRadius: 45,
     },
     body: {
         flex: 1,
@@ -133,15 +121,7 @@ const styles = StyleSheet.create({
         height: 60,
         width: 300,
         borderTopLeftRadius: 20,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-
-        elevation: 4,
+        ...R.styles.shadow,
     },
     buttonLogin: {
         justifyContent: 'center',
@@ -151,14 +131,7 @@ const styles = StyleSheet.create({
         width: 300,
         borderBottomRightRadius: 20,
         marginTop: 10,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 4,
+        ...R.styles.shadow,
 
     },
     buttonTxt: {
@@ -179,9 +152,7 @@ const styles = StyleSheet.create({
         fontSize: 17,
         marginTop: 25,
         paddingHorizontal: 20,
-        // textShadowColor: 'rgba(0, 0, 0, 0.5)',
-        // textShadowOffset: { width: -2, height: 1 },
-        // textShadowRadius: 2
+        
     },
 });
 

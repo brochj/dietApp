@@ -5,19 +5,34 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Tags from "react-native-tags";
 import R from 'res/R'
 
+import { connect } from 'react-redux';
+import { ThemeContext } from 'res/themeContext';
+import { getRecipe } from 'actions/RecipeActions';
 
-import IngredientsSection from "library/components/IngredientsSection";
-import ListItem from './ListItem';
+
+import IngredientsSection from "library/components/ShowRecipe/IngredientsSection";
+import ListItem from 'components/SearchRecipes/ListItem';
 import firebase from "library/networking/FirebaseConnection";
+import { getRecipeData } from "library/networking/firebaseDatabase";
 
 
 
 
 
-export default class ShowRecipe extends React.Component {
+export class ShowRecipe extends React.Component {
     constructor(props) {
         super(props);
+        getRecipeData()
+            .then((data) => {
+                this.state.recipeData = data;
+                this.state.tags = [];
+                data.tags.map((item) => {
+                    this.state.tags.push(item.tag)
+                })
+                this.setState(this.state);
+            });
         this.state = {
+            recipeData: null,
             // recipeKey: this.props.navigation.getParam('recipeKey'),
             recipeKey: '11i1w7eLqK', //TODO PARA DEBUGG, VOltar co alinha de cima depois
             name: null,
@@ -27,7 +42,7 @@ export default class ShowRecipe extends React.Component {
             coverPhoto: null,
             description: null,
             servings: null,
-            tags: ["Crepioca", "High Protein", "Almoço", "Jantar", "Fácil", "Low Carb", "Baixo Carboidrato", "Rápido", "Frango", '100-300 kcal'],
+            tags: ["Crepioca"],
             ingredients: [
                 {
                     title: 'Crepioca',
@@ -67,80 +82,45 @@ export default class ShowRecipe extends React.Component {
             ],
         };
         this.goNextScreen = this.goNextScreen.bind(this);
-        this.addMeal = this.addMeal.bind(this);
-
-
-        //verifica se tem usuario logado no sistema
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                firebase.database().ref('recipes')
-                    // .child(this.props.navigation.getParam('recipeKey'))
-                    .child(this.state.recipeKey)  //TODO PARA DEBUGG, VOltar co alinha de cima depois
-                    .once('value').then((snapshot) => {
-                        // alert(JSON.stringify(snapshot));
-                        let s = this.state;
-                        s.key = snapshot.key;
-                        s.name = snapshot.val().name;
-                        s.calories = snapshot.val().calories;
-                        s.preparationTime = snapshot.val().preparationTime;
-                        s.difficulty = snapshot.val().difficulty;
-                        s.description = snapshot.val().description;
-                        s.servings = snapshot.val().servings;
-                        this.setState(s);
-                    });
-                //Pegando a imagem de capa
-                firebase.storage().ref('recipes').child(this.state.recipeKey).child('capa.jpg')
-                    .getDownloadURL()
-                    .then((url) => {
-                        this.state.coverPhoto = url;
-                        this.setState(this.state);
-                    })
-
-
-            } else {
-                this.props.navigation.navigate('Home')
-            }
 
 
 
-        });
-
-        //OBS: nao tem problema em ter varios olheiros, pois são informaçoes diferentes, nós diferentes...
 
     }
+    componentDidUpdate() {
+        // getRecipeData()
+        //     .then((data) => {
+        //         this.state.recipeData = data
 
+        //         this.setState(this.state);
+        //     })
+    }
 
     componentDidMount() {
+        // getRecipeData()
+        //     .then((data) => {
+        //         this.state.recipeData = data
 
+        //         this.setState(this.state);
+        //     })
     }
 
 
     goNextScreen() {
         this.saveMealCalories();
-        this.props.navigation.navigate('teste', {
-            age: this.props.navigation.getParam('age'),
-            weight: this.props.navigation.getParam('weight'),
-            height: this.props.navigation.getParam('height'),
-            gender: this.props.navigation.getParam('gender'),
-            activityLevel: this.props.navigation.getParam('activityLevel'),
-            calcutedKcal: this.props.navigation.getParam('calcutedKcal'),
-            objective: this.props.navigation.getParam('objective'),
-            dificultyLevel: this.props.navigation.getParam('dificultyLevel'),
-            mealCalories: this.props.navigation.getParam('mealCalories'),
-
-        })
+        this.props.navigation.navigate('teste')
     }
 
-    addMeal() {
-    }
+
 
 
 
     render() {
-        // Espera carregar
-        if (this.state.calories == null) {
-            return (<View style={styles.styleName}>
 
+        // Espera carregar
+        if (this.state.recipeData == null) {
+            return (<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <Text style={styles.txtName}>Carregando...</Text>
             </View>)
         }
 
@@ -151,15 +131,16 @@ export default class ShowRecipe extends React.Component {
 
 
                 <ScrollView style={styles.scrollContainer} >
-                    <Image source={{ uri: this.state.coverPhoto }} style={styles.recipeImage} />
+                    <Text>{JSON.stringify(this.state.recipeData, null, 3)}</Text>
+                    <Image source={{ uri: this.state.recipeData.cover.url }} style={styles.recipeImage} />
                     <View style={styles.headerView}>
-                        <Text style={styles.nameTxt}>{this.state.name}</Text>
+                        <Text style={styles.nameTxt}>{this.state.recipeData.name}</Text>
                         <View style={styles.rowView}>
                             <MaterialCommunityIcons name='fire' color='#196a65' size={30} />
-                            <Text style={styles.caloriesTxt}>{this.state.calories} kcal</Text>
+                            <Text style={styles.caloriesTxt}>{this.state.recipeData.calories} kcal</Text>
                         </View>
                         <View style={styles.separator} />
-                        <Text style={styles.descriptionTxt}>{this.state.description}</Text>
+                        <Text style={styles.descriptionTxt}>{this.state.recipeData.description}</Text>
 
                         <View style={styles.separator} />
 
@@ -168,22 +149,22 @@ export default class ShowRecipe extends React.Component {
                             <View style={styles.infoView}>
                                 <View style={[styles.infoInsideView, styles.infoInsideLeftView]}>
                                     <Icon name='timer' size={25} color='#196A65' />
-                                    <Text style={styles.infoTxt}>{this.state.preparationTime} min</Text>
+                                    <Text style={styles.infoTxt}>{this.state.recipeData.preparationTime} min</Text>
                                 </View>
                                 <View style={[styles.infoInsideView, styles.infoInsideLeftView]}>
                                     <Icon name='group' size={25} color='#196A65' />
-                                    <Text style={styles.infoTxt}>Serve {this.state.servings} pessoa(s)</Text>
+                                    <Text style={styles.infoTxt}>Serve {this.state.recipeData.servings} pessoa(s)</Text>
                                 </View>
                             </View>
 
                             <View style={styles.infoView}>
                                 <View style={[styles.infoInsideView, styles.infoInsideRightView]}>
                                     <Icon name='shopping-cart' size={25} color='#196A65' />
-                                    <Text style={styles.infoTxt}>{this.state.preparationTime} ingredientes</Text>
+                                    <Text style={styles.infoTxt}>{this.state.recipeData.preparationTime} ingredientes</Text>
                                 </View>
                                 <View style={[styles.infoInsideView, styles.infoInsideRightView]}>
                                     <Icon name='network-check' size={25} color='#196A65' />
-                                    <Text style={styles.infoTxt}>{this.state.difficulty}</Text>
+                                    <Text style={styles.infoTxt}>{this.state.recipeData.difficulty}</Text>
                                 </View>
 
                             </View>
@@ -395,3 +376,18 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
 });
+
+ShowRecipe.contextType = ThemeContext;
+
+const mapStateToProps = (state) => {
+    return {
+        email: state.auth.email,
+        password: state.auth.password,
+        uid: state.auth.uid,
+        status: state.auth.status,
+
+    };
+};
+
+const ShowRecipeConnect = connect(mapStateToProps, { getRecipe })(ShowRecipe);
+export default ShowRecipeConnect;

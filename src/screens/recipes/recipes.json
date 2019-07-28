@@ -8,28 +8,28 @@
         "public": true,
         "creator": "Fulano",
         "cover": {
-            "id": "nBFmXQioPJ",
+            "key": "nBFmXQioPJ",
             "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
         },
         "photos": {
             "AWetCbUsOfqMLDSz": {
-                "id": "AWetCbUsOfqMLDSz",
+                "key": "AWetCbUsOfqMLDSz",
                 "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
             },
             "nBFmXQioPJ": {
-                "id": "nBFmXQioPJ",
+                "key": "nBFmXQioPJ",
                 "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
             }
         },
         "ingredients": {
             "nghpCGQkgQ": {
-                "id": "nghpCGQkgQ",
+                "key": "nghpCGQkgQ",
                 "item": "farinha de coco",
                 "quantity": 100,
                 "unit": "g"
             },
             "aNZQphFpKcrtYf": {
-                "id": "aNZQphFpKcrtYf",
+                "key": "aNZQphFpKcrtYf",
                 "item": "leite",
                 "quantity": 1,
                 "unit": "l"
@@ -37,24 +37,24 @@
         },
         "instructions": {
             "XHlQjQWmnFUL": {
-                "id": "XHlQjQWmnFUL",
+                "key": "XHlQjQWmnFUL",
                 "order": 0,
                 "section": "Massa",
                 "steps": {
                     "TvVWXJkDslRWqRRZi": {
-                        "id": "TvVWXJkDslRWqRRZi",
+                        "key": "TvVWXJkDslRWqRRZi",
                         "order": "1",
                         "text": "Assa tal coisa a 180 graus",
                         "tip": "Se nao tiver isso, faca com isso"
                     },
                     "yElQnvYDGcHJ": {
-                        "id": "yElQnvYDGcHJ",
+                        "key": "yElQnvYDGcHJ",
                         "order": "2",
                         "text": "Assa tal coisa a 180 graus",
                         "tip": "Se nao tiver isso, faca com isso"
                     },
                     "uhyBHHMwAmKkeTFszm": {
-                        "id": "uhyBHHMwAmKkeTFszm",
+                        "key": "uhyBHHMwAmKkeTFszm",
                         "order": "3",
                         "text": "Assa tal coisa a 180 graus",
                         "tip": "Se nao tiver isso, faca com isso"
@@ -62,24 +62,24 @@
                 }
             },
             "AoRNGctOfMvE": {
-                "id": "AoRNGctOfMvE",
+                "key": "AoRNGctOfMvE",
                 "order": 0,
                 "section": "Cobertura",
                 "steps": {
                     "GvJNYddZvuAyduaqlS": {
-                        "id": "GvJNYddZvuAyduaqlS",
+                        "key": "GvJNYddZvuAyduaqlS",
                         "order": "1",
                         "text": "Adicionar o chocolate",
                         "tip": "Evitar de usar toddy"
                     },
                     "BDzWJcsVwbRTLGKjiosd": {
-                        "id": "BDzWJcsVwbRTLGKjiosd",
+                        "key": "BDzWJcsVwbRTLGKjiosd",
                         "order": "2",
                         "text": "Assa tal coisa a 180 graus",
                         "tip": "Se nao tiver isso, faca com isso"
                     },
                     "QesZPLYZjn": {
-                        "id": "QesZPLYZjn",
+                        "key": "QesZPLYZjn",
                         "order": "3",
                         "text": "Assa tal coisa a 180 graus",
                         "tip": "Se nao tiver isso, faca com isso"
@@ -91,23 +91,23 @@
         "nutritionFacts": "Em desenvolvimento...",
         "tags": {
             "VtoxEqizKKAQZOd": {
-                "id": "VtoxEqizKKAQZOd",
+                "key": "VtoxEqizKKAQZOd",
                 "tag": "high protein"
             },
             "SSDObVWwHfRZQbeRqabM": {
-                "id": "SSDObVWwHfRZQbeRqabM",
+                "key": "SSDObVWwHfRZQbeRqabM",
                 "tag": "low carb"
             },
             "EwTWibSTpHjiZFnlykv": {
-                "id": "EwTWibSTpHjiZFnlykv",
+                "key": "EwTWibSTpHjiZFnlykv",
                 "tag": "chicken"
             },
             "ddGapegvnBj": {
-                "id": "ddGapegvnBj",
+                "key": "ddGapegvnBj",
                 "tag": "lunch"
             },
             "nVjJTLiDbuvlbl": {
-                "id": "nVjJTLiDbuvlbl",
+                "key": "nVjJTLiDbuvlbl",
                 "tag": "easy"
             }
         }
@@ -121,46 +121,46 @@
         "public": true,
         "creator": "Fulano",
         "cover": {
-            "id": "nBFmXQioPJ",
+            "key": "nBFmXQioPJ",
             "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
         },
         "photos": {
             "AWetCbUsOfqMLDSz": {
-                "id": "AWetCbUsOfqMLDSz",
+                "key": "AWetCbUsOfqMLDSz",
                 "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
             },
             "nBFmXQioPJ": {
-                "id": "nBFmXQioPJ",
+                "key": "nBFmXQioPJ",
                 "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
             }
         },
         "ingredients": {
             "nghpCGQkgQ": {
-                "id": "nghpCGQkgQ",
+                "key": "nghpCGQkgQ",
                 "item": "farinha de coco",
                 "quantity": 100,
                 "unit": "g"
             },
             "aNZQphFpKcrtYf": {
-                "id": "aNZQphFpKcrtYf",
+                "key": "aNZQphFpKcrtYf",
                 "item": "leite",
                 "quantity": 1,
                 "unit": "l"
             },
             "gpBsAxCwVFvJCgZEsfP": {
-                "id": "gpBsAxCwVFvJCgZEsfP",
+                "key": "gpBsAxCwVFvJCgZEsfP",
                 "item": "Cody Robbins",
                 "quantity": 100,
                 "unit": "g"
             },
             "quTguhYInLpqP": {
-                "id": "quTguhYInLpqP",
+                "key": "quTguhYInLpqP",
                 "item": "Nicholas Park",
                 "quantity": 200,
                 "unit": "g"
             },
             "UVfimuGBGugH": {
-                "id": "UVfimuGBGugH",
+                "key": "UVfimuGBGugH",
                 "item": "Frederick Porter",
                 "quantity": 300,
                 "unit": "g"
@@ -168,24 +168,24 @@
         },
         "instructions": {
             "XHlQjQWmnFUL": {
-                "id": "XHlQjQWmnFUL",
+                "key": "XHlQjQWmnFUL",
                 "order": 0,
                 "section": "Massa",
                 "steps": {
                     "TvVWXJkDslRWqRRZi": {
-                        "id": "TvVWXJkDslRWqRRZi",
+                        "key": "TvVWXJkDslRWqRRZi",
                         "order": 0,
                         "text": "Assa tal coisa a 180 graus",
                         "tip": "Se nao tiver isso, faca com isso"
                     },
                     "yElQnvYDGcHJ": {
-                        "id": "yElQnvYDGcHJ",
+                        "key": "yElQnvYDGcHJ",
                         "order": 1,
                         "text": "Assa tal coisa a 180 graus",
                         "tip": "Se nao tiver isso, faca com isso"
                     },
                     "uhyBHHMwAmKkeTFszm": {
-                        "id": "uhyBHHMwAmKkeTFszm",
+                        "key": "uhyBHHMwAmKkeTFszm",
                         "order": 2,
                         "text": "Assa tal coisa a 180 graus",
                         "tip": "Se nao tiver isso, faca com isso"
@@ -193,24 +193,24 @@
                 }
             },
             "AoRNGctOfMvE": {
-                "id": "AoRNGctOfMvE",
+                "key": "AoRNGctOfMvE",
                 "order": 0,
                 "section": "Cobertura",
                 "steps": {
                     "GvJNYddZvuAyduaqlS": {
-                        "id": "GvJNYddZvuAyduaqlS",
+                        "key": "GvJNYddZvuAyduaqlS",
                         "order": 0,
                         "text": "Adicionar o chocolate",
                         "tip": "Evitar de usar toddy"
                     },
                     "BDzWJcsVwbRTLGKjiosd": {
-                        "id": "BDzWJcsVwbRTLGKjiosd",
+                        "key": "BDzWJcsVwbRTLGKjiosd",
                         "order": 1,
                         "text": "Assa tal coisa a 180 graus",
                         "tip": "Se nao tiver isso, faca com isso"
                     },
                     "QesZPLYZjn": {
-                        "id": "QesZPLYZjn",
+                        "key": "QesZPLYZjn",
                         "order": 2,
                         "text": "Assa tal coisa a 180 graus",
                         "tip": "Se nao tiver isso, faca com isso"
@@ -222,23 +222,23 @@
         "nutritionFacts": "Em desenvolvimento...",
         "tags": {
             "VtoxEqizKKAQZOd": {
-                "id": "VtoxEqizKKAQZOd",
+                "key": "VtoxEqizKKAQZOd",
                 "tag": "high protein"
             },
             "SSDObVWwHfRZQbeRqabM": {
-                "id": "SSDObVWwHfRZQbeRqabM",
+                "key": "SSDObVWwHfRZQbeRqabM",
                 "tag": "low carb"
             },
             "EwTWibSTpHjiZFnlykv": {
-                "id": "EwTWibSTpHjiZFnlykv",
+                "key": "EwTWibSTpHjiZFnlykv",
                 "tag": "chicken"
             },
             "ddGapegvnBj": {
-                "id": "ddGapegvnBj",
+                "key": "ddGapegvnBj",
                 "tag": "lunch"
             },
             "nVjJTLiDbuvlbl": {
-                "id": "nVjJTLiDbuvlbl",
+                "key": "nVjJTLiDbuvlbl",
                 "tag": "easy"
             }
         }

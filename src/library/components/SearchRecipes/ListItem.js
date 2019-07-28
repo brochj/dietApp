@@ -1,17 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Button } from "react-native";
-import MealsAccordion from "library/components/MealsAccordion";
-
-
 
 
 export default class ListItem extends React.Component {
     constructor(props) {
         super(props);
-        // let bg = 'green';
-        // if (this.props.data.type == 'despesa') {
-        //     bg = 'red'
-        // }
+
         this.state = {
             bg: '#eee',
             image: this.props.data.image
@@ -23,7 +17,7 @@ export default class ListItem extends React.Component {
             <View style={styles.container}>
                 <Image source={{ uri: this.props.data.image }} style={styles.image} />
                 <View style={styles.column}>
-
+                    <Text>{JSON.stringify(this.props.data, null, 3)}</Text>
                     <View style={[styles.body, { backgroundColor: this.state.bg }]}>
                         <Text >{this.props.data.name}</Text>
                         <Text >R$ {this.props.data.calories}</Text>
