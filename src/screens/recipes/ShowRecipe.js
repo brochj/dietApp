@@ -10,10 +10,13 @@ import { ThemeContext } from 'res/themeContext';
 import { getRecipe } from 'actions/RecipeActions';
 
 
-import IngredientsSection from "library/components/ShowRecipe/IngredientsSection";
+import IngredientsSection from "components/ShowRecipe/IngredientsSection";
+import IngredientItem from "components/ShowRecipe/IngredientItem";
+import StepsSection from "components/ShowRecipe/StepsSection";
 import ListItem from 'components/SearchRecipes/ListItem';
-import firebase from "library/networking/FirebaseConnection";
-import { getRecipeData } from "library/networking/firebaseDatabase";
+import firebase from "networking/FirebaseConnection";
+import { getRecipeData } from "networking/firebaseDatabase";
+import { capitalize } from 'scripts/StringScripts'
 
 
 
@@ -25,61 +28,33 @@ export class ShowRecipe extends React.Component {
         getRecipeData()
             .then((data) => {
                 this.state.recipeData = data;
+
                 this.state.tags = [];
                 data.tags.map((item) => {
                     this.state.tags.push(item.tag)
+                });
+
+
+                let steps = []
+                data.instructions.forEach(instruction => {
+
+                    let item = {
+                        title: instruction['section'],
+                        data: instruction['steps']
+                    };
+                    steps.push(item)
                 })
+                data.instructions = steps;
+
                 this.setState(this.state);
             });
         this.state = {
             recipeData: null,
             // recipeKey: this.props.navigation.getParam('recipeKey'),
             recipeKey: '11i1w7eLqK', //TODO PARA DEBUGG, VOltar co alinha de cima depois
-            name: null,
-            calories: null,
-            preparationTime: null,
-            difficulty: null,
             coverPhoto: null,
-            description: null,
-            servings: null,
-            tags: ["Crepioca"],
-            ingredients: [
-                {
-                    title: 'Crepioca',
-                    data: [
-                        { key: '1', item: '1 ovo', },
-                        { key: '2', item: '2 colheres de sopa de tapioca', },
-                        { key: '3', item: 'Sal a gosto' }
 
-                    ]
-                },
-                {
-                    title: 'Recheio',
-                    data: [
-                        { key: '4', item: '1 colher (sopa) de queijo parmesão ralado polvilho e o iogurte (ou cottage) no mixer o', },
-                        { key: '5', item: '1 colher (sopa) de cenoura ralada', },
-                        { key: '6', item: '1 colher (sopa) peito de peru picado' }
 
-                    ]
-                }
-
-            ],
-            instructions: [
-                {
-                    title: 'Crepioca',
-                    data: [
-                        { key: '1', item: 'Bata os ovos, a água, o polvilho e o iogurte (ou cottage) no mixer ou liquidificador.', },
-                        { key: '2', item: 'Coloque 1/3 da massa na frigideira antiaderente pré aquecida e cozinhe em fogo baixo.', },
-                        { key: '3', item: 'Quando despregar da panela, vire e espere dourar do outro lado. Frite o restante da massa.' }
-                    ]
-                },
-                {
-                    title: 'Recheio',
-                    data: [
-                        { key: '4', item: 'Recheie cada crepioca com frango e um pouquinho de requeijão e enrole ou dobre ao meio.', },
-                    ]
-                }
-            ],
         };
         this.goNextScreen = this.goNextScreen.bind(this);
 
@@ -187,7 +162,7 @@ export class ShowRecipe extends React.Component {
                                 inputStyle={{ backgroundColor: "white" }}
                                 renderTag={({ tag, index, onPress, deleteTagOnPress, readonly }) => (
                                     <TouchableOpacity key={`${tag}-${index}`} onPress={onPress} style={styles.tagTouch}>
-                                        <Text style={styles.tagTxt}>{tag}</Text>
+                                        <Text style={styles.tagTxt}>#{capitalize(tag)}</Text>
                                     </TouchableOpacity>
                                 )}
                             />
@@ -201,8 +176,9 @@ export class ShowRecipe extends React.Component {
                             <Text style={styles.ingredientsTxt}>Ingredientes</Text>
                         </View>
                         <View style={[styles.separator, { marginBottom: 0, height: 0.9 }]} />
-                        <IngredientsSection
-                            data={this.state.ingredients}
+                        <FlatList
+                            data={this.state.recipeData.ingredients}
+                            renderItem={({ item }) => <IngredientItem data={item} />}
                         />
                     </View>
 
@@ -212,8 +188,8 @@ export class ShowRecipe extends React.Component {
                             <Text style={styles.ingredientsTxt}>Modo de preparo</Text>
                         </View>
                         <View style={[styles.separator, { marginBottom: 0, height: 0.9 }]} />
-                        <IngredientsSection
-                            data={this.state.instructions}
+                        <StepsSection
+                            data={this.state.recipeData.instructions}
                         />
                     </View>
 

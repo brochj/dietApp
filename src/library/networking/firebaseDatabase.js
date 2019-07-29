@@ -161,12 +161,40 @@ export async function getRecipeData(recipeKey = '11i1w7eLqK') {
             )
         };
 
+
+
+
         let instructions = [];
         for (instruction in d.instructions) {
             instructions.push(
                 d.instructions[instruction]
-            )
+            );
         };
+        instructions.sort((a, b) => {
+            if (a.order > b.order) {
+                return 1;
+            } else if (a.order < b.order) {
+                return -1;
+            }
+        });
+
+        instructions.forEach(instruction => {
+            let steps = [];
+            for (step in instruction['steps']) {
+                steps.push(
+                    instruction['steps'][step]
+                )
+            };
+            steps.sort((a, b) => {
+                if (a.order > b.order) {
+                    return 1;
+                } else if (a.order < b.order) {
+                    return -1;
+                }
+            });
+            instruction['steps'] = steps;
+        });
+
 
         let tags = [];
         for (tag in d.tags) {
