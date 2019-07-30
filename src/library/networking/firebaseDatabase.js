@@ -6,7 +6,6 @@ export async function addUserInDatabase(uid, email) {
     firebase.database().ref('users').child(uid).set({
         email: email,
     })
-
 };
 
 
@@ -90,37 +89,17 @@ export async function saveUserDietPlan(data) {
 
 export async function getRecipesList() {
     await firebase.database().ref('recipes').once('value').then((snapshot) => {
-        let recipesList = [];
+        recipesList = [];
+
         snapshot.forEach((childItem) => {
             let d = childItem.val();
-            photos = [];
-            for (photo in d.photos) {
-                photos.push(
-                    d.photos[photo]
-                )
-            };
-
-            let ingredients = [];
-            for (ingredient in d.ingredients) {
-                ingredients.push(
-                    d.ingredients[ingredient]
-                )
-            };
-
-            let instructions = [];
-            for (instruction in d.instructions) {
-                instructions.push(
-                    d.instructions[instruction]
-                )
-            };
 
             let tags = [];
             for (tag in d.tags) {
                 tags.push(
                     d.tags[tag]
-                )
+                );
             };
-
             recipesList.push({
                 key: childItem.key,
                 name: d.name,
@@ -129,22 +108,17 @@ export async function getRecipesList() {
                 servings: d.servings,
                 difficulty: d.difficulty,
                 public: d.public,
-                calories: d.calories,
                 creator: d.creator,
                 calories: d.calories,
-                nutritionFacts: d.nutritionFacts,
                 cover: d.cover,
-                photos,
-                ingredients,
-                instructions,
-                tags,
+                tags
             });
-
         });
     });
+    return await recipesList;
 };
 
-export async function getRecipeData(recipeKey = '11i1w7eLqK') {
+export async function getRecipeData(recipeKey) {
     await firebase.database().ref(`recipes/${recipeKey}`).once('value').then((snapshot) => {
         let d = snapshot.val();
         let photos = [];
@@ -160,9 +134,6 @@ export async function getRecipeData(recipeKey = '11i1w7eLqK') {
                 d.ingredients[ingredient]
             )
         };
-
-
-
 
         let instructions = [];
         for (instruction in d.instructions) {
@@ -212,7 +183,6 @@ export async function getRecipeData(recipeKey = '11i1w7eLqK') {
             public: d.public,
             calories: d.calories,
             creator: d.creator,
-            calories: d.calories,
             nutritionFacts: d.nutritionFacts,
             cover: d.cover,
             photos,
@@ -221,5 +191,5 @@ export async function getRecipeData(recipeKey = '11i1w7eLqK') {
             tags,
         }
     });
-    return recipeData;
+    return await recipeData;
 };

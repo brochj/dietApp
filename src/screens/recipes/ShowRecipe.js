@@ -25,7 +25,15 @@ import { capitalize } from 'scripts/StringScripts'
 export class ShowRecipe extends React.Component {
     constructor(props) {
         super(props);
-        getRecipeData()
+
+        this.state = {
+            recipeData: null,
+            coverPhoto: null,
+        };
+    }
+
+    componentDidMount() {
+        getRecipeData(this.props.navigation.getParam('key'))
             .then((data) => {
                 this.state.recipeData = data;
 
@@ -33,7 +41,6 @@ export class ShowRecipe extends React.Component {
                 data.tags.map((item) => {
                     this.state.tags.push(item.tag)
                 });
-
 
                 let steps = []
                 data.instructions.forEach(instruction => {
@@ -48,47 +55,7 @@ export class ShowRecipe extends React.Component {
 
                 this.setState(this.state);
             });
-        this.state = {
-            recipeData: null,
-            // recipeKey: this.props.navigation.getParam('recipeKey'),
-            recipeKey: '11i1w7eLqK', //TODO PARA DEBUGG, VOltar co alinha de cima depois
-            coverPhoto: null,
-
-
-        };
-        this.goNextScreen = this.goNextScreen.bind(this);
-
-
-
-
     }
-    componentDidUpdate() {
-        // getRecipeData()
-        //     .then((data) => {
-        //         this.state.recipeData = data
-
-        //         this.setState(this.state);
-        //     })
-    }
-
-    componentDidMount() {
-        // getRecipeData()
-        //     .then((data) => {
-        //         this.state.recipeData = data
-
-        //         this.setState(this.state);
-        //     })
-    }
-
-
-    goNextScreen() {
-        this.saveMealCalories();
-        this.props.navigation.navigate('teste')
-    }
-
-
-
-
 
     render() {
 
@@ -101,12 +68,10 @@ export class ShowRecipe extends React.Component {
 
         return (
             <View style={styles.body}>
-                {/* <Text style={styles.txtName}>{JSON.stringify(this.state.breakfastRecipes, null, 2)}</Text>
-                <Text style={styles.txtName}>{JSON.stringify(this.state.recipesList, null, 2)}</Text> */}
 
 
                 <ScrollView style={styles.scrollContainer} >
-                    <Text>{JSON.stringify(this.state.recipeData, null, 3)}</Text>
+                    {/* <Text>{JSON.stringify(this.state.recipeData, null, 3)}</Text> */}
                     <Image source={{ uri: this.state.recipeData.cover.url }} style={styles.recipeImage} />
                     <View style={styles.headerView}>
                         <Text style={styles.nameTxt}>{this.state.recipeData.name}</Text>
