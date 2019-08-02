@@ -13,8 +13,6 @@ import { getRecipe } from 'actions/RecipeActions';
 import IngredientsSection from "components/ShowRecipe/IngredientsSection";
 import IngredientItem from "components/ShowRecipe/IngredientItem";
 import StepsSection from "components/ShowRecipe/StepsSection";
-import ListItem from 'components/SearchRecipes/ListItem';
-import firebase from "networking/FirebaseConnection";
 import { getRecipeData } from "networking/firebaseDatabase";
 import { capitalize } from 'scripts/StringScripts'
 
@@ -33,7 +31,8 @@ export class ShowRecipe extends React.Component {
     }
 
     componentDidMount() {
-        getRecipeData(this.props.navigation.getParam('key'))
+        getRecipeData('sPofalpQuZOzQ')
+            // getRecipeData(this.props.navigation.getParam('key'))
             .then((data) => {
                 this.state.recipeData = data;
 
@@ -53,6 +52,17 @@ export class ShowRecipe extends React.Component {
                 })
                 data.instructions = steps;
 
+                let items = []
+                data.ingredients.forEach(ingredient => {
+
+                    let item = {
+                        title: ingredient['section'],
+                        data: ingredient['items']
+                    };
+                    items.push(item)
+                })
+                data.ingredients = items;
+
                 this.setState(this.state);
             });
     }
@@ -64,105 +74,108 @@ export class ShowRecipe extends React.Component {
             return (<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Text style={styles.txtName}>Carregando...</Text>
             </View>)
-        }
+        } else {
+            const { name, calories, description, preparationTime,
+                servings, difficulty, ingredients, instructions,
+                cover: { url } } = this.state.recipeData;
 
-        return (
-            <View style={styles.body}>
 
+            return (
+                <View style={styles.body}>
 
-                <ScrollView style={styles.scrollContainer} >
-                    {/* <Text>{JSON.stringify(this.state.recipeData, null, 3)}</Text> */}
-                    <Image source={{ uri: this.state.recipeData.cover.url }} style={styles.recipeImage} />
-                    <View style={styles.headerView}>
-                        <Text style={styles.nameTxt}>{this.state.recipeData.name}</Text>
-                        <View style={styles.rowView}>
-                            <MaterialCommunityIcons name='fire' color='#196a65' size={30} />
-                            <Text style={styles.caloriesTxt}>{this.state.recipeData.calories} kcal</Text>
-                        </View>
-                        <View style={styles.separator} />
-                        <Text style={styles.descriptionTxt}>{this.state.recipeData.description}</Text>
+                    <ScrollView style={styles.scrollContainer} >
+                        <Text>{JSON.stringify(this.state.recipeData, null, 3)}</Text>
+                        <Image source={{ uri: url }} style={styles.recipeImage} />
+                        <View style={styles.headerView}>
+                            <Text style={styles.nameTxt}>{name}</Text>
+                            <View style={styles.rowView}>
+                                <MaterialCommunityIcons name='fire' color='#196a65' size={30} />
+                                <Text style={styles.caloriesTxt}>{calories} kcal</Text>
+                            </View>
+                            <View style={styles.separator} />
+                            <Text style={styles.descriptionTxt}>{description}</Text>
 
-                        <View style={styles.separator} />
+                            <View style={styles.separator} />
 
-                        <View style={styles.infoRowView}>
+                            <View style={styles.infoRowView}>
 
-                            <View style={styles.infoView}>
-                                <View style={[styles.infoInsideView, styles.infoInsideLeftView]}>
-                                    <Icon name='timer' size={25} color='#196A65' />
-                                    <Text style={styles.infoTxt}>{this.state.recipeData.preparationTime} min</Text>
+                                <View style={styles.infoView}>
+                                    <View style={[styles.infoInsideView, styles.infoInsideLeftView]}>
+                                        <Icon name='timer' size={25} color='#196A65' />
+                                        <Text style={styles.infoTxt}>{preparationTime} min</Text>
+                                    </View>
+                                    <View style={[styles.infoInsideView, styles.infoInsideLeftView]}>
+                                        <Icon name='group' size={25} color='#196A65' />
+                                        <Text style={styles.infoTxt}>Serve {servings} pessoa(s)</Text>
+                                    </View>
                                 </View>
-                                <View style={[styles.infoInsideView, styles.infoInsideLeftView]}>
-                                    <Icon name='group' size={25} color='#196A65' />
-                                    <Text style={styles.infoTxt}>Serve {this.state.recipeData.servings} pessoa(s)</Text>
+
+                                <View style={styles.infoView}>
+                                    <View style={[styles.infoInsideView, styles.infoInsideRightView]}>
+                                        <Icon name='shopping-cart' size={25} color='#196A65' />
+                                        <Text style={styles.infoTxt}>{preparationTime} ingredientes</Text>
+                                    </View>
+                                    <View style={[styles.infoInsideView, styles.infoInsideRightView]}>
+                                        <Icon name='network-check' size={25} color='#196A65' />
+                                        <Text style={styles.infoTxt}>{difficulty}</Text>
+                                    </View>
+
                                 </View>
                             </View>
 
-                            <View style={styles.infoView}>
-                                <View style={[styles.infoInsideView, styles.infoInsideRightView]}>
-                                    <Icon name='shopping-cart' size={25} color='#196A65' />
-                                    <Text style={styles.infoTxt}>{this.state.recipeData.preparationTime} ingredientes</Text>
-                                </View>
-                                <View style={[styles.infoInsideView, styles.infoInsideRightView]}>
-                                    <Icon name='network-check' size={25} color='#196A65' />
-                                    <Text style={styles.infoTxt}>{this.state.recipeData.difficulty}</Text>
-                                </View>
 
+                            <View style={styles.separator} />
+
+                            <View style={styles.tagsView}>
+                                <Tags
+                                    readonly={true}
+                                    initialText="monkey"
+                                    // textInputProps={{
+                                    //     placeholder: "Any type of animal"
+                                    // }}
+                                    initialTags={this.state.tags}
+                                    onChangeTags={tags => console.log(tags)}
+                                    onTagPress={(index, tagLabel, event, deleted) => { }}
+                                    containerStyle={{ justifyContent: "center" }}
+                                    inputStyle={{ backgroundColor: "white" }}
+                                    renderTag={({ tag, index, onPress, deleteTagOnPress, readonly }) => (
+                                        <TouchableOpacity key={`${tag}-${index}`} onPress={onPress} style={styles.tagTouch}>
+                                            <Text style={styles.tagTxt}>#{capitalize(tag)}</Text>
+                                        </TouchableOpacity>
+                                    )}
+                                />
                             </View>
+
                         </View>
 
-
-                        <View style={styles.separator} />
-
-                        <View style={styles.tagsView}>
-                            <Tags
-                                readonly={true}
-                                initialText="monkey"
-                                // textInputProps={{
-                                //     placeholder: "Any type of animal"
-                                // }}
-                                initialTags={this.state.tags}
-                                onChangeTags={tags => console.log(tags)}
-                                onTagPress={(index, tagLabel, event, deleted) => { }}
-                                containerStyle={{ justifyContent: "center" }}
-                                inputStyle={{ backgroundColor: "white" }}
-                                renderTag={({ tag, index, onPress, deleteTagOnPress, readonly }) => (
-                                    <TouchableOpacity key={`${tag}-${index}`} onPress={onPress} style={styles.tagTouch}>
-                                        <Text style={styles.tagTxt}>#{capitalize(tag)}</Text>
-                                    </TouchableOpacity>
-                                )}
+                        <View style={styles.ingredientsView}>
+                            <View style={styles.ingredientsHeaderView}>
+                                <MaterialCommunityIcons name='food-variant' color='#196a65' size={30} />
+                                <Text style={styles.ingredientsTxt}>Ingredientes</Text>
+                            </View>
+                            <View style={[styles.separator, { marginBottom: 0, height: 0.9 }]} />
+                            <IngredientsSection
+                                data={ingredients}
                             />
                         </View>
 
-                    </View>
-
-                    <View style={styles.ingredientsView}>
-                        <View style={styles.ingredientsHeaderView}>
-                            <MaterialCommunityIcons name='food-variant' color='#196a65' size={30} />
-                            <Text style={styles.ingredientsTxt}>Ingredientes</Text>
+                        <View style={styles.intructionsView}>
+                            <View style={styles.ingredientsHeaderView}>
+                                <MaterialCommunityIcons name='rice' color='#196a65' size={30} />
+                                <Text style={styles.ingredientsTxt}>Modo de preparo</Text>
+                            </View>
+                            <View style={[styles.separator, { marginBottom: 0, height: 0.9 }]} />
+                            <StepsSection
+                                data={instructions}
+                            />
                         </View>
-                        <View style={[styles.separator, { marginBottom: 0, height: 0.9 }]} />
-                        <FlatList
-                            data={this.state.recipeData.ingredients}
-                            renderItem={({ item }) => <IngredientItem data={item} />}
-                        />
-                    </View>
 
-                    <View style={styles.intructionsView}>
-                        <View style={styles.ingredientsHeaderView}>
-                            <MaterialCommunityIcons name='rice' color='#196a65' size={30} />
-                            <Text style={styles.ingredientsTxt}>Modo de preparo</Text>
-                        </View>
-                        <View style={[styles.separator, { marginBottom: 0, height: 0.9 }]} />
-                        <StepsSection
-                            data={this.state.recipeData.instructions}
-                        />
-                    </View>
-
-                </ScrollView>
+                    </ScrollView>
 
 
-            </View>
-        );
+                </View>
+            );
+        };
 
     }
 }
@@ -183,15 +196,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         paddingHorizontal: 10,
         backgroundColor: 'white',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-
-        elevation: 3,
+        ...R.styles.shadow,
     },
     nameTxt: {
         fontSize: 25,
@@ -268,15 +273,7 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         paddingHorizontal: 10,
         backgroundColor: 'white',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-
-        elevation: 3,
+        ...R.styles.shadow,
     },
     ingredientsHeaderView: {
         flexDirection: 'row',
@@ -297,15 +294,7 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         paddingHorizontal: 10,
         backgroundColor: 'white',
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 1,
-        },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-
-        elevation: 3,
+        ...R.styles.shadow,
     },
 
     separator: {

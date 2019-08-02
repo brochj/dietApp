@@ -135,6 +135,31 @@ export async function getRecipeData(recipeKey) {
             )
         };
 
+        ingredients.sort((a, b) => {
+            if (a.order > b.order) {
+                return 1;
+            } else if (a.order < b.order) {
+                return -1;
+            }
+        });
+
+        ingredients.forEach(ingredient => {
+            let items = [];
+            for (item in ingredient['items']) {
+                items.push(
+                    ingredient['items'][item]
+                )
+            };
+            items.sort((a, b) => {
+                if (a.order > b.order) {
+                    return 1;
+                } else if (a.order < b.order) {
+                    return -1;
+                }
+            });
+            ingredient['items'] = items;
+        });
+
         let instructions = [];
         for (instruction in d.instructions) {
             instructions.push(

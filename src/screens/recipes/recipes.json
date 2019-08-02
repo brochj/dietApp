@@ -1,88 +1,114 @@
 {
     "11i1w7eLqK": {
-        "name": "Crepioca recheada com frango",
+        "name": "Crepioca recheada fit",
         "description": "Além de ser muito saudável, essa receita não contém glúten. A crepioca recheada com frango pode substituir uma refeição e fica deliciosa com esse recheio acessível e gostoso. ",
-        "preparationTime": 6,
-        "servings": 1,
+        "preparationTime": 5,
+        "servings": 2,
         "difficulty": "Fácil",
         "public": true,
         "creator": "Fulano",
         "cover": {
             "key": "nBFmXQioPJ",
-            "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
+            "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2F11i1w7eLqK%2Fcrepioca.jpg?alt=media&token=dc905dc6-3854-4691-9463-e252524b0299"
         },
         "photos": {
             "AWetCbUsOfqMLDSz": {
                 "key": "AWetCbUsOfqMLDSz",
-                "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
+                "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2F11i1w7eLqK%2Fcrepioca.jpg?alt=media&token=dc905dc6-3854-4691-9463-e252524b0299"
             },
             "nBFmXQioPJ": {
                 "key": "nBFmXQioPJ",
-                "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
+                "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2F11i1w7eLqK%2Fcrepioca.jpg?alt=media&token=dc905dc6-3854-4691-9463-e252524b0299"
             }
         },
         "ingredients": {
-            "nghpCGQkgQ": {
-                "key": "nghpCGQkgQ",
-                "item": "farinha de coco",
-                "quantity": 100,
-                "unit": "g"
-            },
-            "aNZQphFpKcrtYf": {
-                "key": "aNZQphFpKcrtYf",
-                "item": "leite",
-                "quantity": 1,
-                "unit": "l"
+            "XHlQjQWmnFUL": {
+                "key": "XHlQjQWmnFUL",
+                "order": 0,
+                "section": "Crepioca",
+                "items": {
+                    "nghpCGQkgQ": {
+                        "key": "nghpCGQkgQ",
+                        "item": "1 colher (de sopa) Tapioca ",
+                        "quantity": 30,
+                        "unit": "g",
+                        "order": 1
+                    },
+                    "XBxXFfnFUdDjcaenBnghpCGQkgQ": {
+                        "key": "XBxXFfnFUdDjcaenBnghpCGQkgQ",
+                        "item": "1 colher (de sopa) de semente de chia",
+                        "quantity": 30,
+                        "unit": "g",
+                        "order": 2
+                    },
+                    "aNZQphFpKcrtYf": {
+                        "key": "aNZQphFpKcrtYf",
+                        "item": "2 ovos",
+                        "quantity": 2,
+                        "unit": "un",
+                        "order": 3
+                    },
+                    "NPEVbZbQeK": {
+                        "key": "NPEVbZbQeK",
+                        "item": "1 colher (de sopa) de leite",
+                        "quantity": 400,
+                        "unit": "ml",
+                        "order": 4
+                    },
+                    "NPiBYyJskxhqqXUhqpFgoxEVbZbQeK": {
+                        "key": "NPiBYyJskxhqqXUhqpFgoxEVbZbQeK",
+                        "item": "Peito de peru ou frango desfiado",
+                        "quantity": 200,
+                        "unit": "g",
+                        "order": 5
+                    },
+                    "LJAOJpvcDtubzeZN": {
+                        "key": "NPiBYyJskxhqqXUhqpFgoxEVbZbQeK",
+                        "item": "Saladas variadas (do seu gosto)",
+                        "quantity": 20,
+                        "unit": "g",
+                        "order": 6,
+                        "tip": "Exemplos: beterraba ralada, cenoura ralada, alface, tomate, cebola, pimentão"
+                    }
+                }
             }
         },
         "instructions": {
             "XHlQjQWmnFUL": {
                 "key": "XHlQjQWmnFUL",
                 "order": 0,
-                "section": "Massa",
+                "section": "Crepioca",
                 "steps": {
                     "TvVWXJkDslRWqRRZi": {
                         "key": "TvVWXJkDslRWqRRZi",
-                        "order": "1",
-                        "text": "Assa tal coisa a 180 graus",
-                        "tip": "Se nao tiver isso, faca com isso"
+                        "order": 1,
+                        "text": "Dentro da vasilha, coloque 1 gema e 2 claras,as sementes de chia, o leite e a tapioca"
                     },
                     "yElQnvYDGcHJ": {
                         "key": "yElQnvYDGcHJ",
-                        "order": "2",
-                        "text": "Assa tal coisa a 180 graus",
-                        "tip": "Se nao tiver isso, faca com isso"
+                        "order": 2,
+                        "text": "Misture tudo até que os ingredientes estejam bem unificados."
                     },
                     "uhyBHHMwAmKkeTFszm": {
                         "key": "uhyBHHMwAmKkeTFszm",
-                        "order": "3",
-                        "text": "Assa tal coisa a 180 graus",
-                        "tip": "Se nao tiver isso, faca com isso"
-                    }
-                }
-            },
-            "AoRNGctOfMvE": {
-                "key": "AoRNGctOfMvE",
-                "order": 0,
-                "section": "Cobertura",
-                "steps": {
-                    "GvJNYddZvuAyduaqlS": {
-                        "key": "GvJNYddZvuAyduaqlS",
-                        "order": "1",
-                        "text": "Adicionar o chocolate",
-                        "tip": "Evitar de usar toddy"
-                    },
-                    "BDzWJcsVwbRTLGKjiosd": {
-                        "key": "BDzWJcsVwbRTLGKjiosd",
-                        "order": "2",
-                        "text": "Assa tal coisa a 180 graus",
+                        "order": 3,
+                        "text": "Coloque uma frigideira antiaderente em fogo baixo (sem óleo), e coloque a crepioca.",
                         "tip": "Se nao tiver isso, faca com isso"
                     },
-                    "QesZPLYZjn": {
-                        "key": "QesZPLYZjn",
-                        "order": "3",
-                        "text": "Assa tal coisa a 180 graus",
-                        "tip": "Se nao tiver isso, faca com isso"
+                    "kmsJVutuptK": {
+                        "key": "FCIDc",
+                        "order": 4,
+                        "text": "Deixe fritar até dourar os 2 lados, tipo uma panqueca."
+                    },
+                    "nCICDUhWFp": {
+                        "key": "oSUPcxpBHXhBY",
+                        "order": 5,
+                        "text": "Coloque a crepioca aberta em prato e coloque os recheios."
+                    },
+                    "bgcaOcPeSGQvdZY": {
+                        "key": "yTEHzCeLTRJVwIUtnEu",
+                        "order": 6,
+                        "text": "Em seguida, enrole feito uma panqueca e bom apetite."
                     }
                 }
             }
@@ -113,7 +139,7 @@
         }
     },
     "sPofalpQuZOzQ": {
-        "name": "Crepioca recheada com frango",
+        "name": "Rap de atum light",
         "description": "north interest goes flight dust rule hunter breathing see nearest warn wooden captured jar shake applied can third spirit wore usual feet fed you. ",
         "preparationTime": 26,
         "servings": 1,
@@ -122,48 +148,76 @@
         "creator": "Fulano",
         "cover": {
             "key": "nBFmXQioPJ",
-            "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
+            "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2FsPofalpQuZOzQ%2Frap.jpg?alt=media&token=adf0cf86-15e4-4743-9573-6d96af246438"
         },
         "photos": {
             "AWetCbUsOfqMLDSz": {
                 "key": "AWetCbUsOfqMLDSz",
-                "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
+                "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2FsPofalpQuZOzQ%2Frap.jpg?alt=media&token=adf0cf86-15e4-4743-9573-6d96af246438"
             },
             "nBFmXQioPJ": {
                 "key": "nBFmXQioPJ",
-                "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2Fpaodeaveia.jpg?alt=media&token=3f85ae57-85fa-4c1c-9bf7-af2a06883832"
+                "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2FsPofalpQuZOzQ%2Frap.jpg?alt=media&token=adf0cf86-15e4-4743-9573-6d96af246438"
             }
         },
         "ingredients": {
-            "nghpCGQkgQ": {
-                "key": "nghpCGQkgQ",
-                "item": "farinha de coco",
-                "quantity": 100,
-                "unit": "g"
-            },
-            "aNZQphFpKcrtYf": {
-                "key": "aNZQphFpKcrtYf",
-                "item": "leite",
-                "quantity": 1,
-                "unit": "l"
-            },
-            "gpBsAxCwVFvJCgZEsfP": {
-                "key": "gpBsAxCwVFvJCgZEsfP",
-                "item": "Cody Robbins",
-                "quantity": 100,
-                "unit": "g"
-            },
-            "quTguhYInLpqP": {
-                "key": "quTguhYInLpqP",
-                "item": "Nicholas Park",
-                "quantity": 200,
-                "unit": "g"
-            },
-            "UVfimuGBGugH": {
-                "key": "UVfimuGBGugH",
-                "item": "Frederick Porter",
-                "quantity": 300,
-                "unit": "g"
+            "XHlQjQWmnFUL": {
+                "key": "XHlQjQWmnFUL",
+                "order": 0,
+                "section": "Recheio",
+                "items": {
+                    "nghpCGQkgQ": {
+                        "key": "nghpCGQkgQ",
+                        "item": "1 lata de atum ralado light",
+                        "quantity": 100,
+                        "unit": "g",
+                        "order": 7,
+                        "tip": "uso da marca coqueiro"
+                    },
+                    "aNZQphFpKcrtYf": {
+                        "key": "aNZQphFpKcrtYf",
+                        "item": "1/2 cenoura média",
+                        "quantity": 50,
+                        "unit": "g",
+                        "order": 8
+                    },
+                    "gpBsAxCwVFvJCgZEsfP": {
+                        "key": "gpBsAxCwVFvJCgZEsfP",
+                        "item": "3 colheres de sopa de maionese light",
+                        "quantity": 100,
+                        "unit": "g",
+                        "order": 9,
+                        "tip": "uso da marca hellmans"
+                    },
+                    "quTguhYInLpqP": {
+                        "key": "quTguhYInLpqP",
+                        "item": "3 unidades de rap 10 integral",
+                        "quantity": 3,
+                        "unit": "un",
+                        "order": 10
+                    },
+                    "UVfimuGBGugH": {
+                        "key": "UVfimuGBGugH",
+                        "item": "2 folhas de alface",
+                        "quantity": 20,
+                        "unit": "g",
+                        "order": 11
+                    },
+                    "xUaLWGNDEmAfmsykhFE": {
+                        "key": "xUaLWGNDEmAfmsykhFE",
+                        "item": "1 pitada de pimenta-do-reino",
+                        "quantity": 2,
+                        "unit": "g",
+                        "order": 12
+                    },
+                    "bRWGsfelNELPJtHxDaM": {
+                        "key": "bRWGsfelNELPJtHxDaM",
+                        "item": "azeite-extra virgem ao seu gosto",
+                        "quantity": 15,
+                        "unit": "ml",
+                        "order": 13
+                    }
+                }
             }
         },
         "instructions": {
@@ -175,50 +229,315 @@
                     "TvVWXJkDslRWqRRZi": {
                         "key": "TvVWXJkDslRWqRRZi",
                         "order": 0,
-                        "text": "Assa tal coisa a 180 graus",
-                        "tip": "Se nao tiver isso, faca com isso"
-                    },
-                    "yElQnvYDGcHJ": {
-                        "key": "yElQnvYDGcHJ",
-                        "order": 1,
-                        "text": "Assa tal coisa a 180 graus",
-                        "tip": "Se nao tiver isso, faca com isso"
-                    },
-                    "uhyBHHMwAmKkeTFszm": {
-                        "key": "uhyBHHMwAmKkeTFszm",
-                        "order": 2,
-                        "text": "Assa tal coisa a 180 graus",
-                        "tip": "Se nao tiver isso, faca com isso"
+                        "text": "Corte ao meio cada unidade do Rap 10, enrole-o em formato de cone (foto) e firme com meio palito, para que não abra."
                     }
                 }
             },
             "AoRNGctOfMvE": {
                 "key": "AoRNGctOfMvE",
-                "order": 0,
-                "section": "Cobertura",
+                "order": 1,
+                "section": "Recheio",
                 "steps": {
                     "GvJNYddZvuAyduaqlS": {
                         "key": "GvJNYddZvuAyduaqlS",
                         "order": 0,
-                        "text": "Adicionar o chocolate",
-                        "tip": "Evitar de usar toddy"
+                        "text": "Corte o alface em tirinhas e reserve."
                     },
                     "BDzWJcsVwbRTLGKjiosd": {
                         "key": "BDzWJcsVwbRTLGKjiosd",
                         "order": 1,
-                        "text": "Assa tal coisa a 180 graus",
-                        "tip": "Se nao tiver isso, faca com isso"
+                        "text": "Rale a cenoura e reserve."
                     },
                     "QesZPLYZjn": {
                         "key": "QesZPLYZjn",
-                        "order": 2,
-                        "text": "Assa tal coisa a 180 graus",
-                        "tip": "Se nao tiver isso, faca com isso"
+                        "order": 3,
+                        "text": "Misture o atum (sem a água), a cenoura ralada, a maionese light e a pimenta do reino até que vire um patê.",
+                        "tip": "Retire toda a água do atum antes de misturar os demais ingredientes para que fique no ponto de patê."
+                    },
+                    "nOFNdjdHlRVIDvzZje": {
+                        "key": "nOFNdjdHlRVIDvzZje",
+                        "order": 4,
+                        "text": "Encha cada cone com a mistura, intercalando com o alface."
+                    },
+                    "yPrkoJxpeP": {
+                        "key": "yPrkoJxpeP",
+                        "order": 4,
+                        "text": "Sirva com azeite extra virgem ao seu gosto!"
                     }
                 }
             }
         },
-        "calories": 358,
+        "calories": 250,
+        "nutritionFacts": "Em desenvolvimento...",
+        "tags": {
+            "VtoxEqizKKAQZOd": {
+                "key": "VtoxEqizKKAQZOd",
+                "tag": "high protein"
+            },
+            "SSDObVWwHfRZQbeRqabM": {
+                "key": "SSDObVWwHfRZQbeRqabM",
+                "tag": "low carb"
+            },
+            "EwTWibSTpHjiZFnlykv": {
+                "key": "EwTWibSTpHjiZFnlykv",
+                "tag": "chicken"
+            },
+            "ddGapegvnBj": {
+                "key": "ddGapegvnBj",
+                "tag": "lunch"
+            },
+            "nVjJTLiDbuvlbl": {
+                "key": "nVjJTLiDbuvlbl",
+                "tag": "easy"
+            }
+        }
+    },
+    "tZNcqTvAKsPofalpQuZOzQ": {
+        "name": "Coxinha fit (pré-treino)",
+        "description": "north interest goes flight dust rule hunter breathing see nearest warn wooden captured jar shake applied can third spirit wore usual feet fed you. ",
+        "preparationTime": 40,
+        "servings": 1,
+        "difficulty": "Fácil",
+        "public": true,
+        "creator": "Fulano",
+        "cover": {
+            "key": "nBFmXQioPJ",
+            "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2FtZNcqTvAKsPofalpQuZOzQ%2Fcoxinha.jpg?alt=media&token=1204ce3a-4a9c-42a1-9f66-764fe51f5706"
+        },
+        "photos": {
+            "AWetCbUsOfqMLDSz": {
+                "key": "AWetCbUsOfqMLDSz",
+                "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2FtZNcqTvAKsPofalpQuZOzQ%2Fcoxinha.jpg?alt=media&token=1204ce3a-4a9c-42a1-9f66-764fe51f5706"
+            },
+            "nBFmXQioPJ": {
+                "key": "nBFmXQioPJ",
+                "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2FtZNcqTvAKsPofalpQuZOzQ%2Fcoxinha.jpg?alt=media&token=1204ce3a-4a9c-42a1-9f66-764fe51f5706"
+            }
+        },
+        "ingredients": {
+            "XHlQjQWmnFUL": {
+                "key": "XHlQjQWmnFUL",
+                "order": 0,
+                "section": "Coxinha",
+                "items": {
+                    "nghpCGQkgQ": {
+                        "key": "nghpCGQkgQ",
+                        "item": "1 xícara de batata doce cozida e amassada com sal (a gosto)",
+                        "quantity": 100,
+                        "unit": "g",
+                        "order": 14,
+                        "tip": "uso da marca coqueiro"
+                    },
+                    "aNZQphFpKcrtYf": {
+                        "key": "aNZQphFpKcrtYf",
+                        "item": "Linhaça",
+                        "quantity": 50,
+                        "unit": "g",
+                        "order": 15
+                    }
+                }
+            },
+            "NELXCwelGKiVSnCW": {
+                "key": "NELXCwelGKiVSnCW",
+                "order": 1,
+                "section": "Recheio",
+                "items": {
+                    "gpBsAxCwVFvJCgZEsfP": {
+                        "key": "gpBsAxCwVFvJCgZEsfP",
+                        "item": "1 xícara de frango cozido temperado e desfiado",
+                        "quantity": 100,
+                        "unit": "g",
+                        "order": 16,
+                        "tip": "uso da marca hellmans"
+                    }
+                }
+            }
+        },
+        "instructions": {
+            "XHlQjQWmnFUL": {
+                "key": "XHlQjQWmnFUL",
+                "order": 0,
+                "section": "Massa",
+                "steps": {
+                    "TvVWXJkDslRWqRRZi": {
+                        "key": "TvVWXJkDslRWqRRZi",
+                        "order": 0,
+                        "text": "Bata a linhaça no liquidificador e separe."
+                    },
+                    "RgshPxGtE": {
+                        "key": "RgshPxGtE",
+                        "order": 0,
+                        "text": "Faça um bolinho com a batata amassada."
+                    },
+                    "PpNlverpPkw": {
+                        "key": "PpNlverpPkw",
+                        "order": 0,
+                        "text": "Recheie com o frango desfiado."
+                    },
+                    "rzKjGKSK": {
+                        "key": "rzKjGKSK",
+                        "order": 0,
+                        "text": "Deixe no formato de coxinha e depois passe a farinha da linhaça."
+                    },
+                    "OeEyOjezQOOlL": {
+                        "key": "OeEyOjezQOOlL",
+                        "order": 0,
+                        "text": "Coloque no forno a 180ºC por 30 minutos ou até dourar."
+                    }
+                }
+            }
+        },
+        "calories": 200,
+        "nutritionFacts": "Em desenvolvimento...",
+        "tags": {
+            "VtoxEqizKKAQZOd": {
+                "key": "VtoxEqizKKAQZOd",
+                "tag": "high protein"
+            },
+            "SSDObVWwHfRZQbeRqabM": {
+                "key": "SSDObVWwHfRZQbeRqabM",
+                "tag": "low carb"
+            },
+            "EwTWibSTpHjiZFnlykv": {
+                "key": "EwTWibSTpHjiZFnlykv",
+                "tag": "chicken"
+            },
+            "ddGapegvnBj": {
+                "key": "ddGapegvnBj",
+                "tag": "lunch"
+            },
+            "nVjJTLiDbuvlbl": {
+                "key": "nVjJTLiDbuvlbl",
+                "tag": "easy"
+            }
+        }
+    },
+    "KxEDXmduXIxk": {
+        "name": "Misto quente de forno à minha moda",
+        "description": "north interest goes flight dust rule hunter breathing see nearest warn wooden captured jar shake applied can third spirit wore usual feet fed you. ",
+        "preparationTime": 20,
+        "servings": 6,
+        "difficulty": "Fácil",
+        "public": true,
+        "creator": "Fulano",
+        "cover": {
+            "key": "nBFmXQioPJ",
+            "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2FKxEDXmduXIxk%2Fmisto.jpg?alt=media&token=5f4afaab-36e7-4ec2-b114-1b7aea203e5c"
+        },
+        "photos": {
+            "AWetCbUsOfqMLDSz": {
+                "key": "AWetCbUsOfqMLDSz",
+                "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2FKxEDXmduXIxk%2Fmisto.jpg?alt=media&token=5f4afaab-36e7-4ec2-b114-1b7aea203e5c"
+            },
+            "nBFmXQioPJ": {
+                "key": "nBFmXQioPJ",
+                "url": "https://firebasestorage.googleapis.com/v0/b/dietapp-9c0a6.appspot.com/o/recipes%2FKxEDXmduXIxk%2Fmisto.jpg?alt=media&token=5f4afaab-36e7-4ec2-b114-1b7aea203e5c"
+            }
+        },
+        "ingredients": {
+            "NELXCwelGKiVSnCW": {
+                "key": "NELXCwelGKiVSnCW",
+                "order": 0,
+                "section": "Misto quente",
+                "items": {
+                    "nghpCGQkgQ": {
+                        "key": "nghpCGQkgQ",
+                        "item": "Margarina para untar",
+                        "quantity": 20,
+                        "unit": "g",
+                        "order": 17
+                    },
+                    "aNZQphFpKcrtYf": {
+                        "key": "aNZQphFpKcrtYf",
+                        "item": "12 fatias de pão de forma (sem a casca)",
+                        "quantity": 400,
+                        "unit": "g",
+                        "order": 18
+                    },
+                    "gpBsAxCwVFvJCgZEsfP": {
+                        "key": "gpBsAxCwVFvJCgZEsfP",
+                        "item": "1/2 lata de molho de tomate pronto ",
+                        "quantity": 50,
+                        "unit": "g",
+                        "order": 19,
+                        "tip": "coloquei 1 sache de sazon sabor do nordeste"
+                    },
+                    "quTguhYInLpqP": {
+                        "key": "quTguhYInLpqP",
+                        "item": "6 fatias de presunto (ou a gosto)",
+                        "quantity": 100,
+                        "unit": "g",
+                        "order": 20
+                    },
+                    "UVfimuGBGugH": {
+                        "key": "UVfimuGBGugH",
+                        "item": "4 colheres de sopa de requeijão",
+                        "quantity": 120,
+                        "unit": "g",
+                        "order": 21
+                    },
+                    "xUaLWGNDEmAfmsykhFE": {
+                        "key": "xUaLWGNDEmAfmsykhFE",
+                        "item": "12 fatias de mussarela (ou a gosto)",
+                        "quantity": 2,
+                        "unit": "g",
+                        "order": 22
+                    },
+                    "bRWGsfelNELPJtHxDaM": {
+                        "key": "bRWGsfelNELPJtHxDaM",
+                        "item": "1/2 caixa de creme de leite",
+                        "quantity": 30,
+                        "unit": "g",
+                        "order": 23
+                    },
+                    "erGIEvdpVwzRHoQ": {
+                        "key": "erGIEvdpVwzRHoQ",
+                        "item": "1 tomate grande cortado em rodelas",
+                        "quantity": 30,
+                        "unit": "g",
+                        "order": 24
+                    },
+                    "UvKgVwerGIEvdpVwzRHoQ": {
+                        "key": "UvKgVwerGIEvdpVwzRHoQ",
+                        "item": "orégano a gosto",
+                        "quantity": 5,
+                        "unit": "g",
+                        "order": 25
+                    }
+                }
+            }
+        },
+        "instructions": {
+            "AoRNGctOfMvE": {
+                "key": "AoRNGctOfMvE",
+                "order": 0,
+                "section": "Misto quente",
+                "steps": {
+                    "GvJNYddZvuAyduaqlS": {
+                        "key": "GvJNYddZvuAyduaqlS",
+                        "order": 0,
+                        "text": "Unte um refratário com margarina."
+                    },
+                    "BDzWJcsVwbRTLGKjiosd": {
+                        "key": "BDzWJcsVwbRTLGKjiosd",
+                        "order": 1,
+                        "text": "Forre o fundo com 6 fatias de pão de forma."
+                    },
+                    "QesZPLYZjn": {
+                        "key": "QesZPLYZjn",
+                        "order": 3,
+                        "text": "Colocar metade do molho de tomate temperado, presunto, camada de requeijão, metade da mussarela, restante do pão de forma, molho de tomate, creme de leite, mussarela, tomate em rodelas, orégano."
+                    },
+                    "nOFNdjdHlRVIDvzZje": {
+                        "key": "nOFNdjdHlRVIDvzZje",
+                        "order": 4,
+                        "text": "Leve o refratário ao forno até a mussarela derreter",
+                        "tip": "Fiz no micro-ondas."
+                    }
+                }
+            }
+        },
+        "calories": 200,
         "nutritionFacts": "Em desenvolvimento...",
         "tags": {
             "VtoxEqizKKAQZOd": {

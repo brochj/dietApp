@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { ThemeContext } from 'res/themeContext';
 import { getRecipes } from 'actions/RecipeActions';
 
-import ListItem from 'components/SearchRecipes/ListItem';
+import ListRecipe from 'components/SearchRecipes/ListRecipe';
 import { getRecipesList } from "networking/firebaseDatabase";
 
 import firebase from "networking/FirebaseConnection";
@@ -38,12 +38,14 @@ export class SearchRecipes extends React.Component {
         return (
             <ScrollView style={styles.body}>
                 <ScrollView style={styles.scrollContainer}>
-                    {/* <Text style={styles.txtName}>{JSON.stringify(this.state.recipesList, null, 2)}</Text> */}
+                    <Text style={styles.txtName}>{JSON.stringify(this.state.recipesList, null, 2)}</Text>
+
                     <FlatList
                         style={styles.historico}
                         data={this.state.recipesList}
-                        renderItem={({ item }) => <ListItem data={item} onPress={this.onClick} />}
+                        renderItem={({ item }) => <ListRecipe data={item} onPress={this.onClick} />}
                     />
+
                 </ScrollView>
             </ScrollView>
         );
