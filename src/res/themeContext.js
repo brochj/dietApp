@@ -93,6 +93,6 @@ export const themes = {
 };
 
 export const ThemeContext = React.createContext(
-    themes.dark, // default value
+    themes.light, // default value
 );
 

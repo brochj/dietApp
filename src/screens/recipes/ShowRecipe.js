@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, Button, TouchableOpacity, ScrollView, FlatList } from "react-native";
+import { StyleSheet, Text, View, Image, Button, TouchableOpacity, ScrollView, ActivityIndicator } from "react-native";
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Tags from "react-native-tags";
@@ -16,10 +16,6 @@ import StepsSection from "components/ShowRecipe/StepsSection";
 import { getRecipeData } from "networking/firebaseDatabase";
 import { capitalize } from 'scripts/StringScripts'
 
-
-
-
-
 export class ShowRecipe extends React.Component {
     constructor(props) {
         super(props);
@@ -31,8 +27,8 @@ export class ShowRecipe extends React.Component {
     }
 
     componentDidMount() {
-        getRecipeData('sPofalpQuZOzQ')
-            // getRecipeData(this.props.navigation.getParam('key'))
+        // getRecipeData('sPofalpQuZOzQ')
+        getRecipeData(this.props.navigation.getParam('key'))
             .then((data) => {
                 this.state.recipeData = data;
 
@@ -72,6 +68,7 @@ export class ShowRecipe extends React.Component {
         // Espera carregar
         if (this.state.recipeData == null) {
             return (<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                <ActivityIndicator size='large' />
                 <Text style={styles.txtName}>Carregando...</Text>
             </View>)
         } else {
@@ -84,7 +81,7 @@ export class ShowRecipe extends React.Component {
                 <View style={styles.body}>
 
                     <ScrollView style={styles.scrollContainer} >
-                        <Text>{JSON.stringify(this.state.recipeData, null, 3)}</Text>
+                        {/* <Text>{JSON.stringify(this.state.recipeData, null, 3)}</Text> */}
                         <Image source={{ uri: url }} style={styles.recipeImage} />
                         <View style={styles.headerView}>
                             <Text style={styles.nameTxt}>{name}</Text>

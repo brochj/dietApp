@@ -123,7 +123,7 @@ const AppNavigator = createStackNavigator({
         }
     },
 }, {
-        initialRouteName: 'ShowRecipe',
+        initialRouteName: 'SearchRecipes',
         defaultNavigationOptions: {
             header: null,
 
